@@ -35,6 +35,15 @@ export 'src/domain/entities/visitor_entity.dart';
 // Use Cases
 export 'src/domain/use_cases/communities/watch_community_by_id.dart';
 
+export 'src/domain/use_cases/contracts/create_contract.dart';
+export 'src/domain/use_cases/contracts/fetch_contract.dart';
+export 'src/domain/use_cases/contracts/get_contract_ref.dart';
+export 'src/domain/use_cases/contracts/get_contract.dart';
+export 'src/domain/use_cases/contracts/get_contracts_by_community.dart';
+export 'src/domain/use_cases/contracts/watch_contracts_by_community.dart';
+
+
+
 // Shared Presentation/UI
 export 'src/presentation/shared/texts/header_text.dart';
 export 'src/presentation/shared/views/loading_view.dart';
