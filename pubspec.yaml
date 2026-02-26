@@ -25,6 +25,10 @@ dependencies:
   short_navigation: ^2.5.3
   supabase_flutter: ^2.8.0
   uuid: ^4.5.2
+  wester_kit:
+    git:
+      url: https://github.com/tomaswesterlund/WesterKit
+      ref: main
 
 dev_dependencies:
   flutter_test:

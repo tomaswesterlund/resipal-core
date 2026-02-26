@@ -22,7 +22,8 @@
         "shimmer",
         "short_navigation",
         "supabase_flutter",
-        "uuid"
+        "uuid",
+        "wester_kit"
       ],
       "devDependencies": [
         "build_runner",
@@ -95,6 +96,16 @@
         "stream_channel",
         "test_api",
         "vector_math"
+      ]
+    },
+    {
+      "name": "wester_kit",
+      "version": "0.0.1",
+      "dependencies": [
+        "flutter",
+        "google_fonts",
+        "intl",
+        "shimmer"
       ]
     },
     {
@@ -649,7 +660,7 @@
     },
     {
       "name": "matcher",
-      "version": "0.12.17",
+      "version": "0.12.18",
       "dependencies": [
         "async",
         "meta",
@@ -660,7 +671,7 @@
     },
     {
       "name": "test_api",
-      "version": "0.7.7",
+      "version": "0.7.9",
       "dependencies": [
         "async",
         "boolean_selector",
@@ -923,14 +934,14 @@
     },
     {
       "name": "material_color_utilities",
-      "version": "0.11.1",
+      "version": "0.13.0",
       "dependencies": [
         "collection"
       ]
     },
     {
       "name": "characters",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "dependencies": []
     },
     {
