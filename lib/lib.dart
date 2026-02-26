@@ -1,6 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-export 'package:equatable/equatable.dart' show Equatable;
 export 'src/data/models/access_log_model.dart';
 export 'src/data/models/application_model.dart';
 export 'src/data/models/community_model.dart';

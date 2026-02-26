@@ -12,19 +12,3 @@ dirs:
     name:
     disclaimer: true
     comments:
-    exports:
-      - package:mario/mario.dart
-      - export: package:equatable/equatable.dart
-        show:
-          - Equatable
-        hide:
-    include:
-      - src/loz.dart
-      - export: src/letters.dart
-        show:
-        hide:
-          - A
-          - B
-          - C
-    exclude:
-      - src/numbers.dart

@@ -1,4 +1,4 @@
-import 'package:resipal_core/src/presentation/invitations/pages/create_invitation/create_invitation_form_state.dart';
+import 'package:resipal_core/lib.dart';
 
 class CreateInvitationState {}
 

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:resipal_core/src/presentation/visitors/pages/create_visitor/create_visitor_form_state.dart';
+import 'package:resipal_core/lib.dart';
 
 abstract class CreateVisitorState extends Equatable {
   @override
