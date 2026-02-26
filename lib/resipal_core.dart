@@ -1,10 +1,10 @@
 library resipal_core;
 
 // DATA
-export 'package:resipal_core/src/data/resipal_supabase.dart';
+export 'src/data/resipal_supabase.dart';
 export 'src/data/sources/access_log_data_source.dart';
 export 'src/data/sources/application_data_source.dart';
-export 'package:resipal_core/src/data/sources/community_data_source.dart';
+export 'src/data/sources/community_data_source.dart';
 export 'src/data/sources/contract_data_source.dart';
 export 'src/data/sources/error_log_data_source.dart';
 export 'src/data/sources/invitation_data_source.dart';
@@ -35,3 +35,9 @@ export 'src/services/auth_service.dart';
 export 'src/services/image_service.dart';
 export 'src/services/logger_service.dart';
 export 'src/services/service_locator.dart';
+
+// HELPERS
+export 'src/helpers/formatters/currency_formatter.dart';
+export 'src/helpers/formatters/date_formatters.dart';
+export 'src/helpers/formatters/id_formatter.dart';
+export 'src/helpers/nullable_string_extensions.dart';
