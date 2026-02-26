@@ -18,9 +18,16 @@ export 'src/data/sources/visitor_data_source.dart';
 
 
 // Entities
-export 'src/domain/entities/membership_entity.dart';
-export 'src/domain/entities/resident_entity.dart';
+export 'src/domain/entities/community/community_directory_entity.dart';
 export 'src/domain/entities/community/community_entity.dart';
+export 'src/domain/entities/payment/payment_entity.dart';
+export 'src/domain/entities/payment/payment_ledger_entity.dart';
+export 'src/domain/entities/membership_entity.dart';
+export 'src/domain/entities/property_entity.dart';
+export 'src/domain/entities/resident_entity.dart';
+export 'src/domain/entities/user_entity.dart';
+export 'src/domain/entities/visitor_entity.dart';
+
 
 // Use Cases
 export 'src/domain/use_cases/communities/watch_community_by_id.dart';
