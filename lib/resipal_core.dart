@@ -1,10 +1,10 @@
 library resipal_core;
 
 // DATA
-export 'src/data/resipal_subabase.dart';
+export 'package:resipal_core/src/data/resipal_supabase.dart';
 export 'src/data/sources/access_log_data_source.dart';
 export 'src/data/sources/application_data_source.dart';
-export 'src/data/sources/community_data_source.dart';
+export 'package:resipal_core/src/data/sources/community_data_source.dart';
 export 'src/data/sources/contract_data_source.dart';
 export 'src/data/sources/error_log_data_source.dart';
 export 'src/data/sources/invitation_data_source.dart';
