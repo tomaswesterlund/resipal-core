@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:get_it/get_it.dart';
-import 'package:resipal_core/resipal_core.dart';
-import 'package:resipal_core/src/data/resipal_subabase.dart';
+import 'package:resipal_core/old_resipal_core.dart';
+import 'package:resipal_core/src/data/resipal_supabase.dart';
 import 'package:resipal_core/src/data/sources/access_log_data_source.dart';
 import 'package:resipal_core/src/data/sources/application_data_source.dart';
 import 'package:resipal_core/src/data/sources/community_data_source.dart';

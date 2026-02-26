@@ -1,9 +1,11 @@
+import 'package:barrel_files_annotation/barrel_files_annotation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:resipal_core/resipal_core.dart';
+import 'package:resipal_core/old_resipal_core.dart';
 import 'package:resipal_core/src/domain/typedefs.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+@includeInBarrelFile
 class ImageService {
   final LoggerService _logger = GetIt.I<LoggerService>();
   final SupabaseClient _client = GetIt.I<SupabaseClient>();

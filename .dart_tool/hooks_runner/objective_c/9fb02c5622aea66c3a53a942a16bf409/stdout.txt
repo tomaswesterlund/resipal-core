@@ -1,0 +1,65 @@
+Running `(cd /Users/tomaswesterlund/.pub-cache/hosted/pub.dev/objective_c-9.3.0/; TMPDIR=/var/folders/ty/fydjh0x9343gycbtdbcv8dz00000gn/T/ PATH=/Users/tomaswesterlund/Documents/Development/flutter/bin/:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/pmk/env/global/bin:/Library/Apple/usr/bin:/opt/homebrew/bin:/Users/tomaswesterlund/Documents/Development/flutter/bin:/Users/tomaswesterlund/Documents/Development/flutter/bin/ HOME=/Users/tomaswesterlund /Users/tomaswesterlund/Documents/Development/flutter/bin/cache/dart-sdk/bin/dart --packages=/Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/package_config.json /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/objective_c/9fb02c5622aea66c3a53a942a16bf409/hook.dill --config=/Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/objective_c/9fb02c5622aea66c3a53a942a16bf409/input.json )`.
+INFO: 2026-02-26 10:07:52.579428: Running `which clang`.
+
+INFO: 2026-02-26 10:07:52.591722: Running `/usr/bin/clang --version`.
+
+INFO: 2026-02-26 10:07:52.608925: Running `/usr/bin/clang --version`.
+
+INFO: 2026-02-26 10:07:52.627064: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -c /Users/tomaswesterlund/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/include/dart_api_dl.c -fpic -I src -o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/include/dart_api_dl.c.o
+
+INFO: 2026-02-26 10:07:52.627365: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -c /Users/tomaswesterlund/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/objective_c.c -fpic -I src -o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.c.o
+
+INFO: 2026-02-26 10:07:52.627520: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -c /Users/tomaswesterlund/.pub-cache/hosted/pub.dev/objective_c-9.3.0/test/util.c -fpic -I src -o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/test/util.c.o
+
+INFO: 2026-02-26 10:07:52.627649: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -x objective-c -fobjc-arc -c /Users/tomaswesterlund/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/input_stream_adapter.m -fpic -I src -o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/input_stream_adapter.m.o
+
+INFO: 2026-02-26 10:07:52.627761: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -x objective-c -fobjc-arc -c /Users/tomaswesterlund/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/objective_c.m -fpic -I src -o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.m.o
+
+INFO: 2026-02-26 10:07:52.627927: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -x objective-c -fobjc-arc -c /Users/tomaswesterlund/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/observer.m -fpic -I src -o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/observer.m.o
+
+INFO: 2026-02-26 10:07:52.628053: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -x objective-c -fobjc-arc -c /Users/tomaswesterlund/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/ns_number.m -fpic -I src -o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/ns_number.m.o
+
+INFO: 2026-02-26 10:07:52.628184: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -x objective-c -fobjc-arc -c /Users/tomaswesterlund/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/protocol.m -fpic -I src -o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/protocol.m.o
+
+INFO: 2026-02-26 10:07:52.628287: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 -x objective-c -fobjc-arc -c /Users/tomaswesterlund/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/objective_c_bindings_generated.m -fpic -I src -o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c_bindings_generated.m.o
+
+INFO: 2026-02-26 10:07:52.676052: 
+INFO: 2026-02-26 10:07:52.676126: 
+INFO: 2026-02-26 10:07:52.676152: Generated /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/include/dart_api_dl.c.o
+
+INFO: 2026-02-26 10:07:52.678088: 
+INFO: 2026-02-26 10:07:52.678111: 
+INFO: 2026-02-26 10:07:52.678122: Generated /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.c.o
+
+INFO: 2026-02-26 10:07:52.697452: 
+INFO: 2026-02-26 10:07:52.697487: 
+INFO: 2026-02-26 10:07:52.697500: Generated /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/observer.m.o
+
+INFO: 2026-02-26 10:07:52.697810: Generated /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/protocol.m.o
+
+INFO: 2026-02-26 10:07:52.698796: 
+INFO: 2026-02-26 10:07:52.698825: 
+INFO: 2026-02-26 10:07:52.698837: Generated /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/test/util.c.o
+
+INFO: 2026-02-26 10:07:52.878373: 
+INFO: 2026-02-26 10:07:52.878407: 
+INFO: 2026-02-26 10:07:52.878418: Generated /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/ns_number.m.o
+
+INFO: 2026-02-26 10:07:52.881894: Generated /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.m.o
+
+INFO: 2026-02-26 10:07:52.883812: 
+INFO: 2026-02-26 10:07:52.883825: 
+
+INFO: 2026-02-26 10:07:52.883836: Generated /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/input_stream_adapter.m.o
+
+INFO: 2026-02-26 10:07:52.900233: 
+INFO: 2026-02-26 10:07:52.900255: 
+
+ments/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c_bindings_generated.m.o
+
+INFO: 2026-02-26 10:07:52.900531: Running: /usr/bin/clang -shared -Wl,-encryptable -undefined dynamic_lookup -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -mmacos-version-min=12 /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/include/dart_api_dl.c.o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.c.o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/test/util.c.o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/input_stream_adapter.m.o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.m.o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/observer.m.o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/ns_number.m.o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/protocol.m.o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c_bindings_generated.m.o -o /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/objective_c.dylib
+
+INFO: 2026-02-26 10:07:52.941694: 
+INFO: 2026-02-26 10:07:52.941747: 
+INFO: 2026-02-26 10:07:52.941764: Generated /Users/tomaswesterlund/Documents/Development/GitHub/resipal-core/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/objective_c.dylib
+
