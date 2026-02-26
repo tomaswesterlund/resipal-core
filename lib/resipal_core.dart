@@ -14,4 +14,7 @@ export 'src/presentation/shared/views/loading_view.dart';
 export 'src/presentation/shared/views/error_view.dart';
 
 // Services
+export 'src/services/auth_service.dart';
+export 'src/services/image_service.dart';
 export 'src/services/logger_service.dart';
+export 'src/services/service_locator.dart';
