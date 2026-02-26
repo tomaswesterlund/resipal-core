@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 export 'package:equatable/equatable.dart' show Equatable;
-export 'old_resipal_core.dart';
 export 'src/data/models/access_log_model.dart';
 export 'src/data/models/application_model.dart';
 export 'src/data/models/community_model.dart';
@@ -198,7 +197,6 @@ export 'src/presentation/visitors/pages/create_visitor/create_visitor_page.dart'
 export 'src/presentation/visitors/views/no_visitors_found_view.dart';
 export 'src/presentation/visitors/views/visitor_list_view.dart';
 export 'src/presentation/visitors/widgets/visitor_card.dart';
-export 'src/resipal_core.dart';
 export 'src/services/auth_service.dart';
 export 'src/services/image_service.dart';
 export 'src/services/logger_service.dart';

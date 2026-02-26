@@ -1,11 +1,9 @@
-import 'package:barrel_files_annotation/barrel_files_annotation.dart';
 import 'package:resipal_core/src/data/models/application_model.dart';
 import 'package:resipal_core/src/domain/entities/application_entity.dart';
 import 'package:resipal_core/src/domain/enums/community_application_status.dart';
 import 'package:resipal_core/src/domain/use_cases/communities/get_community_ref.dart';
 import 'package:resipal_core/src/domain/use_cases/get_user_ref.dart';
 
-@includeInBarrelFile
 class GetApplicationFromModel {
   final GetCommunityRef _getCommunityRef = GetCommunityRef();
   final GetUserRef _getUserRef = GetUserRef();

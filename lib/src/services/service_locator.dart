@@ -1,22 +1,6 @@
 import 'dart:async';
 import 'package:get_it/get_it.dart';
-import 'package:resipal_core/old_resipal_core.dart';
-import 'package:resipal_core/src/data/resipal_supabase.dart';
-import 'package:resipal_core/src/data/sources/access_log_data_source.dart';
-import 'package:resipal_core/src/data/sources/application_data_source.dart';
-import 'package:resipal_core/src/data/sources/community_data_source.dart';
-import 'package:resipal_core/src/data/sources/contract_data_source.dart';
-import 'package:resipal_core/src/data/sources/error_log_data_source.dart';
-import 'package:resipal_core/src/data/sources/invitation_data_source.dart';
-import 'package:resipal_core/src/data/sources/maintenance_fee_data_source.dart';
-import 'package:resipal_core/src/data/sources/membership_data_source.dart';
-import 'package:resipal_core/src/data/sources/movement_data_source.dart';
-import 'package:resipal_core/src/data/sources/payment_data_source.dart';
-import 'package:resipal_core/src/data/sources/property_data_source.dart';
-import 'package:resipal_core/src/data/sources/user_data_source.dart';
-import 'package:resipal_core/src/data/sources/visitor_data_source.dart';
-import 'package:resipal_core/src/services/auth_service.dart';
-import 'package:resipal_core/src/services/image_service.dart';
+import 'package:resipal_core/lib.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ServiceLocator {
