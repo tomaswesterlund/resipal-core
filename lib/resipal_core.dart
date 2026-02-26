@@ -1,5 +1,22 @@
 library resipal_core;
 
+// DATA
+export 'src/data/resipal_subabase.dart';
+export 'src/data/sources/access_log_data_source.dart';
+export 'src/data/sources/application_data_source.dart';
+export 'src/data/sources/community_data_source.dart';
+export 'src/data/sources/contract_data_source.dart';
+export 'src/data/sources/error_log_data_source.dart';
+export 'src/data/sources/invitation_data_source.dart';
+export 'src/data/sources/maintenance_fee_data_source.dart';
+export 'src/data/sources/membership_data_source.dart';
+export 'src/data/sources/movement_data_source.dart';
+export 'src/data/sources/payment_data_source.dart';
+export 'src/data/sources/property_data_source.dart';
+export 'src/data/sources/user_data_source.dart';
+export 'src/data/sources/visitor_data_source.dart';
+
+
 // Entities
 export 'src/domain/entities/membership_entity.dart';
 export 'src/domain/entities/resident_entity.dart';
