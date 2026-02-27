@@ -22,6 +22,6 @@ class WatchCommunityById {
         final community = _getCommunityById.call(id);
         return community;
       },
-    );
+    ).distinct();
   }
 }
