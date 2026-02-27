@@ -5,6 +5,7 @@ class ApplicationModel {
   final String communityId;
   final String? userId;
   final String status;
+  final String name;
   final String email;
   final String phoneNumber;
   final String? message;
@@ -16,6 +17,7 @@ class ApplicationModel {
     required this.communityId,
     required this.userId,
     required this.status,
+    required this.name,
     required this.email,
     required this.phoneNumber,
     required this.message,
@@ -29,6 +31,7 @@ class ApplicationModel {
       communityId: map['community_id'] as String,
       userId: map['user_id'] != null ? map['message'] as String : null,
       status: map['status'] as String,
+      name: map['name'] as String,
       email: map['email'] as String,
       phoneNumber: map['phone_number'] as String,
       message: map['message'] != null ? map['message'] as String : null,
