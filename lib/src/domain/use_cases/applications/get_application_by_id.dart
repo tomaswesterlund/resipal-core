@@ -21,6 +21,8 @@ class GetApplicationById {
       createdBy: model.createdBy,
       community: _getCommunityRef.fromId(model.communityId),
       user: user,
+      email: model.email,
+      phoneNumber: model.phoneNumber,
       status: ApplicationStatus.fromString(model.status),
       message: model.message,
     );
