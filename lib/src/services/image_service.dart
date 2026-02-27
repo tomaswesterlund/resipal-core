@@ -32,10 +32,10 @@ class ImageService {
   Future<String> uploadVisitorIdentification(XFile xFile) =>
       uploadImage(bucket: 'visitors', folder: 'identifications', xFile: xFile);
 
-  Future<String> getSignedUrl(String path) async {
+  Future<String> getSignedUrl({required String bucket, required String path}) async {
     try {
       final String signedUrl = await _client.storage
-        .from('payments')
+        .from(bucket)
         .createSignedUrl(path, 60); 
         
     return signedUrl;
