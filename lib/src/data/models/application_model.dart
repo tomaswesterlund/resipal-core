@@ -27,10 +27,10 @@ class ApplicationModel {
       createdAt: DateTime.parse(map['created_at'] as String),
       createdBy: map['created_by'] as String,
       communityId: map['community_id'] as String,
-      userId: map['user_id'] as String,
+      userId: map['user_id'] != null ? map['message'] as String : null,
       status: map['status'] as String,
       email: map['email'] as String,
-      phoneNumber: map['phonenumber'] as String,
+      phoneNumber: map['phone_number'] as String,
       message: map['message'] != null ? map['message'] as String : null,
     );
   }
