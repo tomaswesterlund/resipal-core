@@ -31,7 +31,19 @@ class PaymentEntity extends Equatable {
   });
 
   @override
-  List<Object?> get props => [id, community, user, createdAt, createdBy, amountInCents, status, date, reference, note, receiptPath];
+  List<Object?> get props => [
+    id,
+    community,
+    user,
+    createdAt,
+    createdBy,
+    amountInCents,
+    status,
+    date,
+    reference,
+    note,
+    receiptPath,
+  ];
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
