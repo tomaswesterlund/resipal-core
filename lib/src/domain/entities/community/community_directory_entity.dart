@@ -29,7 +29,9 @@ class CommunityDirectoryEntity {
   /// Total count of people attempting to join
   int get totalApplications => applications.length;
 
-  /// Helper to find a specific application by user ID
+  ApplicationEntity? findApplicationByEmail(String email) =>
+      applications.cast<ApplicationEntity?>().firstWhere((a) => a?.email == email, orElse: () => null);
+
   ApplicationEntity? findApplicationByUserId(String userId) =>
-      applications.cast<ApplicationEntity?>().firstWhere((a) => a?.user.id == userId, orElse: () => null);
+      applications.cast<ApplicationEntity?>().firstWhere((a) => a?.user?.id == userId, orElse: () => null);
 }

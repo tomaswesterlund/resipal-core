@@ -9,12 +9,14 @@ class GetApplicationFromModel {
   final GetUserRef _getUserRef = GetUserRef();
 
   ApplicationEntity call(ApplicationModel model) {
+    final user = model.userId == null ? null : _getUserRef.fromId(model.userId!);
+
     return ApplicationEntity(
       id: model.id,
       createdAt: model.createdAt,
       createdBy: model.createdBy,
       community: _getCommunityRef.fromId(model.communityId),
-      user: _getUserRef.fromId(model.userId),
+      user: user,
       status: ApplicationStatus.fromString(model.status),
       message: model.message,
     );

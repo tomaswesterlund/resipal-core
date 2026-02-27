@@ -3,8 +3,10 @@ class ApplicationModel {
   final DateTime createdAt;
   final String createdBy;
   final String communityId;
-  final String userId;
+  final String? userId;
   final String status;
+  final String email;
+  final String phoneNumber;
   final String? message;
 
   ApplicationModel({
@@ -14,6 +16,8 @@ class ApplicationModel {
     required this.communityId,
     required this.userId,
     required this.status,
+    required this.email,
+    required this.phoneNumber,
     required this.message,
   });
 
@@ -25,6 +29,8 @@ class ApplicationModel {
       communityId: map['community_id'] as String,
       userId: map['user_id'] as String,
       status: map['status'] as String,
+      email: map['email'] as String,
+      phoneNumber: map['phonenumber'] as String,
       message: map['message'] != null ? map['message'] as String : null,
     );
   }

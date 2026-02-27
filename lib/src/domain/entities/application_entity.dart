@@ -7,8 +7,10 @@ class ApplicationEntity {
   final DateTime createdAt;
   final String createdBy;
   final CommunityRef community;
-  final UserRef user;
+  final UserRef? user;
   final ApplicationStatus status;
+  final String? email;
+  final String? phoneNumber;
   final String? message;
 
   ApplicationEntity({
@@ -18,6 +20,8 @@ class ApplicationEntity {
     required this.community,
     required this.user,
     required this.status,
+    this.email,
+    this.phoneNumber,
     required this.message,
   });
 }
