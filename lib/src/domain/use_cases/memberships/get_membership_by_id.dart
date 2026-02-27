@@ -3,8 +3,6 @@ import 'package:resipal_core/src/data/sources/membership_data_source.dart';
 import 'package:resipal_core/src/domain/entities/membership_entity.dart';
 import 'package:resipal_core/src/domain/use_cases/communities/get_community_ref.dart';
 import 'package:resipal_core/src/domain/use_cases/residents/get_resident.dart';
-import 'package:resipal_core/src/domain/use_cases/get_user.dart';
-import 'package:resipal_core/src/domain/use_cases/get_user_ref.dart';
 
 class GetMembershipById {
   final MembershipDataSource _source = GetIt.I<MembershipDataSource>();

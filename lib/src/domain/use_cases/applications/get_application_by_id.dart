@@ -1,22 +1,26 @@
-// import 'package:resipal_core/src/data/models/application_model.dart';
-// import 'package:resipal_core/src/domain/entities/application_entity.dart';
-// import 'package:resipal_core/src/domain/enums/community_application_status.dart';
-// import 'package:resipal_core/src/domain/use_cases/communities/get_community_ref.dart';
-// import 'package:resipal_core/src/domain/use_cases/get_user_ref.dart';
+import 'package:get_it/get_it.dart';
+import 'package:resipal_core/lib.dart';
 
-// class GetApplication {
-//   final GetCommunityRef _getCommunityRef = GetCommunityRef();
-//   final GetUserRef _getUserRef = GetUserRef();
+class GetApplicationById {
+  final ApplicationDataSource _source = GetIt.I<ApplicationDataSource>();
+  final GetCommunityRef _getCommunityRef = GetCommunityRef();
+  final GetUserRef _getUserRef = GetUserRef();
 
-//   ApplicationEntity fromModel(ApplicationModel model) {
-//     return ApplicationEntity(
-//       id: model.id,
-//       createdAt: model.createdAt,
-//       createdBy: model.createdBy,
-//       community: _getCommunityRef.fromId(model.communityId),
-//       user: _getUserRef.fromId(model.userId),
-//       status: ApplicationStatus.fromString(model.status),
-//       message: model.message,
-//     );
-//   }
-// }
+  ApplicationEntity call(String id) {
+    final model = _source.getById(id);
+
+    if (model == null) {
+      throw Exception('Application $id not found in cache. Ensure the stream is active.');
+    }
+    
+    return ApplicationEntity(
+      id: model.id,
+      createdAt: model.createdAt,
+      createdBy: model.createdBy,
+      community: _getCommunityRef.fromId(model.communityId),
+      user: _getUserRef.fromId(model.userId),
+      status: ApplicationStatus.fromString(model.status),
+      message: model.message,
+    );
+  }
+}
