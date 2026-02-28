@@ -23,5 +23,6 @@ class GetUserRef {
     }
   }
 
-  UserRef fromModel(UserModel model) => UserRef(id: model.id, name: model.name);
+  UserRef fromModel(UserModel model) =>
+      UserRef(id: model.id, name: model.name, email: model.email, phoneNumber: model.phoneNumber);
 }
