@@ -55,7 +55,6 @@ export 'src/domain/typedefs.dart';
 export 'src/domain/use_cases/communities/create_community.dart';
 export 'src/domain/use_cases/communities/fetch_communities.dart';
 export 'src/domain/use_cases/communities/fetch_community.dart';
-export 'src/domain/use_cases/communities/get_admin_communities_by_id.dart';
 export 'src/domain/use_cases/communities/get_communities.dart';
 export 'src/domain/use_cases/communities/get_community_by_id.dart';
 export 'src/domain/use_cases/communities/get_community_ref.dart';
