@@ -1,7 +1,6 @@
 class UserModel {
   final String id;
-  final String authId;
-  final String communityId;
+  final String? communityId;
   final DateTime createdAt;
   final String createdBy;
   final String name;
@@ -16,7 +15,6 @@ class UserModel {
 
   UserModel({
     required this.id,
-    required this.authId,
     required this.communityId,
     required this.createdAt,
     required this.createdBy,
@@ -34,7 +32,6 @@ class UserModel {
   factory UserModel.fromMap(Map<String, dynamic> json) {
     return UserModel(
       id: json['id'] as String,
-      authId: json['auth_id'] as String? ?? '',
       communityId: json['community_id'] as String,
       createdAt: DateTime.parse(json['created_at'].toString()),
       createdBy: json['created_by'] as String,
@@ -53,7 +50,6 @@ class UserModel {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'auth_id': authId,
       'community_id': communityId,
       'created_at': createdAt.toIso8601String(),
       'created_by': createdBy,
@@ -87,7 +83,6 @@ class UserModel {
   }) {
     return UserModel(
       id: id ?? this.id,
-      authId: authId ?? this.authId,
       communityId: communityId ?? this.communityId,
       createdAt: createdAt ?? this.createdAt,
       createdBy: createdBy ?? this.createdBy,

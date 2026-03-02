@@ -38,8 +38,6 @@ class UserDataSource {
   List<UserModel> getByCommunityId(String communityId) =>
       _cache.values.where((x) => x.communityId == communityId).toList();
 
-  UserModel? getByAuthId(String authId) => _cache.values.where((x) => x.authId == authId).singleOrNull;
-
   bool userExistsInCache(String id) => _cache.containsKey(id);
 
   Future<bool> userExistsInDatabase(String id, {bool cacheExistingUser = true}) async {
@@ -102,5 +100,9 @@ class UserDataSource {
     );
 
     return userId as String;
+  }
+
+  Future upsert(UserModel model) async {
+    await _client.from('users').upsert(model);
   }
 }
