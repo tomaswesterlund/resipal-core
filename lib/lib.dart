@@ -105,6 +105,7 @@ export 'src/domain/use_cases/user_exists.dart';
 export 'src/domain/use_cases/user_has_joined_any_community.dart';
 export 'src/domain/use_cases/user_is_onboarded.dart';
 export 'src/domain/use_cases/user_onboarding_completed.dart';
+export 'src/domain/use_cases/users/auth_user_is_admin_in_any_community.dart';
 export 'src/domain/use_cases/users/create_user.dart';
 export 'src/domain/use_cases/users/get_users_by_community.dart';
 export 'src/domain/use_cases/watch_active_user_invitations.dart';
