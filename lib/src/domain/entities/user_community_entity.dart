@@ -1,4 +1,4 @@
-import 'package:resipal_core/src/domain/enums/community_application_status.dart';
+import 'package:resipal_core/src/domain/enums/application_status.dart';
 
 class UserCommunityEntity {
   final String id;

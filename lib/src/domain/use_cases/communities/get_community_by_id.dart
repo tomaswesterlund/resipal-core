@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:resipal_core/src/data/sources/community_data_source.dart';
-import 'package:resipal_core/src/domain/entities/community/community_directory_entity.dart';
-import 'package:resipal_core/src/domain/entities/community/community_entity.dart';
+import 'package:resipal_core/src/domain/entities/user_directory_entity.dart';
+import 'package:resipal_core/src/domain/entities/community_entity.dart';
 import 'package:resipal_core/src/domain/entities/payment/payment_ledger_entity.dart';
 import 'package:resipal_core/src/domain/entities/property_registry.dart';
 import 'package:resipal_core/src/domain/use_cases/payments/get_payments.dart';
