@@ -103,6 +103,6 @@ class UserDataSource {
   }
 
   Future upsert(UserModel model) async {
-    await _client.from('users').upsert(model);
+    await _client.from('users').upsert(model.toMap());
   }
 }
