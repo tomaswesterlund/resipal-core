@@ -77,12 +77,30 @@ class UserDataSource {
     }
   }
 
-  Future<UserId> createUser({required String name, required String phoneNumber, required String email}) async {
+  Future<UserId> createUser({
+    required String name,
+    required String phoneNumber,
+    required String email,
+    required String applicationStatus,
+    required String applicationMessage,
+    required bool isAdmin,
+    required bool isResident,
+    required bool isSecurity,
+  }) async {
     final userId = await _client.rpc(
       'fn_create_user',
-      params: {'p_name': name, 'p_phone_number': phoneNumber, 'p_email': email},
+      params: {
+        'p_name': name,
+        'p_phone_number': phoneNumber,
+        'p_email': email,
+        'p_application_status': applicationStatus,
+        'p_application_message': applicationMessage,
+        'p_is_admin': isAdmin,
+        'p_is_resident': isResident,
+        'p_is_security': isSecurity,
+      },
     );
 
-    return userId;
+    return userId as String;
   }
 }
