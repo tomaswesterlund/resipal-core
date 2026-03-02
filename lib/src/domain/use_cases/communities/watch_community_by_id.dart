@@ -3,23 +3,21 @@ import 'package:resipal_core/lib.dart';
 import 'package:rxdart/streams.dart';
 
 class WatchCommunityById {
-  final ApplicationDataSource _applicationDataSource = GetIt.I<ApplicationDataSource>();
   final CommunityDataSource _communitySource = GetIt.I<CommunityDataSource>();
-  final MembershipDataSource _membershipDataSource = GetIt.I<MembershipDataSource>();
   final PaymentDataSource _paymentDataSource = GetIt.I<PaymentDataSource>();
   final PropertyDataSource _propertyDataSource = GetIt.I<PropertyDataSource>();
+  final UserDataSource _userDataSource = GetIt.I<UserDataSource>();
 
   final GetCommunityById _getCommunityById = GetCommunityById();
 
   Stream<CommunityEntity> call(String id) {
-    return CombineLatestStream.combine5(
-      _applicationDataSource.watchByCommunityId(id),
+    return CombineLatestStream.combine4(
       _communitySource.watchById(id),
-      _membershipDataSource.watchByCommunityId(id),
       _paymentDataSource.watchByCommunityId(id),
       _propertyDataSource.watchByCommunityId(id),
+      _userDataSource.watchByCommunityId(id),
 
-      (applications, community, memberships, payments, properties) {
+      (community, payments, properties, users) {
         final community = _getCommunityById.call(id);
         return community;
       },

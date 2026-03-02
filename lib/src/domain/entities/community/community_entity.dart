@@ -1,7 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:resipal_core/src/domain/entities/community/community_directory_entity.dart';
-import 'package:resipal_core/src/domain/entities/payment/payment_ledger_entity.dart';
-import 'package:resipal_core/src/domain/entities/property_registry.dart';
+import 'package:resipal_core/lib.dart';
 
 class CommunityEntity {
   final String id;
@@ -10,7 +7,7 @@ class CommunityEntity {
   final String? description;
   final PaymentLedgerEntity paymentLedger;
   final PropertyRegistry propertyRegistry;
-  final CommunityDirectoryEntity directory;
+  final List<UserEntity> users;
 
   CommunityEntity({
     required this.id,
@@ -19,6 +16,6 @@ class CommunityEntity {
     required this.description,
     required this.paymentLedger,
     required this.propertyRegistry,
-    required this.directory,
+    required this.users,
   });
 }

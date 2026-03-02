@@ -1,16 +1,11 @@
 import 'package:get_it/get_it.dart';
-import 'package:resipal_core/src/data/sources/application_data_source.dart';
+import 'package:resipal_core/lib.dart';
 
 class UserHasJoinedAnyCommunity {
-  final ApplicationDataSource _source = GetIt.I<ApplicationDataSource>();
+  final UserDataSource _source = GetIt.I<UserDataSource>();
 
-  bool call(String userId) {
-    final applications = _source.getByUserId(userId);
-
-    if (applications.isEmpty) {
-      return false;
-    } else {
-      return true;
-    }
+  bool call(String authId) {
+    final users = _source.getByAuthId(authId);
+    return users.any((x) => x.applicationStatus == ApplicationStatus.approved);
   }
 }

@@ -1,28 +1,105 @@
 class UserModel {
   final String id;
+  final String authId;
+  final String communityId;
   final DateTime createdAt;
+  final String createdBy;
   final String name;
   final String phoneNumber;
-  final String? emergencyPhoneNumber;
+  final String emergencyPhoneNumber;
   final String email;
+  final String applicationStatus;
+  final String applicationMessage;
+  final bool isAdmin;
+  final bool isResident;
+  final bool isSecurity;
 
   UserModel({
     required this.id,
+    required this.authId,
+    required this.communityId,
     required this.createdAt,
+    required this.createdBy,
     required this.name,
     required this.phoneNumber,
     required this.emergencyPhoneNumber,
     required this.email,
+    required this.applicationStatus,
+    required this.applicationMessage,
+    required this.isAdmin,
+    required this.isResident,
+    required this.isSecurity,
   });
 
   factory UserModel.fromMap(Map<String, dynamic> json) {
     return UserModel(
-      id: json['id'],
+      id: json['id'] as String,
+      authId: json['auth_id'] as String? ?? '',
+      communityId: json['community_id'] as String,
       createdAt: DateTime.parse(json['created_at'].toString()),
-      name: json['name'],
-      phoneNumber: json['phone_number'],
-      emergencyPhoneNumber: json['emergency_phone_number'],
-      email: json['email'],
+      createdBy: json['created_by'] as String,
+      name: json['name'] as String,
+      phoneNumber: json['phone_number'] as String,
+      emergencyPhoneNumber: json['emergency_phone_number'] as String? ?? '',
+      email: json['email'] as String,
+      applicationStatus: json['application_status'] as String? ?? 'pending_approval',
+      applicationMessage: json['application_message'] as String? ?? '',
+      isAdmin: json['is_admin'] as bool? ?? false,
+      isResident: json['is_resident'] as bool? ?? false,
+      isSecurity: json['is_security'] as bool? ?? false,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'auth_id': authId,
+      'community_id': communityId,
+      'created_at': createdAt.toIso8601String(),
+      'created_by': createdBy,
+      'name': name,
+      'phone_number': phoneNumber,
+      'emergency_phone_number': emergencyPhoneNumber,
+      'email': email,
+      'application_status': applicationStatus,
+      'application_message': applicationMessage,
+      'is_admin': isAdmin,
+      'is_resident': isResident,
+      'is_security': isSecurity,
+    };
+  }
+
+  UserModel copyWith({
+    String? id,
+    String? authId,
+    String? communityId,
+    DateTime? createdAt,
+    String? createdBy,
+    String? name,
+    String? phoneNumber,
+    String? emergencyPhoneNumber,
+    String? email,
+    String? applicationStatus,
+    String? applicationMessage,
+    bool? isAdmin,
+    bool? isResident,
+    bool? isSecurity,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      authId: authId ?? this.authId,
+      communityId: communityId ?? this.communityId,
+      createdAt: createdAt ?? this.createdAt,
+      createdBy: createdBy ?? this.createdBy,
+      name: name ?? this.name,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      emergencyPhoneNumber: emergencyPhoneNumber ?? this.emergencyPhoneNumber,
+      email: email ?? this.email,
+      applicationStatus: applicationStatus ?? this.applicationStatus,
+      applicationMessage: applicationMessage ?? this.applicationMessage,
+      isAdmin: isAdmin ?? this.isAdmin,
+      isResident: isResident ?? this.isResident,
+      isSecurity: isSecurity ?? this.isSecurity,
     );
   }
 }

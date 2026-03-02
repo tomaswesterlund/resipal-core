@@ -1,10 +1,13 @@
-import 'package:resipal_core/src/domain/entities/resident_entity.dart';
-import 'package:resipal_core/src/domain/use_cases/memberships/get_memberships_by_community.dart';
+// import 'package:resipal_core/src/domain/entities/resident_entity.dart';
 
-class GetResidentsByCommunity {
-  List<ResidentEntity> call(String communityId) {
-    final memberships = GetMembershipsByCommunity().call(communityId);
-    final residents = memberships.map((x) => x.resident).toList();
-    return residents;
-  }
-}
+// class GetResidentsByCommunity {
+//   final Property
+//   List<ResidentEntity> call(String communityId) {
+//     final
+//     // Get all users within a community
+//     // Get all residents for this users (?)
+//     final memberships = GetMembershipsByCommunity().call(communityId);
+//     final residents = memberships.map((x) => x.resident).toList();
+//     return residents;
+//   }
+// }

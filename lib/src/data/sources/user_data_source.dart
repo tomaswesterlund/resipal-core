@@ -19,7 +19,27 @@ class UserDataSource {
     });
   }
 
+  Stream<List<UserModel>> watchByCommunityId(String communityId) {
+    return _client
+        .from('users')
+        .stream(primaryKey: ['id'])
+        .eq('community_id', communityId)
+        .map(
+          (data) => data.map((item) {
+            final model = UserModel.fromMap(item);
+            _cache[model.id] = model;
+            return model;
+          }).toList(),
+        );
+  }
+
   UserModel? getById(String id) => _cache[id];
+
+  List<UserModel> getByCommunityId(String communityId) =>
+      _cache.values.where((x) => x.communityId == communityId).toList();
+
+  List<UserModel> getByAuthId(String authId) =>
+      _cache.values.where((x) => x.authId == authId).toList();
 
   bool userExistsInCache(String id) => _cache.containsKey(id);
 
