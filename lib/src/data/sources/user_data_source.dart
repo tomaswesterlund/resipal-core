@@ -19,25 +19,6 @@ class UserDataSource {
     });
   }
 
-  Stream<List<UserModel>> watchByCommunityId(String communityId) {
-    try {
-      return _client
-          .from('users')
-          .stream(primaryKey: ['id'])
-          .eq('community_id', communityId)
-          .map(
-            (data) => data.map((item) {
-              final model = UserModel.fromMap(item);
-              _cache[model.id] = model;
-              return model;
-            }).toList(),
-          );
-    } catch (e, s) {
-      _logger.logException(exception: e, featureArea: 'PropertyDataSource.watchByCommunityId', stackTrace: s);
-      rethrow;
-    }
-  }
-
   UserModel? getById(String id) => _cache[id];
 
   bool userExistsInCache(String id) => _cache.containsKey(id);
