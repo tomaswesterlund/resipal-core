@@ -24,11 +24,13 @@ class AuthService {
 
   Future refreshSession() async => await _client.auth.refreshSession();
 
-  Future signInWithGoogle({required String iosClientId, required String serverClientId}) async {
+  Future signInWithGoogle() async {
     try {
+      final config = GetIt.I<AuthServiceConfig>();
+
       final GoogleSignIn signIn = GoogleSignIn.instance;
 
-      await signIn.initialize(clientId: iosClientId, serverClientId: serverClientId);
+      await signIn.initialize(clientId: config.iosClientId, serverClientId: config.serverClientId);
 
       final GoogleSignInAccount googleUser;
       try {
@@ -74,4 +76,11 @@ class AuthService {
   Future signout() async {
     await _client.auth.signOut(scope: SignOutScope.global);
   }
+}
+
+class AuthServiceConfig {
+  final String iosClientId;
+  final String serverClientId;
+
+  AuthServiceConfig({required this.iosClientId, required this.serverClientId});
 }
