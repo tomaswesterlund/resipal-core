@@ -29,7 +29,7 @@ class GetCommunityById {
       description: model.description,
       paymentLedger: PaymentLedgerEntity(payments),
       propertyRegistry: PropertyRegistry(properties),
-      users: users,
+      userDirectory: UserDirectoryEntity(users)
     );
   }
 }

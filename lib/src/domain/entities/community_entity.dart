@@ -7,7 +7,7 @@ class CommunityEntity {
   final String? description;
   final PaymentLedgerEntity paymentLedger;
   final PropertyRegistry propertyRegistry;
-  final List<UserEntity> users;
+  final UserDirectoryEntity userDirectory;
 
   CommunityEntity({
     required this.id,
@@ -16,6 +16,6 @@ class CommunityEntity {
     required this.description,
     required this.paymentLedger,
     required this.propertyRegistry,
-    required this.users,
+    required this.userDirectory,
   });
 }

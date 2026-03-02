@@ -16,7 +16,6 @@ class UserEntity extends Equatable {
   final bool isAdmin;
   final bool isResident;
   final bool isSecurity;
-
   final List<InvitationEntity> invitations;
   final PaymentLedgerEntity paymentLedger;
   final PropertyRegistry propertyRegistery;
