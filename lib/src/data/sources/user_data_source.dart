@@ -38,8 +38,7 @@ class UserDataSource {
   List<UserModel> getByCommunityId(String communityId) =>
       _cache.values.where((x) => x.communityId == communityId).toList();
 
-  List<UserModel> getByAuthId(String authId) =>
-      _cache.values.where((x) => x.authId == authId).toList();
+  UserModel? getByAuthId(String authId) => _cache.values.where((x) => x.authId == authId).singleOrNull;
 
   bool userExistsInCache(String id) => _cache.containsKey(id);
 
@@ -68,6 +67,14 @@ class UserDataSource {
     final model = UserModel.fromMap(item);
 
     _cache[model.id] = model;
+  }
+
+  Future fetchAndCacheByAuthId(String authId) async {
+    final items = await _client.from('users').select().eq('auth_id', authId);
+    for (var item in items) {
+      final model = UserModel.fromMap(item);
+      _cache[model.id] = model;
+    }
   }
 
   Future<UserId> createUser({required String name, required String phoneNumber, required String email}) async {
