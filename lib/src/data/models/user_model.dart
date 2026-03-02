@@ -32,7 +32,7 @@ class UserModel {
   factory UserModel.fromMap(Map<String, dynamic> json) {
     return UserModel(
       id: json['id'] as String,
-      communityId: json['community_id'] as String,
+      communityId: json['community_id'],
       createdAt: DateTime.parse(json['created_at'].toString()),
       createdBy: json['created_by'] as String,
       name: json['name'] as String,
