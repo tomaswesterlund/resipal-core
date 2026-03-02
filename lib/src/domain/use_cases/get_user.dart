@@ -1,12 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:resipal_core/lib.dart'; // Ensure ApplicationStatus is exported here
-import 'package:resipal_core/src/data/sources/user_data_source.dart';
-import 'package:resipal_core/src/domain/entities/payment/payment_ledger_entity.dart';
-import 'package:resipal_core/src/domain/entities/property_registry.dart';
-import 'package:resipal_core/src/domain/entities/user_entity.dart';
-import 'package:resipal_core/src/domain/use_cases/payments/get_payments.dart';
-import 'package:resipal_core/src/domain/use_cases/get_user_invitations.dart';
-import 'package:resipal_core/src/domain/use_cases/get_user_properties.dart';
+import 'package:resipal_core/lib.dart';
+import 'package:resipal_core/src/domain/use_cases/payments/get_payment_by_user_id.dart'; // Ensure ApplicationStatus is exported here
 
 class GetUser {
   final UserDataSource _source = GetIt.I<UserDataSource>();
@@ -18,7 +12,7 @@ class GetUser {
       throw Exception('User $id not found in cache. Ensure the stream is active.');
     }
 
-    final payments = GetPayments().byUserId(user.id);
+    final payments = GetPaymentByUserId().call(user.id);
     final properties = GetUserProperties().call(id);
 
     return UserEntity(

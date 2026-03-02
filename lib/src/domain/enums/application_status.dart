@@ -1,15 +1,16 @@
 enum ApplicationStatus {
-  pendingApproval('pending_approval'),
-  approved('approved'),
-  rejected('rejected');
+  approved,
+  pendingReview,
+  rejected,
+  revoked;
 
-  final String value;
-  const ApplicationStatus(this.value);
-
-  factory ApplicationStatus.fromString(String status) {
-    return ApplicationStatus.values.firstWhere(
-      (e) => e.value == status,
-      orElse: () => ApplicationStatus.pendingApproval,
-    );
+  static ApplicationStatus fromString(String value) {
+    return switch (value) {
+      'approved' => ApplicationStatus.approved,
+      'pending_review' => ApplicationStatus.pendingReview,
+      'rejected' => ApplicationStatus.rejected,
+      'revoked' => ApplicationStatus.revoked,
+      _ => throw UnimplementedError('Unknown UserCommunityStatus: $value'),
+    };
   }
 }
