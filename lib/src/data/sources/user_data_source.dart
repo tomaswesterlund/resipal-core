@@ -1,9 +1,9 @@
 import 'package:get_it/get_it.dart';
-import 'package:resipal_core/src/domain/typedefs.dart';
-import '../models/user_model.dart';
+import 'package:resipal_core/lib.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class UserDataSource {
+  final LoggerService _logger = GetIt.I<LoggerService>();
   final SupabaseClient _client = GetIt.I<SupabaseClient>();
 
   final Map<String, UserModel> _cache = {};
@@ -17,6 +17,25 @@ class UserDataSource {
       _cache[model.id] = model;
       return model;
     });
+  }
+
+  Stream<List<UserModel>> watchByCommunityId(String communityId) {
+    try {
+      return _client
+          .from('users')
+          .stream(primaryKey: ['id'])
+          .eq('community_id', communityId)
+          .map(
+            (data) => data.map((item) {
+              final model = UserModel.fromMap(item);
+              _cache[model.id] = model;
+              return model;
+            }).toList(),
+          );
+    } catch (e, s) {
+      _logger.logException(exception: e, featureArea: 'PropertyDataSource.watchByCommunityId', stackTrace: s);
+      rethrow;
+    }
   }
 
   UserModel? getById(String id) => _cache[id];

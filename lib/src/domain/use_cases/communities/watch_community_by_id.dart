@@ -1,25 +1,27 @@
 import 'package:get_it/get_it.dart';
-import 'package:resipal_core/src/data/sources/community_data_source.dart';
-import 'package:resipal_core/src/data/sources/payment_data_source.dart';
-import 'package:resipal_core/src/data/sources/property_data_source.dart';
-import 'package:resipal_core/src/domain/entities/community/community_entity.dart';
-import 'package:resipal_core/src/domain/use_cases/communities/get_community_by_id.dart';
+import 'package:resipal_core/lib.dart';
 import 'package:rxdart/streams.dart';
 
 class WatchCommunityById {
+  final ApplicationDataSource _applicationDataSource = GetIt.I<ApplicationDataSource>();
   final CommunityDataSource _communitySource = GetIt.I<CommunityDataSource>();
+  final MembershipDataSource _membershipDataSource = GetIt.I<MembershipDataSource>();
   final PaymentDataSource _paymentDataSource = GetIt.I<PaymentDataSource>();
   final PropertyDataSource _propertyDataSource = GetIt.I<PropertyDataSource>();
+  final UserDataSource _userDataSource = GetIt.I<UserDataSource>();
+
   final GetCommunityById _getCommunityById = GetCommunityById();
 
   Stream<CommunityEntity> call(String id) {
-    // TODO: Add Membership / User / Applications listeners
-    return CombineLatestStream.combine3(
+    return CombineLatestStream.combine6(
+      _applicationDataSource.watchByCommunityId(id),
       _communitySource.watchById(id),
+      _membershipDataSource.watchByCommunityId(id),
       _paymentDataSource.watchByCommunityId(id),
-
       _propertyDataSource.watchByCommunityId(id),
-      (community, payments, properties) {
+      _userDataSource.watchByCommunityId(id),
+
+      (applications, community, memebrships, payments, properties, users) {
         final community = _getCommunityById.call(id);
         return community;
       },
