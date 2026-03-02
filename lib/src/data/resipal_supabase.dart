@@ -1,11 +1,14 @@
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ResipalSupabase {
   Future<void> init() async {
+    await dotenv.load(fileName: ".env");
+    
     await Supabase.initialize(
-      url: 'https://xapfoiggbgutbmcqrgma.supabase.co',
-      anonKey: 'sb_publishable_I1FzA8ioJ1zPOhpFjld_vA_p2Pip5pw',
+      url: dotenv.env['SUPABASE_URL'].toString(),
+      anonKey: dotenv.env['SUPABASE_ANON_KEY'].toString(),
     );
   }
 

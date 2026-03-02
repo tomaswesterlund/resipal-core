@@ -13,6 +13,7 @@ class WatchCommunityById {
   final GetCommunityById _getCommunityById = GetCommunityById();
 
   Stream<CommunityEntity> call(String id) {
+    // TODO: Add Membership / User / Applications listeners
     return CombineLatestStream.combine3(
       _communitySource.watchById(id),
       _paymentDataSource.watchByCommunityId(id),
