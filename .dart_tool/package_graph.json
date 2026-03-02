@@ -10,7 +10,6 @@
         "equatable",
         "flutter",
         "flutter_bloc",
-        "flutter_dotenv",
         "flutter_svg",
         "get_it",
         "google_fonts",
@@ -97,13 +96,6 @@
         "stream_channel",
         "test_api",
         "vector_math"
-      ]
-    },
-    {
-      "name": "flutter_dotenv",
-      "version": "6.0.0",
-      "dependencies": [
-        "flutter"
       ]
     },
     {

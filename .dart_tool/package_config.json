@@ -254,12 +254,6 @@
       "languageVersion": "2.14"
     },
     {
-      "name": "flutter_dotenv",
-      "rootUri": "file:///Users/tomaswesterlund/.pub-cache/hosted/pub.dev/flutter_dotenv-6.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "flutter_lints",
       "rootUri": "file:///Users/tomaswesterlund/.pub-cache/hosted/pub.dev/flutter_lints-6.0.0",
       "packageUri": "lib/",
