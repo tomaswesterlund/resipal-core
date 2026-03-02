@@ -73,6 +73,5 @@ class AuthService {
 
   Future signout() async {
     await _client.auth.signOut(scope: SignOutScope.global);
-    // await _client.auth.refreshSession();
   }
 }
