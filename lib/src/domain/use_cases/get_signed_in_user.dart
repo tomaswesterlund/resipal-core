@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:resipal_core/src/domain/entities/user_entity.dart';
-import 'package:resipal_core/src/domain/use_cases/users/get_user.dart';
+import 'package:resipal_core/src/domain/use_cases/users/get_user_by_id.dart';
 import 'package:resipal_core/src/services/auth_service.dart';
 import 'package:resipal_core/src/services/logger_service.dart';
 
