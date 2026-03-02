@@ -3,7 +3,7 @@ import 'package:resipal_core/lib.dart';
 
 class GetUsersByCommunity {
   final UserDataSource _source = GetIt.I<UserDataSource>();
-  final GetUser _getUser = GetUser();
+  final GetUserById _getUser = GetUserById();
 
   List<UserEntity> call(String communityId) {
     final models = _source.getByCommunityId(communityId);

@@ -1,8 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:resipal_core/lib.dart';
-import 'package:resipal_core/src/domain/use_cases/payments/get_payment_by_user_id.dart'; // Ensure ApplicationStatus is exported here
 
-class GetUser {
+class GetUserById {
   final UserDataSource _source = GetIt.I<UserDataSource>();
 
   UserEntity call(String id) {
@@ -18,7 +17,6 @@ class GetUser {
     return UserEntity(
       // Identity & Metadata
       id: user.id,
-      authId: user.authId,
       communityId: user.communityId,
       createdAt: user.createdAt,
       createdBy: user.createdBy,
