@@ -7,6 +7,7 @@ class UserIsAdminInAnyCommunity {
   bool call(String authId) {
     final user = _source.getById(authId);
     if (user == null) return false;
+    if(user.isAdmin == false) return false;
     return user.isAdmin;
   }
 }
