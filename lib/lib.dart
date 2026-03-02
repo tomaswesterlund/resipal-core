@@ -108,7 +108,6 @@ export 'src/domain/use_cases/users/create_user.dart';
 export 'src/domain/use_cases/users/get_user_by_id.dart';
 export 'src/domain/use_cases/users/get_users_by_community.dart';
 export 'src/domain/use_cases/users/update_user_community.dart';
-export 'src/domain/use_cases/users/user_is_admin_in_any_community.dart';
 export 'src/domain/use_cases/users/user_is_onboarded.dart';
 export 'src/domain/use_cases/watch_active_user_invitations.dart';
 export 'src/domain/use_cases/watch_user.dart';
