@@ -78,6 +78,7 @@ class UserDataSource {
   Future<UserId> createUser({
     required String name,
     required String phoneNumber,
+    required String? emergencyPhoneNumber,
     required String email,
     required String applicationStatus,
     required String applicationMessage,
@@ -90,6 +91,7 @@ class UserDataSource {
       params: {
         'p_name': name,
         'p_phone_number': phoneNumber,
+        'p_emergency_phone_number': emergencyPhoneNumber,
         'p_email': email,
         'p_application_status': applicationStatus,
         'p_application_message': applicationMessage,

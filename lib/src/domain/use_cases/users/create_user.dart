@@ -7,6 +7,7 @@ class CreateUser {
   Future<UserId> call({
     required String name,
     required String phoneNumber,
+    required String? emergencyPhoneNumber,
     required String email,
     required ApplicationStatus status,
     required String applicationMessage,
@@ -16,6 +17,7 @@ class CreateUser {
   }) async => await _source.createUser(
     name: name,
     phoneNumber: phoneNumber,
+    emergencyPhoneNumber: emergencyPhoneNumber,
     email: email,
     applicationStatus: status.toString(),
     applicationMessage: applicationMessage,
