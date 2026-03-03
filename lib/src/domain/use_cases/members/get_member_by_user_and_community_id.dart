@@ -1,7 +1,10 @@
-import 'package:resipal_core/src/domain/entities/member_entity.dart';
+import 'package:resipal_core/lib.dart';
 
 class GetMemberByUserAndCommunityId {
   MemberEntity call({required String communityId, required String userId}) {
-    return MemberEntity(name: 'TEST');
+    final userRef = GetUserRefById().call(userId: userId);
+    final properties = GetPropertiesByResidentId().call(residentId: userId);
+
+    return MemberEntity(name: userRef.name, user: userRef, properties: properties);
   }
 }

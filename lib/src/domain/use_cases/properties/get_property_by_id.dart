@@ -4,7 +4,7 @@ import 'package:resipal_core/src/domain/entities/property_entity.dart';
 import 'package:resipal_core/src/domain/use_cases/communities/get_community_ref.dart';
 import 'package:resipal_core/src/domain/use_cases/contracts/get_contract.dart';
 import 'package:resipal_core/src/domain/use_cases/get_property_maintenance_fees.dart';
-import 'package:resipal_core/src/domain/use_cases/get_user_ref.dart';
+import 'package:resipal_core/src/domain/use_cases/users/get_user_ref_by_id.dart';
 
 class GetPropertyById {
   final PropertyDataSource _source = GetIt.I<PropertyDataSource>();
@@ -14,11 +14,9 @@ class GetPropertyById {
 
     final community = GetCommunityRef().fromId(property.communityId);
     final contract = GetContract().optionalById(property.contractId);
-    final createdBy = GetUserRef().fromId(property.createdBy);
+    final createdBy = GetUserRefById().call(userId: property.createdBy);
     final fees = GetPropertyMaintenanceFees().call(property.id);
-    final resident = property.residentId == null
-        ? null
-        : GetUserRef().fromId(property.residentId!);
+    final resident = property.residentId == null ? null : GetUserRefById().call(userId: property.residentId!);
 
     return PropertyEntity(
       id: property.id,

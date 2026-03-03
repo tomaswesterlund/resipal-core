@@ -3,7 +3,7 @@ import 'package:resipal_core/src/data/sources/payment_data_source.dart';
 import 'package:resipal_core/src/domain/entities/payment/payment_entity.dart';
 import 'package:resipal_core/src/domain/enums/payment_status.dart';
 import 'package:resipal_core/src/domain/use_cases/communities/get_community_ref.dart';
-import 'package:resipal_core/src/domain/use_cases/get_user_ref.dart';
+import 'package:resipal_core/src/domain/use_cases/users/get_user_ref_by_id.dart';
 
 class GetPaymentById {
   final PaymentDataSource _source = GetIt.I<PaymentDataSource>();
@@ -12,8 +12,8 @@ class GetPaymentById {
     final model = _source.getById(id);
 
     final community = GetCommunityRef().fromId(model.communityId);
-    final user = GetUserRef().fromId(model.userId);
-    final createdBy = GetUserRef().fromId(model.createdBy);
+    final user = GetUserRefById().call(userId: model.userId);
+    final createdBy = GetUserRefById().call(userId: model.createdBy);
 
     return PaymentEntity(
       id: model.id,

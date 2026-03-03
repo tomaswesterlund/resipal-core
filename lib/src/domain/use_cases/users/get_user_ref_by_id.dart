@@ -1,28 +1,24 @@
 import 'package:get_it/get_it.dart';
-import 'package:resipal_core/src/data/models/user_model.dart';
 import 'package:resipal_core/src/data/sources/user_data_source.dart';
 import 'package:resipal_core/src/domain/refs/user_ref.dart';
 import 'package:resipal_core/src/services/logger_service.dart';
 
-class GetUserRef {
+class GetUserRefById {
   final LoggerService _logger = GetIt.I<LoggerService>();
   final UserDataSource _source = GetIt.I<UserDataSource>();
 
-  UserRef fromId(String id) {
+  UserRef call({required String userId}) {
     try {
-      final model = _source.getById(id);
+      final model = _source.getById(userId);
 
       if (model == null) {
-        throw Exception('Community $id not found in cache. Ensure the stream is active.');
+        throw Exception('UserId $userId not found in cache. Ensure the stream is active.');
       }
 
-      return fromModel(model);
+      return UserRef(id: model.id, name: model.name, email: model.email, phoneNumber: model.phoneNumber);
     } catch (e, s) {
       _logger.logException(exception: e, featureArea: 'GetUserRef', stackTrace: s);
       rethrow;
     }
   }
-
-  UserRef fromModel(UserModel model) =>
-      UserRef(id: model.id, name: model.name, email: model.email, phoneNumber: model.phoneNumber);
 }

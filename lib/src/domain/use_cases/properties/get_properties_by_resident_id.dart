@@ -7,7 +7,7 @@ class GetPropertiesByResidentId {
   final PropertyDataSource _source = GetIt.I<PropertyDataSource>();
   final GetPropertyById _getProperty = GetPropertyById();
 
-  List<PropertyEntity> call(String residentId) {
+  List<PropertyEntity> call({required String residentId}) {
     final models = _source.getByResidentId(residentId);
     final payments = models.map((m) => _getProperty.call(m.id)).toList();
     return payments;
