@@ -35,9 +35,6 @@ class UserDataSource {
 
   UserModel? getById(String id) => _cache[id];
 
-  List<UserModel> getByCommunityId(String communityId) =>
-      _cache.values.where((x) => x.communityId == communityId).toList();
-
   bool userExistsInCache(String id) => _cache.containsKey(id);
 
   Future<bool> userExistsInDatabase(String id, {bool cacheExistingUser = true}) async {

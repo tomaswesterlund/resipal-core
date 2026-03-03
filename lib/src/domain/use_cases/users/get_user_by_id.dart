@@ -17,7 +17,6 @@ class GetUserById {
     return UserEntity(
       // Identity & Metadata
       id: user.id,
-      communityId: user.communityId,
       createdAt: user.createdAt,
       createdBy: user.createdBy,
 
@@ -26,10 +25,6 @@ class GetUserById {
       phoneNumber: user.phoneNumber,
       emergencyPhoneNumber: user.emergencyPhoneNumber,
       email: user.email,
-
-      // Application Status & Messaging
-      applicationStatus: ApplicationStatus.fromString(user.applicationStatus),
-      applicationMessage: user.applicationMessage,
 
       // Role Flags
       isAdmin: user.isAdmin,

@@ -2,11 +2,13 @@ import 'package:get_it/get_it.dart';
 import 'package:resipal_core/lib.dart';
 
 class UserHasJoinedCommunity {
-  final UserDataSource _source = GetIt.I<UserDataSource>();
+  final MembershipDataSource _source = GetIt.I<MembershipDataSource>();
 
-  bool call(String id) {
-    final user = _source.getById(id);
-    if(user == null) return false;
-    return user.applicationStatus == ApplicationStatus.approved;
+  bool call({required String userId}) {
+    final memberships = _source.getByCommunityId(userId);
+    if (memberships.isEmpty) return false;
+
+    //TODO: No status check of the membership
+    return true;
   }
 }

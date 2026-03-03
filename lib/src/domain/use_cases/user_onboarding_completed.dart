@@ -10,7 +10,7 @@ class UserOnboardingCompleted {
 
     // TODO Make sure all User Data are filled out (create a new Use Cases)
 
-    final userHasJoinedAnyCommunity = UserHasJoinedCommunity().call(userId);
+    final userHasJoinedAnyCommunity = UserHasJoinedCommunity().call(userId: userId);
     if (userHasJoinedAnyCommunity == false) return false;
 
     return true;

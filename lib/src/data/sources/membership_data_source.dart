@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
 import 'package:resipal_core/lib.dart';
-import 'package:resipal_core/src/data/models/membership_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MembershipDataSource {
@@ -11,9 +10,9 @@ class MembershipDataSource {
 
   Stream<MembershipModel> watchById(String id) {
     return _client.from('memberships').stream(primaryKey: ['id']).eq('id', id).map((data) {
-      // if (data.isEmpty) {
-      //   throw Exception('User not found');
-      // }
+      if (data.isEmpty) {
+        throw Exception('Membership not found');
+      }
       final model = MembershipModel.fromMap(data.first);
       _cache[model.id] = model;
       return model;
@@ -41,6 +40,9 @@ class MembershipDataSource {
 
   List<MembershipModel> getByCommunityId(String communityId) =>
       _cache.values.where((x) => x.communityId == communityId).toList();
+
+  List<MembershipModel> getByUserId(String userId) =>
+      _cache.values.where((x) => x.userId == userId).toList();
 
   Future fetchAndCacheAll() async {
     final items = await _client.from('memberships').select();

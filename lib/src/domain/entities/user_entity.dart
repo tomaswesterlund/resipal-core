@@ -3,15 +3,14 @@ import 'package:resipal_core/lib.dart';
 
 class UserEntity extends Equatable {
   final String id;
-  final String? communityId;
+
   final DateTime createdAt;
   final String createdBy;
   final String name;
   final String phoneNumber;
   final String emergencyPhoneNumber;
   final String email;
-  final ApplicationStatus applicationStatus;
-  final String applicationMessage;
+
   final bool isAdmin;
   final bool isResident;
   final bool isSecurity;
@@ -21,15 +20,12 @@ class UserEntity extends Equatable {
 
   const UserEntity({
     required this.id,
-    required this.communityId,
     required this.createdAt,
     required this.createdBy,
     required this.name,
     required this.phoneNumber,
     required this.emergencyPhoneNumber,
     required this.email,
-    required this.applicationStatus,
-    required this.applicationMessage,
     required this.isAdmin,
     required this.isResident,
     required this.isSecurity,
@@ -43,15 +39,13 @@ class UserEntity extends Equatable {
   @override
   List<Object?> get props => [
     id,
-    communityId,
     createdAt,
     createdBy,
     name,
     phoneNumber,
     emergencyPhoneNumber,
     email,
-    applicationStatus,
-    applicationMessage,
+
     isAdmin,
     isResident,
     isSecurity,
