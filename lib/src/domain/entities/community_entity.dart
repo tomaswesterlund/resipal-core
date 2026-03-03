@@ -5,6 +5,7 @@ class CommunityEntity {
   final String name;
   final String location;
   final String? description;
+  final List<ApplicationEntity> applications;
   final PaymentLedgerEntity paymentLedger;
   final PropertyRegistry propertyRegistry;
   final MemberDirectoryEntity memberDirectory;
@@ -14,6 +15,7 @@ class CommunityEntity {
     required this.name,
     required this.location,
     required this.description,
+    required this.applications,
     required this.paymentLedger,
     required this.propertyRegistry,
     required this.memberDirectory,

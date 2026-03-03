@@ -35,6 +35,9 @@ class ApplicationDataSource {
   List<ApplicationModel> getByCommunityId(String communityId) =>
       _cache.values.where((x) => x.communityId == communityId).toList();
 
+  List<ApplicationModel> getByUserId(String userId) =>
+      _cache.values.where((x) => x.userId == userId).toList();
+
   Future<void> fetchAndCacheAll() async {
     try {
       final items = await _client.from('applications').select();
