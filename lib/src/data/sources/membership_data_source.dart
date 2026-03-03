@@ -52,6 +52,14 @@ class MembershipDataSource {
     }
   }
 
+  Future fetchAndCacheByUserId(String userId) async {
+    final items = await _client.from('memberships').select().eq('user_id', userId);
+    for (var item in items) {
+      final model = MembershipModel.fromMap(item);
+      _cache[model.id] = model;
+    }
+  }
+
   Future fetchAndCacheById(String id) async {
     final item = await _client.from('memberships').select().eq('id', id).single();
     final model = MembershipModel.fromMap(item);

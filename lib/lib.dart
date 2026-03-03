@@ -89,6 +89,7 @@ export 'src/domain/use_cases/get_visitor.dart';
 export 'src/domain/use_cases/get_visitor_ref.dart';
 export 'src/domain/use_cases/members/get_member_by_user_and_community_id.dart';
 export 'src/domain/use_cases/members/get_members_by_community_id.dart';
+export 'src/domain/use_cases/memberships/fetch_memberships_by_user_id.dart';
 export 'src/domain/use_cases/memberships/get_membership_by_id.dart';
 export 'src/domain/use_cases/memberships/get_memberships_by_user_id.dart';
 export 'src/domain/use_cases/payments/confirm_payment_received.dart';
