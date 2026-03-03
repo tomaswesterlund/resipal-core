@@ -19,6 +19,7 @@ class ServiceLocator {
 
     // Data sources
     sl.registerLazySingleton(() => AccessLogDataSource());
+    sl.registerLazySingleton(() => ApplicationDataSource());
     sl.registerLazySingleton(() => CommunityDataSource());
     sl.registerLazySingleton(() => ErrorLogDataSource());
     sl.registerLazySingleton(() => InvitationDataSource());
