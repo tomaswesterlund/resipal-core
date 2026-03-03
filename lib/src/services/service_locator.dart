@@ -24,6 +24,7 @@ class ServiceLocator {
     sl.registerLazySingleton(() => InvitationDataSource());
     sl.registerLazySingleton(() => ContractDataSource());
     sl.registerLazySingleton(() => MaintenanceFeeDataSource());
+    sl.registerLazySingleton(() => MembershipDataSource());
     sl.registerLazySingleton(() => MovementDataSource());
     sl.registerLazySingleton(() => PaymentDataSource());
     sl.registerLazySingleton(() => PropertyDataSource());

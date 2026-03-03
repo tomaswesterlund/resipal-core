@@ -6,11 +6,11 @@ class GetMembersByCommunityId {
   final GetMemberByUserAndCommunityId _getMemberByUserAndCommunityId = GetMemberByUserAndCommunityId();
 
   List<MemberEntity> call({required String communityId}) {
-    final models = _source.getByCommunityId(communityId);
-    final entities = models
+    final memberships = _source.getByCommunityId(communityId);
+    final members = memberships
         .map((x) => _getMemberByUserAndCommunityId(communityId: x.communityId, userId: x.userId))
         .toList();
 
-    return entities;
+    return members;
   }
 }
