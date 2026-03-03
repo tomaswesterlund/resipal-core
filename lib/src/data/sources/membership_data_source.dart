@@ -36,6 +36,9 @@ class MembershipDataSource {
 
   MembershipModel? getById(String id) => _cache[id];
 
+  MembershipModel getByCommunityAndUserId({required String communityId, required String userId}) =>
+      _cache.values.where((x) => x.communityId == communityId && x.userId == userId).single;
+
   List<MembershipModel> getByCommunityId(String communityId) =>
       _cache.values.where((x) => x.communityId == communityId).toList();
 

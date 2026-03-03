@@ -11,7 +11,7 @@ class GetUserById {
       throw Exception('User $id not found in cache. Ensure the stream is active.');
     }
 
-    final payments = GetPaymentByUserId().call(user.id);
+    final payments = GetPaymentByUserId().call(userId: user.id);
     final properties = GetUserProperties().call(id);
 
     return UserEntity(

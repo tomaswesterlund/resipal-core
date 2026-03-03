@@ -62,7 +62,7 @@ export 'src/domain/use_cases/communities/fetch_communities.dart';
 export 'src/domain/use_cases/communities/fetch_community.dart';
 export 'src/domain/use_cases/communities/get_communities.dart';
 export 'src/domain/use_cases/communities/get_community_by_id.dart';
-export 'src/domain/use_cases/communities/get_community_ref.dart';
+export 'src/domain/use_cases/communities/get_community_ref_by_id.dart';
 export 'src/domain/use_cases/communities/watch_community_by_id.dart';
 export 'src/domain/use_cases/contracts/create_contract.dart';
 export 'src/domain/use_cases/contracts/fetch_contract.dart';

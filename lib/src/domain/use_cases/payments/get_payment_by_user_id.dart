@@ -7,7 +7,7 @@ class GetPaymentByUserId {
   final PaymentDataSource _source = GetIt.I<PaymentDataSource>();
   final GetPaymentById _getPayment = GetPaymentById();
 
-  List<PaymentEntity> call(String userId) {
+  List<PaymentEntity> call({required String userId}) {
     final models = _source.getByUserId(userId);
     final payments = models.map((m) => _getPayment.call(m.id)).toList();
     return payments;
