@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:resipal_core/src/data/sources/visitor_data_source.dart';
-import 'package:resipal_core/src/domain/use_cases/get_signed_in_user.dart';
+import 'package:resipal_core/src/domain/use_cases/users/get_signed_in_user.dart';
 import 'package:resipal_core/src/services/session_service.dart';
 
 class CreateVisitor {

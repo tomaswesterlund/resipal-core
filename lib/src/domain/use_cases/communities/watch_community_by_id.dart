@@ -10,15 +10,14 @@ class WatchCommunityById {
 
   final GetCommunityById _getCommunityById = GetCommunityById();
 
-  Stream<CommunityEntity> call(String id) {
-    return CombineLatestStream.combine4(
-      _communitySource.watchById(id),
-      _paymentDataSource.watchByCommunityId(id),
-      _propertyDataSource.watchByCommunityId(id),
-      _userDataSource.watchByCommunityId(id),
+  Stream<CommunityEntity> call({required String communityId}) {
+    return CombineLatestStream.combine3(
+      _communitySource.watchById(communityId),
+      _paymentDataSource.watchByCommunityId(communityId),
+      _propertyDataSource.watchByCommunityId(communityId),
 
-      (community, payments, properties, users) {
-        final community = _getCommunityById.call(id);
+      (community, payments, properties) {
+        final community = _getCommunityById.call(communityId);
         return community;
       },
     ).distinct();

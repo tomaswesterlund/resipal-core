@@ -19,19 +19,19 @@ class UserDataSource {
     });
   }
 
-  Stream<List<UserModel>> watchByCommunityId(String communityId) {
-    return _client
-        .from('users')
-        .stream(primaryKey: ['id'])
-        .eq('community_id', communityId)
-        .map(
-          (data) => data.map((item) {
-            final model = UserModel.fromMap(item);
-            _cache[model.id] = model;
-            return model;
-          }).toList(),
-        );
-  }
+  // Stream<List<UserModel>> watchByCommunityId(String communityId) {
+  //   return _client
+  //       .from('users')
+  //       .stream(primaryKey: ['id'])
+  //       .eq('community_id', communityId)
+  //       .map(
+  //         (data) => data.map((item) {
+  //           final model = UserModel.fromMap(item);
+  //           _cache[model.id] = model;
+  //           return model;
+  //         }).toList(),
+  //       );
+  // }
 
   UserModel? getById(String id) => _cache[id];
 

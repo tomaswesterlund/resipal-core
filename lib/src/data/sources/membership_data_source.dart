@@ -41,8 +41,7 @@ class MembershipDataSource {
   List<MembershipModel> getByCommunityId(String communityId) =>
       _cache.values.where((x) => x.communityId == communityId).toList();
 
-  List<MembershipModel> getByUserId(String userId) =>
-      _cache.values.where((x) => x.userId == userId).toList();
+  List<MembershipModel> getByUserId(String userId) => _cache.values.where((x) => x.userId == userId).toList();
 
   Future fetchAndCacheAll() async {
     final items = await _client.from('memberships').select();
