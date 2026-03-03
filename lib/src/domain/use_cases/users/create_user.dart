@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:resipal_core/src/data/sources/user_data_source.dart';
-import 'package:resipal_core/src/domain/typedefs.dart';
+import 'package:resipal_core/lib.dart';
 
 class CreateUser {
   final UserDataSource _source = GetIt.I<UserDataSource>();
@@ -9,7 +8,7 @@ class CreateUser {
     required String name,
     required String phoneNumber,
     required String email,
-    required String applicationStatus,
+    required ApplicationStatus status,
     required String applicationMessage,
     required bool isAdmin,
     required bool isResident,
@@ -18,7 +17,7 @@ class CreateUser {
     name: name,
     phoneNumber: phoneNumber,
     email: email,
-    applicationStatus: applicationStatus,
+    applicationStatus: status.toString(),
     applicationMessage: applicationMessage,
     isAdmin: isAdmin,
     isResident: isResident,
