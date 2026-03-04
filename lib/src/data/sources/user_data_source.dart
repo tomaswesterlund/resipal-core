@@ -77,11 +77,6 @@ class UserDataSource {
     required String phoneNumber,
     required String? emergencyPhoneNumber,
     required String email,
-    required String applicationStatus,
-    required String applicationMessage,
-    required bool isAdmin,
-    required bool isResident,
-    required bool isSecurity,
   }) async {
     final userId = await _client.rpc(
       'fn_create_user',
@@ -90,18 +85,9 @@ class UserDataSource {
         'p_phone_number': phoneNumber,
         'p_emergency_phone_number': emergencyPhoneNumber,
         'p_email': email,
-        'p_application_status': applicationStatus,
-        'p_application_message': applicationMessage,
-        'p_is_admin': isAdmin,
-        'p_is_resident': isResident,
-        'p_is_security': isSecurity,
       },
     );
 
     return userId as String;
-  }
-
-  Future upsert(UserModel model) async {
-    await _client.from('users').upsert(model.toMap());
   }
 }

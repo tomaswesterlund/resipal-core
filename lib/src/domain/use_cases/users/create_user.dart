@@ -9,20 +9,10 @@ class CreateUser {
     required String phoneNumber,
     required String? emergencyPhoneNumber,
     required String email,
-    required ApplicationStatus status,
-    required String applicationMessage,
-    required bool isAdmin,
-    required bool isResident,
-    required bool isSecurity,
   }) async => await _source.createUser(
     name: name,
     phoneNumber: phoneNumber,
     emergencyPhoneNumber: emergencyPhoneNumber,
-    email: email,
-    applicationStatus: status.toString(),
-    applicationMessage: applicationMessage,
-    isAdmin: isAdmin,
-    isResident: isResident,
-    isSecurity: isSecurity,
+    email: email
   );
 }
