@@ -8,6 +8,6 @@ class CreateApplication {
 
   Future call(CreateApplicationDto dto) async {
     // TODO: Do some validation of the DTO
-    
+    await _source.createApplication(dto);
   }
 }
