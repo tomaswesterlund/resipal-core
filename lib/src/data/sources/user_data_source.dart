@@ -90,4 +90,8 @@ class UserDataSource {
 
     return userId as String;
   }
+
+  Future upsert(Map<String, dynamic> map) async {
+    await _client.from('users').upsert(map);
+  }
 }

@@ -9,6 +9,6 @@ class UpdateUserCommunity {
     if (user == null) throw Exception('User not found.');
 
     final updated = user.copyWith(communityId: communityId);
-    await _source.upsert(updated);
+    await _source.upsert(updated.toMap());
   }
 }
