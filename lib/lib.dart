@@ -62,6 +62,7 @@ export 'src/domain/typedefs.dart';
 export 'src/domain/use_cases/applications/get_application_by_id.dart';
 export 'src/domain/use_cases/applications/get_applications_by_community_id.dart';
 export 'src/domain/use_cases/applications/get_applications_by_user_id.dart';
+export 'src/domain/use_cases/applications/watch_application_by_id.dart';
 export 'src/domain/use_cases/communities/create_community.dart';
 export 'src/domain/use_cases/communities/fetch_communities.dart';
 export 'src/domain/use_cases/communities/fetch_community.dart';
