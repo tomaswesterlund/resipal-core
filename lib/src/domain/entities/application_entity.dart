@@ -32,4 +32,23 @@ class ApplicationEntity {
     required this.isResident,
     required this.isSecurity,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'community': community.toMap(),
+      'user': user?.toMap(),
+      'createdAt': createdAt.toIso8601String(),
+      'createdBy': createdBy,
+      'name': name,
+      'phoneNumber': phoneNumber,
+      'emergencyPhoneNumber': emergencyPhoneNumber,
+      'email': email,
+      'status': status.name, // Stores enum as String (e.g., "pending")
+      'message': message,
+      'isAdmin': isAdmin,
+      'isResident': isResident,
+      'isSecurity': isSecurity,
+    };
+  }
 }
