@@ -64,14 +64,6 @@ class UserDataSource {
     _cache[model.id] = model;
   }
 
-  Future fetchAndCacheByAuthId(String authId) async {
-    final items = await _client.from('users').select().eq('auth_id', authId);
-    for (var item in items) {
-      final model = UserModel.fromMap(item);
-      _cache[model.id] = model;
-    }
-  }
-
   Future<UserId> createUser({
     required String name,
     required String phoneNumber,

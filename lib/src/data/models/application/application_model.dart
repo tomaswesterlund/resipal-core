@@ -1,6 +1,6 @@
 class ApplicationModel {
   final String id;
-  final String? userId; // Nullable as per SQL
+  final String? userId;
   final String communityId;
   final DateTime createdAt;
   final String createdBy;
@@ -8,7 +8,7 @@ class ApplicationModel {
   final String phoneNumber;
   final String? emergencyPhoneNumber;
   final String email;
-  final String status; // Using String instead of Enum
+  final String status;
   final String message;
   final bool isAdmin;
   final bool isResident;
@@ -16,13 +16,13 @@ class ApplicationModel {
 
   ApplicationModel({
     required this.id,
-    this.userId,
+    required this.userId,
     required this.communityId,
     required this.createdAt,
     required this.createdBy,
     required this.name,
     required this.phoneNumber,
-    this.emergencyPhoneNumber,
+    required this.emergencyPhoneNumber,
     required this.email,
     required this.status,
     required this.message,

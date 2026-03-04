@@ -1,7 +1,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 export 'src/data/models/access_log_model.dart';
-export 'src/data/models/application_model.dart';
+export 'src/data/models/application/application_model.dart';
+export 'src/data/models/application/create_application_dto.dart';
 export 'src/data/models/community_model.dart';
 export 'src/data/models/contract_model.dart';
 export 'src/data/models/error_log_model.dart';
@@ -59,6 +60,7 @@ export 'src/domain/refs/property_ref.dart';
 export 'src/domain/refs/user_ref.dart';
 export 'src/domain/refs/visitor_ref.dart';
 export 'src/domain/typedefs.dart';
+export 'src/domain/use_cases/applications/create_application.dart';
 export 'src/domain/use_cases/applications/get_application_by_id.dart';
 export 'src/domain/use_cases/applications/get_applications_by_community_id.dart';
 export 'src/domain/use_cases/applications/get_applications_by_user_id.dart';
@@ -78,8 +80,6 @@ export 'src/domain/use_cases/contracts/get_contracts_by_community.dart';
 export 'src/domain/use_cases/contracts/watch_contracts_by_community.dart';
 export 'src/domain/use_cases/create_invitation.dart';
 export 'src/domain/use_cases/create_visitor.dart';
-export 'src/domain/use_cases/fetch_user.dart';
-export 'src/domain/use_cases/fetch_users.dart';
 export 'src/domain/use_cases/get_active_user_invitations.dart';
 export 'src/domain/use_cases/get_contract_maintenance_fees.dart';
 export 'src/domain/use_cases/get_invitation.dart';
@@ -119,6 +119,8 @@ export 'src/domain/use_cases/user_exists.dart';
 export 'src/domain/use_cases/user_has_joined_any_community.dart';
 export 'src/domain/use_cases/user_onboarding_completed.dart';
 export 'src/domain/use_cases/users/create_user.dart';
+export 'src/domain/use_cases/users/fetch_user.dart';
+export 'src/domain/use_cases/users/fetch_users.dart';
 export 'src/domain/use_cases/users/get_signed_in_user.dart';
 export 'src/domain/use_cases/users/get_user_by_id.dart';
 export 'src/domain/use_cases/users/get_user_ref_by_id.dart';

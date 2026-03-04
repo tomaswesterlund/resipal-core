@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:resipal_core/lib.dart';
+import 'package:resipal_core/src/data/models/application/create_application_dto.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ApplicationDataSource {
@@ -35,8 +36,7 @@ class ApplicationDataSource {
   List<ApplicationModel> getByCommunityId(String communityId) =>
       _cache.values.where((x) => x.communityId == communityId).toList();
 
-  List<ApplicationModel> getByUserId(String userId) =>
-      _cache.values.where((x) => x.userId == userId).toList();
+  List<ApplicationModel> getByUserId(String userId) => _cache.values.where((x) => x.userId == userId).toList();
 
   Future<void> fetchAndCacheAll() async {
     try {
@@ -72,16 +72,7 @@ class ApplicationDataSource {
     }
   }
 
-  Future<void> updateStatus({required String id, required String status}) async {
-    try {
-      await _client.from('applications').update({'status': status}).eq('id', id);
-
-      if (_cache.containsKey(id)) {
-        _cache[id] = _cache[id]!.copyWith(status: status);
-      }
-    } catch (e, s) {
-      _logger.logException(exception: e, featureArea: 'ApplicationDataSource.updateStatus', stackTrace: s);
-      rethrow;
-    }
+  Future<void> createApplication(CreateApplicationDto dto) async {
+    await _client.from('applications').insert(dto.toMap());
   }
 }
