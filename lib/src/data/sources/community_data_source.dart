@@ -52,28 +52,18 @@ class CommunityDataSource {
     _cache[model.id] = model;
   }
 
+  // CREATE OR REPLACE FUNCTION fn_create_community(p_name text, p_description text, p_location text)
+
   /// Creates a new community and its first membership.
   /// Returns the [UUID] of the newly created community.
   Future<CommunityId> createCommunity({
-    required String userId,
     required String name,
     required String? description,
-    required String? location,
-    required bool isAdmin,
-    required bool isSecurity,
-    required bool isUser,
+    required String location
   }) async {
     final communityId = await _client.rpc<String>(
       'fn_create_community',
-      params: {
-        'p_user_id': userId,
-        'p_name': name,
-        'p_description': description,
-        'p_location': location,
-        'p_is_admin': isAdmin,
-        'p_is_security': isSecurity,
-        'p_is_user': isUser,
-      },
+      params: {'p_name': name, 'p_description': description, 'p_location': location},
     );
 
     return communityId;
