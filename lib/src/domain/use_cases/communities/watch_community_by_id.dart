@@ -7,7 +7,6 @@ class WatchCommunityById {
   final CommunityDataSource _communitySource = GetIt.I<CommunityDataSource>();
   final PaymentDataSource _paymentDataSource = GetIt.I<PaymentDataSource>();
   final PropertyDataSource _propertyDataSource = GetIt.I<PropertyDataSource>();
-  final UserDataSource _userDataSource = GetIt.I<UserDataSource>();
 
   final GetCommunityById _getCommunityById = GetCommunityById();
 
