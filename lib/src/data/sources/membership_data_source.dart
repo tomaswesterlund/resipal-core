@@ -66,6 +66,27 @@ class MembershipDataSource {
     _cache[model.id] = model;
   }
 
+  Future<MembershipId> createMembership({
+    required String communityId,
+    required String userId,
+    required bool isAdmin,
+    required bool isResident,
+    required bool isSecurity,
+  }) async {
+    final membershipId = await _client.rpc<String>(
+      'fn_create_membership',
+      params: {
+        'p_community_id': communityId,
+        'p_user_id': userId,
+        'p_is_admin': isAdmin,
+        'p_is_resident': isResident,
+        'p_is_security': isSecurity,
+      },
+    );
+
+    return membershipId;
+  }
+
   Future upsert(MembershipModel model) async {
     await _client.from('memberships').upsert(model.toMap());
   }
