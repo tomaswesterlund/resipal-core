@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:resipal_core/src/domain/entities/id_entity.dart';
 import 'package:resipal_core/src/domain/entities/contract_entity.dart';
 import 'package:resipal_core/src/domain/entities/maintenance_fee_entity.dart';
@@ -15,13 +16,6 @@ class PropertyEntity extends IdEntity {
   final ContractEntity? contract;
   final List<MaintenanceFeeEntity> fees;
 
-  int get totalOverdueFeeInCents {
-    final overdue = fees.where((f) => f.status == MaintenanceFeeStatus.overdue);
-    return overdue.fold(0, (sum, fee) => sum = sum + fee.amountInCents);
-  }
-
-  bool get hasDebt => totalOverdueFeeInCents > 0;
-
   PropertyEntity({
     required super.id,
     required this.community,
@@ -33,4 +27,26 @@ class PropertyEntity extends IdEntity {
     required this.contract,
     required this.fees,
   });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'community': community.toMap(),
+      'resident': resident?.toMap(),
+      'createdAt': createdAt.toIso8601String(),
+      'createdBy': createdBy.toMap(),
+      'name': name,
+      'description': description,
+      'contract': contract?.toMap(),
+      'fees': fees.map((f) => f.toMap()).toList(),
+    };
+  }
+
+  // --- Getters ---
+  int get totalOverdueFeeInCents {
+    final overdue = fees.where((f) => f.status == MaintenanceFeeStatus.overdue);
+    return overdue.fold(0, (sum, fee) => sum = sum + fee.amountInCents);
+  }
+
+  bool get hasDebt => totalOverdueFeeInCents > 0;
 }
