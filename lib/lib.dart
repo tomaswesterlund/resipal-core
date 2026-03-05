@@ -135,5 +135,6 @@ export 'src/domain/use_cases/watch_user_visitors.dart';
 export 'src/services/auth_service.dart';
 export 'src/services/image_service.dart';
 export 'src/services/logger_service.dart';
+export 'src/services/pdf_service.dart';
 export 'src/services/service_locator.dart';
 export 'src/services/session_service.dart';

@@ -8,15 +8,7 @@ class AuthService {
   final LoggerService _loggerService = GetIt.I<LoggerService>();
 
   SupabaseClient get _client => _resipalSupabase.client;
-
-  // --- Reactive Stream ---
-
-  /// Exposes the auth state changes so the AuthCubit can react
-  /// to login, logout, and token refresh events globally.
   Stream<AuthState> get onAuthStateChange => _client.auth.onAuthStateChange;
-
-  // --- Getters ---
-
   User? get currentUser => _client.auth.currentUser;
 
   User getSignedInUser() {
@@ -27,13 +19,8 @@ class AuthService {
   }
 
   String getSignedInUserId() => getSignedInUser().id;
-
   bool get userIsSignedIn => currentUser != null;
-
   Session? get currentSession => _client.auth.currentSession;
-
-  // --- Actions ---
-
   Future refreshSession() async => await _client.auth.refreshSession();
 
   Future<AuthResponse> signInWithIdToken({required String idToken}) async {
