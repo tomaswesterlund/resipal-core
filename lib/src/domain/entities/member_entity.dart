@@ -21,4 +21,17 @@ class MemberEntity {
     required this.isResident,
     required this.isSecurity,
   });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'name': name,
+      'community': community.toMap(),
+      'user': user.toMap(),
+      'paymentLedger': paymentLedger.toMap(),
+      'propertyRegistry': propertyRegistry.toMap(),
+      'isAdmin': isAdmin,
+      'isResident': isResident,
+      'isSecurity': isSecurity,
+    };
+  }
 }

@@ -12,19 +12,6 @@ class MaintenanceFeeEntity {
   final DateTime toDate;
   final String? note;
 
-  bool get isPaid => paymentDate != null;
-
-  MaintenanceFeeStatus get status {
-    final today = DateTime.now();
-    if (isPaid) return MaintenanceFeeStatus.paid;
-    if (dueDate.isAfter(today)) return MaintenanceFeeStatus.upcoming;
-    if (today.isAfter(fromDate) && today.isBefore(dueDate)) {
-      return MaintenanceFeeStatus.pending;
-    }
-    if (dueDate.isBefore(today)) return MaintenanceFeeStatus.overdue;
-    return MaintenanceFeeStatus.overdue;
-  }
-
   MaintenanceFeeEntity({
     required this.id,
     required this.contract,
@@ -36,4 +23,32 @@ class MaintenanceFeeEntity {
     required this.toDate,
     required this.note,
   });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'contract': contract.toMap(),
+      'createdAt': createdAt.toIso8601String(),
+      'amountInCents': amountInCents,
+      'dueDate': dueDate.toIso8601String(),
+      'paymentDate': paymentDate?.toIso8601String(),
+      'fromDate': fromDate.toIso8601String(),
+      'toDate': toDate.toIso8601String(),
+      'note': note,
+      'status': status.name, // Helpful for logs/debugging
+      'isPaid': isPaid,
+    };
+  }
+
+  bool get isPaid => paymentDate != null;
+
+  MaintenanceFeeStatus get status {
+    final today = DateTime.now();
+    if (isPaid) return MaintenanceFeeStatus.paid;
+    if (dueDate.isAfter(today)) return MaintenanceFeeStatus.upcoming;
+    if (today.isAfter(fromDate) && today.isBefore(dueDate)) {
+      return MaintenanceFeeStatus.pending;
+    }
+    return MaintenanceFeeStatus.overdue;
+  }
 }
