@@ -9,64 +9,52 @@ class AuthService {
 
   SupabaseClient get _client => _resipalSupabase.client;
 
+  // --- Reactive Stream ---
+
+  /// Exposes the auth state changes so the AuthCubit can react
+  /// to login, logout, and token refresh events globally.
+  Stream<AuthState> get onAuthStateChange => _client.auth.onAuthStateChange;
+
+  // --- Getters ---
+
+  User? get currentUser => _client.auth.currentUser;
+
   User getSignedInUser() {
-    if (_client.auth.currentUser == null) {
+    if (currentUser == null) {
       throw Exception('No user is currently signed in.');
     }
-    return _client.auth.currentUser!;
+    return currentUser!;
   }
 
   String getSignedInUserId() => getSignedInUser().id;
 
-  bool get userIsSignedIn => _client.auth.currentUser != null;
+  bool get userIsSignedIn => currentUser != null;
 
   Session? get currentSession => _client.auth.currentSession;
 
+  // --- Actions ---
+
   Future refreshSession() async => await _client.auth.refreshSession();
+
+  Future<AuthResponse> signInWithIdToken({required String idToken}) async {
+    return await _client.auth.signInWithIdToken(provider: OAuthProvider.google, idToken: idToken);
+  }
 
   Future signInWithGoogle() async {
     try {
       final config = GetIt.I<AuthServiceConfig>();
-
       final GoogleSignIn signIn = GoogleSignIn.instance;
 
       await signIn.initialize(clientId: config.iosClientId, serverClientId: config.serverClientId);
 
-      final GoogleSignInAccount googleUser;
-      try {
-        googleUser = await GoogleSignIn.instance.authenticate();
-      } catch (e) {
-        rethrow;
-      }
-
-      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+      final googleUser = await signIn.authenticate();
+      final googleAuth = await googleUser.authentication;
       final idToken = googleAuth.idToken;
 
-      final response = await _client.auth.signInWithIdToken(provider: OAuthProvider.google, idToken: idToken!);
+      if (idToken == null) throw Exception('Google ID Token is null');
 
-      final currentSession = _client.auth.currentSession;
-      final currentUser = _client.auth.currentUser;
-
-      var sub = _client.auth.onAuthStateChange.listen((data) {
-        final AuthChangeEvent event = data.event;
-        final Session? session = data.session;
-
-        switch (event) {
-          case AuthChangeEvent.signedIn:
-            print("User Signed In: ${session?.user.email}");
-            // Redirect to Home
-            break;
-          case AuthChangeEvent.signedOut:
-            print("User Signed Out");
-            // Redirect to Login
-            break;
-          case AuthChangeEvent.tokenRefreshed:
-            print("Token was refreshed automatically");
-            break;
-          default:
-            break;
-        }
-      });
+      // This call will trigger the onAuthStateChange stream automatically
+      await signInWithIdToken(idToken: idToken);
     } catch (e, s) {
       _loggerService.logException(exception: e, featureArea: 'AuthService.signInWithGoogle', stackTrace: s);
       rethrow;
@@ -74,6 +62,7 @@ class AuthService {
   }
 
   Future signout() async {
+    // This will trigger AuthChangeEvent.signedOut on the stream
     await _client.auth.signOut(scope: SignOutScope.global);
   }
 }
