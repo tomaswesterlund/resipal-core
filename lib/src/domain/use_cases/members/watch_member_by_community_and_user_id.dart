@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:resipal_core/lib.dart';
 
-class WatchMemberByUserId {
+class WatchMemberByCommunityAndUserId {
   final CommunityDataSource _communityDataSource = GetIt.I<CommunityDataSource>();
   final PaymentDataSource _paymentDataSource = GetIt.I<PaymentDataSource>();
   final PropertyDataSource _propertyDataSource = GetIt.I<PropertyDataSource>();
