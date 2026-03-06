@@ -41,4 +41,17 @@ class EmailInvitationDataSource {
       _cache[model.id] = model;
     }
   }
+
+  Future upsert(Map<String, dynamic> map) async {
+    await _client.from('email_invitations').upsert(map);
+  }
+
+  Future<void> invokeSendInvitationEmail({required String email, required String name, required String message}) async {
+    await _client.functions.invoke(
+      'send_invitation_email',
+      body: {
+        'record': {'email': email, 'name': name, 'message': message},
+      },
+    );
+  }
 }

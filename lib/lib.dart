@@ -94,6 +94,7 @@ export 'src/domain/use_cases/get_user_properties.dart';
 export 'src/domain/use_cases/get_user_visitors.dart';
 export 'src/domain/use_cases/get_visitor.dart';
 export 'src/domain/use_cases/get_visitor_ref.dart';
+export 'src/domain/use_cases/invitations/send_invitation_email.dart';
 export 'src/domain/use_cases/members/get_member_by_user_and_community_id.dart';
 export 'src/domain/use_cases/members/get_members_by_community_id.dart';
 export 'src/domain/use_cases/members/watch_member_by_community_and_user_id.dart';
