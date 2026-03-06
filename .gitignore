@@ -3,5 +3,6 @@ local.env
 .vscode/launch.json
 *.yaml
 .dart-tool/
+.dart-tool/*
 .DS_Store
 */.DS_Store
