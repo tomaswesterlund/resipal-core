@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:get_it/get_it.dart';
 import 'package:resipal_core/lib.dart';
-import 'package:resipal_core/src/services/pdf_service.dart';
+import 'package:resipal_core/src/data/sources/email_invitation_data_source.dart';
+import 'package:resipal_core/src/data/sources/email_log_data_source.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ServiceLocator {
@@ -23,6 +24,8 @@ class ServiceLocator {
     sl.registerLazySingleton(() => AccessLogDataSource());
     sl.registerLazySingleton(() => ApplicationDataSource());
     sl.registerLazySingleton(() => CommunityDataSource());
+    sl.registerLazySingleton(() => EmailInvitationDataSource());
+    sl.registerLazySingleton(() => EmailLogDataSource());
     sl.registerLazySingleton(() => ErrorLogDataSource());
     sl.registerLazySingleton(() => InvitationDataSource());
     sl.registerLazySingleton(() => ContractDataSource());
