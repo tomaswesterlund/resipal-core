@@ -46,15 +46,23 @@ class EmailInvitationDataSource {
   }
 
   Future<void> invokeSendInvitationEmail({required String email, required String name, required String message}) async {
+    // 1. Ensure session is fresh
     await _client.auth.refreshSession();
-    final authHeader = Supabase.instance.client.auth.headers['Authorization'] ?? '';
 
+    // 2. Get the session token
+    final session = _client.auth.currentSession;
+    if (session == null) throw Exception("No active session");
+
+    // 3. Merge the default headers (which contain the apikey) with your Auth header
     await _client.functions.invoke(
       'send_invitation_via_email',
       body: {
         'record': {'email': email, 'name': name, 'message': message},
       },
-      headers: {'Authorization': authHeader, 'Content-Type': 'application/json'},
+      headers: {
+        ..._client.functions.headers, // This includes 'apikey' and others
+        'Authorization': 'Bearer ${session.accessToken}',
+      },
     );
   }
 }
