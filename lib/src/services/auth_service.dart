@@ -4,10 +4,9 @@ import 'package:resipal_core/lib.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthService {
-  final ResipalSupabase _resipalSupabase = GetIt.I<ResipalSupabase>();
+  final SupabaseClient _client = GetIt.I<SupabaseClient>();
   final LoggerService _loggerService = GetIt.I<LoggerService>();
 
-  SupabaseClient get _client => _resipalSupabase.client;
   Stream<AuthState> get onAuthStateChange => _client.auth.onAuthStateChange;
   User? get currentUser => _client.auth.currentUser;
 

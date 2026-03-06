@@ -13,8 +13,9 @@ class SendInvitationEmail {
   }) async {
     try {
       // TODO: Validation
-      // 1. Check if email already exists in applications
-      // 2. Check if email already exists in email_invitations
+      // Check if email already exists in memberships (already a member)
+      // Check if email already exists in applications (already have an application)
+      // Check if email already exists in email_invitations (should not be here if the first two are false)
 
       final model = EmailInvitationModel(
         id: '',

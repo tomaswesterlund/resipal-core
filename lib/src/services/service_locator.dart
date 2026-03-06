@@ -1,25 +1,24 @@
 import 'dart:async';
 import 'package:get_it/get_it.dart';
 import 'package:resipal_core/lib.dart';
-import 'package:resipal_core/src/data/sources/email_invitation_data_source.dart';
-import 'package:resipal_core/src/data/sources/email_log_data_source.dart';
+import 'package:resipal_core/src/data/supabase_config.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ServiceLocator {
   Future<void> initializeContainers() async {
     final sl = GetIt.instance;
 
-    final supabase = ResipalSupabase();
-    await supabase.init();
-    sl.registerSingleton<ResipalSupabase>(supabase);
-    sl.registerSingleton<SupabaseClient>(supabase.client);
+    final config = GetIt.I<SupabaseConfig>();
+    await Supabase.initialize(url: config.url, anonKey: config.anonKey);
+
+    sl.registerSingleton<SupabaseClient>(Supabase.instance.client);
 
     // Services
     sl.registerLazySingleton(() => AuthService());
     sl.registerLazySingleton(() => ImageService());
     sl.registerLazySingleton(() => LoggerService());
     sl.registerLazySingleton(() => PdfService());
-  
+
     // Data sources
     sl.registerLazySingleton(() => AccessLogDataSource());
     sl.registerLazySingleton(() => ApplicationDataSource());
