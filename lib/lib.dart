@@ -139,6 +139,7 @@ export 'src/domain/use_cases/watch_user.dart';
 export 'src/domain/use_cases/watch_user_invitations.dart';
 export 'src/domain/use_cases/watch_user_payments.dart';
 export 'src/domain/use_cases/watch_user_visitors.dart';
+export 'src/domain/validators.dart';
 export 'src/services/auth_service.dart';
 export 'src/services/image_service.dart';
 export 'src/services/logger_service.dart';
