@@ -12,6 +12,10 @@ class SendInvitationEmail {
     required String communityId,
   }) async {
     try {
+      // TODO: Validation
+      // 1. Check if email already exists in applications
+      // 2. Check if email already exists in email_invitations
+
       final model = EmailInvitationModel(
         id: '',
         communityId: communityId,

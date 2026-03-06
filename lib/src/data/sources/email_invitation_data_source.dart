@@ -47,12 +47,14 @@ class EmailInvitationDataSource {
   }
 
   Future<void> invokeSendInvitationEmail({required String email, required String name, required String message}) async {
-    _resipalSupabase.client.functions.setAuth(_resipalSupabase.client.auth.currentSession!.accessToken);
+    final String? token = _resipalSupabase.client.auth.currentSession?.accessToken;
+    
     await _resipalSupabase.client.functions.invoke(
       'send_invitation_via_email',
       body: {
         'record': {'email': email, 'name': name, 'message': message},
       },
+      headers: {'Authorization': 'Bearer $token'},
     );
   }
 }
