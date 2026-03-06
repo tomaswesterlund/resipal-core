@@ -46,12 +46,21 @@ class EmailInvitationDataSource {
     await _client.from('email_invitations').upsert(map);
   }
 
-  Future<void> invokeSendInvitationEmail({required String email, required String name, required String message}) async {
+  Future<void> invokeSendInvitationEmail({
+    required String bearerKey,
+    required String email, required String name, required String message}) async {
+    
     await _client.functions.invoke(
       'send_invitation_via_email',
       body: {
         'record': {'email': email, 'name': name, 'message': message},
       },
+      headers: {
+
+         "Content-Type": "application/json",
+         "Authorization": "Bearer ${bearerKey}"
+         
+         }
     );
   }
 }

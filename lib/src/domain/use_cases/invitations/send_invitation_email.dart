@@ -27,7 +27,9 @@ class SendInvitationEmail {
       // 2. Trigger the Edge Function
       // Note: You might want your Edge Function to return the resend_id
       // so you can pass it to the logger.
-      await _invitationDataSource.invokeSendInvitationEmail(email: email, name: name, message: message);
+      await _invitationDataSource.invokeSendInvitationEmail(
+        bearerKey: 'sb_publishable_I1FzA8ioJ1zPOhpFjld_vA_p2Pip5pw',
+        email: email, name: name, message: message);
 
       // 3. Log the success (Optional: pass resend_id if returned by function)
       //await _logDataSource.logAttempt(invitationId: invitationId, resendId: 'pending_or_returned_id');
