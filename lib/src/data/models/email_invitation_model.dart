@@ -41,6 +41,15 @@ class EmailInvitationModel {
     };
   }
 
+  Map<String, dynamic> toUpsertMap() {
+    return {
+      'community_id': communityId,
+      'email': email,
+      'name': name,
+      'message': message,
+    };
+  }
+
   EmailInvitationModel copyWith({
     String? id,
     String? communityId,

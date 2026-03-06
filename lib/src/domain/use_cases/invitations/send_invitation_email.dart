@@ -13,16 +13,16 @@ class SendInvitationEmail {
   }) async {
     try {
       final model = EmailInvitationModel(
-        id: '', // DB generates this
+        id: '',
         communityId: communityId,
         createdAt: DateTime.now(),
-        createdBy: '', // DB handles this via auth.uid()
+        createdBy: '',
         email: email,
         name: name,
         message: message,
       );
 
-      await _invitationDataSource.upsert(model.toMap());
+      await _invitationDataSource.upsert(model.toUpsertMap());
 
       // 2. Trigger the Edge Function
       // Note: You might want your Edge Function to return the resend_id
