@@ -29,6 +29,9 @@ dependencies:
     git:
       url: https://github.com/tomaswesterlund/WesterKit
       ref: main
+  pdf: ^3.11.3
+  open_file: ^3.5.11
+  path_provider: ^2.1.5
 
 dev_dependencies:
   flutter_test:
