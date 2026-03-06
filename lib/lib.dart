@@ -64,6 +64,7 @@ export 'src/domain/refs/property_ref.dart';
 export 'src/domain/refs/user_ref.dart';
 export 'src/domain/refs/visitor_ref.dart';
 export 'src/domain/typedefs.dart';
+export 'src/domain/use_cases/applications/create_application.dart';
 export 'src/domain/use_cases/applications/create_application_and_send_invitations.dart';
 export 'src/domain/use_cases/applications/get_application_by_id.dart';
 export 'src/domain/use_cases/applications/get_applications_by_community_id.dart';
