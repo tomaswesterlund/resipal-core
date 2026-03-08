@@ -17,7 +17,6 @@ class SessionService {
   }
 
   String? _userId;
-
   String get userId {
     if (_userId == null) {
       final error = StateError('_userId is null');
@@ -63,7 +62,7 @@ class SessionService {
     } catch (e, s) {
       _logger.logException(
         exception: e,
-        featureArea: 'AdminSessionService.startWatchers',
+        featureArea: 'SessionService.startWatchers',
         stackTrace: s,
         metadata: {'communityId': communityId, 'userId': userId},
       );
@@ -73,16 +72,13 @@ class SessionService {
 
   Future<void> stopWatchers() async {
     try {
-      // Clear cancels all internal subscriptions but keeps the CompositeSubscription reusable
       _subscriptions.clear();
-
-      // Nullify IDs to prevent unauthorized access to the old session
       _communityId = null;
       _userId = null;
 
-      _logger.info('AdminSessionService: All watchers stopped and session cleared.');
+      _logger.info('SessionService: All watchers stopped and session cleared.');
     } catch (e, s) {
-      _logger.logException(exception: e, featureArea: 'AdminSessionService.stopWatchers', stackTrace: s);
+      _logger.logException(exception: e, featureArea: 'SessionService.stopWatchers', stackTrace: s);
     }
   }
 
@@ -94,13 +90,13 @@ class SessionService {
     // The CompositeSubscription will handle the cancellation automatically.
     final sub = stream.listen((data) {
       /* Repository is updated internally by the DataSources */
-    }, onError: (e) => _logger.logException(exception: e, featureArea: 'AdminSessionService.Stream'));
+    }, onError: (e) => _logger.logException(exception: e, featureArea: 'SessionService.Stream'));
 
     _subscriptions.add(sub);
   }
 
   void dispose() {
     stopWatchers();
-    _subscriptions.dispose(); // Permanent disposal of the container
+    _subscriptions.dispose();
   }
 }
