@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'payment_details_state.dart';
 import 'package:resipal_core/lib.dart';
 
 class PaymentDetailsCubit extends Cubit<PaymentDetailsState> {
@@ -11,17 +9,17 @@ class PaymentDetailsCubit extends Cubit<PaymentDetailsState> {
   final WatchPaymentById _watchPaymentById = WatchPaymentById();
   StreamSubscription? _streamSubscription;
 
-  PaymentDetailsCubit() : super(ConfirmPaymentInitialState());
+  PaymentDetailsCubit() : super(PaymentDetailsInitialState());
 
   Future initialize(PaymentEntity payment) async {
     try {
-      emit(ConfirmPaymentLoadedState(payment));
+      emit(PaymentDetailsLoadedState(payment));
 
       _streamSubscription = _watchPaymentById
           .call(payment.id)
           .listen(
             (payment) async {
-              emit(ConfirmPaymentLoadedState(payment));
+              emit(PaymentDetailsLoadedState(payment));
             },
             onError: (e, s) {
               _logger.logException(
@@ -31,7 +29,7 @@ class PaymentDetailsCubit extends Cubit<PaymentDetailsState> {
                 metadata: {'payment': payment.toMap()},
               );
 
-              emit(ConfirmPaymentErrorState());
+              emit(PaymentDetailsErrorState());
             },
           );
     } catch (e, s) {
@@ -42,7 +40,7 @@ class PaymentDetailsCubit extends Cubit<PaymentDetailsState> {
         metadata: {'payment': payment.toMap()},
       );
 
-      emit(ConfirmPaymentErrorState());
+      emit(PaymentDetailsErrorState());
     }
   }
 

@@ -12,7 +12,7 @@ class RegisterPaymentCubit extends Cubit<RegisterPaymentState> {
 
   final ImagePicker _picker = ImagePicker();
 
-  RegisterPaymentCubit() : super(ConfirmPaymentInitialState());
+  RegisterPaymentCubit() : super(RegisterPaymentInitialState());
 
   late RegisterPaymentFormState _formState;
 
@@ -69,7 +69,7 @@ class RegisterPaymentCubit extends Cubit<RegisterPaymentState> {
         metadata: {'source': source.toString(), 'device_time': DateTime.now().toIso8601String()},
       );
 
-      emit(ConfirmPaymentErrorState());
+      emit(RegisterPaymentErrorState());
     }
   }
 
@@ -107,7 +107,7 @@ class RegisterPaymentCubit extends Cubit<RegisterPaymentState> {
         featureArea: 'RegisterPaymentCubit.submit',
         metadata: _formState.toMap(),
       );
-      emit(ConfirmPaymentErrorState());
+      emit(RegisterPaymentErrorState());
     }
   }
 }

@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:resipal_core/src/presentation/payments/confirm_payment/confirm_payment_button.dart';
-import 'package:resipal_core/src/presentation/payments/payment_header.dart';
-import 'package:resipal_core/src/presentation/shared/bucket_image/bucket_image.dart';
 import 'package:shimmer/shimmer.dart';
-import 'payment_details_cubit.dart';
-import 'payment_details_state.dart';
 import 'package:resipal_core/lib.dart';
 import 'package:wester_kit/lib.dart';
 
@@ -32,15 +27,15 @@ class PaymentDetailsPage extends StatelessWidget {
   }
 
   Widget _buildStateWidget(PaymentDetailsState state) {
-    if (state is ConfirmPaymentInitialState || state is ConfirmPaymentLoadingState) {
+    if (state is PaymentDetailsInitialState || state is PaymentDetailsLoadingState) {
       return const _PaymentDetailsShimmer();
     }
 
-    if (state is ConfirmPaymentLoadedState) {
+    if (state is PaymentDetailsLoadedState) {
       return _Loaded(state.payment, key: const ValueKey('loaded'));
     }
 
-    if (state is ConfirmPaymentErrorState) {
+    if (state is PaymentDetailsErrorState) {
       return const ErrorView(key: ValueKey('error'));
     }
 
@@ -118,11 +113,8 @@ class _Loaded extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  payment.note!, 
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    color: colorScheme.onSurface,
-                    height: 1.4,
-                  ),
+                  payment.note!,
+                  style: theme.textTheme.bodyLarge?.copyWith(color: colorScheme.onSurface, height: 1.4),
                 ),
               ),
             ),

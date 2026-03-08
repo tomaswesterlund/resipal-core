@@ -3,9 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:resipal_core/lib.dart';
 import 'package:wester_kit/lib.dart';
-import 'register_payment_cubit.dart';
-import 'register_payment_state.dart';
-import 'register_payment_form_state.dart';
 
 class RegisterPaymentPage extends StatelessWidget {
   const RegisterPaymentPage({super.key});
@@ -28,7 +25,7 @@ class RegisterPaymentPage extends StatelessWidget {
               return const LoadingView(title: 'Procesando pago...');
             }
 
-            if (state is ConfirmPaymentErrorState) return const ErrorView();
+            if (state is RegisterPaymentErrorState) return const ErrorView();
 
             if (state is RegisterPaymentFormSubmittedSuccessfullyState) {
               return SuccessView(
