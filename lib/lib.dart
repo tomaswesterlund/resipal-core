@@ -82,6 +82,7 @@ export 'src/domain/use_cases/contracts/fetch_contract.dart';
 export 'src/domain/use_cases/contracts/get_contract.dart';
 export 'src/domain/use_cases/contracts/get_contract_ref.dart';
 export 'src/domain/use_cases/contracts/get_contracts_by_community.dart';
+export 'src/domain/use_cases/contracts/get_contracts_by_community_id.dart';
 export 'src/domain/use_cases/contracts/watch_contracts_by_community.dart';
 export 'src/domain/use_cases/create_invitation.dart';
 export 'src/domain/use_cases/create_visitor.dart';

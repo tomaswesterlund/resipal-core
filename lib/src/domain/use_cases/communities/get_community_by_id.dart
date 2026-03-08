@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:resipal_core/lib.dart';
+import 'package:resipal_core/src/domain/use_cases/contracts/get_contracts_by_community_id.dart';
 
 class GetCommunityById {
   final CommunityDataSource _source = GetIt.I<CommunityDataSource>();
@@ -12,6 +13,7 @@ class GetCommunityById {
     }
 
     final applications = GetApplicationsByCommunityId().call(communityId: communityId);
+    final contracts = GetContractsByCommunityId().call(communityId: communityId);
     final members = GetMembersByCommunityId().call(communityId: communityId);
     final payments = GetPayments().byCommunityId(communityId);
     final properties = GetProperties().byCommunityId(communityId);
@@ -22,6 +24,7 @@ class GetCommunityById {
       location: model.location,
       description: model.description,
       applications: applications,
+      contracts: contracts,
       paymentLedger: PaymentLedgerEntity(payments),
       propertyRegistry: PropertyRegistry(properties),
       memberDirectory: MemberDirectoryEntity(members),
