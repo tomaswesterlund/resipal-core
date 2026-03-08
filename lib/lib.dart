@@ -143,6 +143,7 @@ export 'src/domain/use_cases/watch_user_visitors.dart';
 export 'src/domain/validators.dart';
 export 'src/presentation/contracts/contract_card.dart';
 export 'src/presentation/contracts/contract_list_view.dart';
+export 'src/presentation/contracts/contracts_page.dart';
 export 'src/presentation/contracts/register_contract/register_contract_cubit.dart';
 export 'src/presentation/contracts/register_contract/register_contract_form_state.dart';
 export 'src/presentation/contracts/register_contract/register_contract_page.dart';
