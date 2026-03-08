@@ -1,6 +1,6 @@
 class SessionService {
-  late String _selectedCommunityId;
-  String get communityId => _selectedCommunityId;
+  late String _communityId;
+  String get communityId => _communityId;
 
-  void setSelectedCommunityId(String communityId) => _selectedCommunityId = communityId;
+  void setCommunityId(String communityId) => _communityId = communityId;
 }

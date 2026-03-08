@@ -6,21 +6,21 @@ import 'package:resipal_core/lib.dart';
   List<Object?> get props => [];
  }
 
-class InitialState extends ConfirmPaymentState {}
+class ConfirmPaymentInitialState extends ConfirmPaymentState {}
 
-class LoadingState extends ConfirmPaymentState {}
+class ConfirmPaymentLoadingState extends ConfirmPaymentState {}
 
-class LoadedState extends ConfirmPaymentState {
+class ConfirmPaymentLoadedState extends ConfirmPaymentState {
   final PaymentEntity payment;
 
-  LoadedState(this.payment);
+  ConfirmPaymentLoadedState(this.payment);
 
   @override
   List<Object?> get props => [payment];
 }
 
-class SubmittingState extends ConfirmPaymentState {}
+class ConfirmPaymentSubmittingState extends ConfirmPaymentState {}
 
-class SubmittedSuccessfullyState extends ConfirmPaymentState {}
+class ConfirmPaymentSubmittedSuccessfullyState extends ConfirmPaymentState {}
 
-class ErrorState extends ConfirmPaymentState {}
+class ConfirmPaymentErrorState extends ConfirmPaymentState {}

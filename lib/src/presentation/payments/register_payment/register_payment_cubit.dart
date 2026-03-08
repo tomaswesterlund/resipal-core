@@ -12,45 +12,45 @@ class RegisterPaymentCubit extends Cubit<RegisterPaymentState> {
 
   final ImagePicker _picker = ImagePicker();
 
-  RegisterPaymentCubit() : super(InitialState());
+  RegisterPaymentCubit() : super(ConfirmPaymentInitialState());
 
   late RegisterPaymentFormState _formState;
 
   Future initialize() async {
-    final residents = GetResidentsByCommunity().call(_sessionService.selectedCommunityId);
+    final residents = GetResidentsByCommunity().call(_sessionService.communityId);
 
     if (residents.isEmpty) {
-      emit(NoResidentsFound());
+      emit(RegisterPaymentNoResidentsFound());
       return;
     }
 
     _formState = RegisterPaymentFormState(residents: residents, payDate: DateTime.now());
-    emit(FormEditingState(_formState));
+    emit(RegisterPaymentFormEditingState(_formState));
   }
 
   void updateResident(ResidentEntity? newResident) {
     _formState = _formState.copyWith(resident: newResident);
-    emit(FormEditingState(_formState));
+    emit(RegisterPaymentFormEditingState(_formState));
   }
 
   void updateAmount(double newAmount) {
     _formState = _formState.copyWith(amount: newAmount);
-    emit(FormEditingState(_formState));
+    emit(RegisterPaymentFormEditingState(_formState));
   }
 
   void updatePayDate(DateTime? newPayDate) {
     _formState = _formState.copyWith(payDate: newPayDate);
-    emit(FormEditingState(_formState));
+    emit(RegisterPaymentFormEditingState(_formState));
   }
 
   void updateReference(String newReference) {
     _formState = _formState.copyWith(reference: newReference);
-    emit(FormEditingState(_formState));
+    emit(RegisterPaymentFormEditingState(_formState));
   }
 
   void updateNote(String newNote) {
     _formState = _formState.copyWith(note: newNote);
-    emit(FormEditingState(_formState));
+    emit(RegisterPaymentFormEditingState(_formState));
   }
 
   void pickImage(ImageSource source) async {
@@ -59,7 +59,7 @@ class RegisterPaymentCubit extends Cubit<RegisterPaymentState> {
 
       if (image != null) {
         _formState = _formState.copyWith(receiptImage: image);
-        emit(FormEditingState(_formState));
+        emit(RegisterPaymentFormEditingState(_formState));
       }
     } catch (e, stack) {
       await _logger.logException(
@@ -69,20 +69,20 @@ class RegisterPaymentCubit extends Cubit<RegisterPaymentState> {
         metadata: {'source': source.toString(), 'device_time': DateTime.now().toIso8601String()},
       );
 
-      emit(ErrorState());
+      emit(ConfirmPaymentErrorState());
     }
   }
 
   void removeImage() {
     _formState = _formState.copyWith(receiptImage: null);
-    emit(FormEditingState(_formState));
+    emit(RegisterPaymentFormEditingState(_formState));
   }
 
   Future<void> submit() async {
-    if (state is! FormEditingState) return;
+    if (state is! RegisterPaymentFormEditingState) return;
     if (_formState.canSubmit == false) return;
 
-    emit(FormSubmittingState());
+    emit(RegisterPaymentFormSubmittingState());
     try {
       final imagePath = await _imageService.uploadPaymentReceipt(
         xFile: _formState.receiptImage!,
@@ -99,7 +99,7 @@ class RegisterPaymentCubit extends Cubit<RegisterPaymentState> {
         receiptPath: imagePath,
       );
 
-      emit(FormSubmittedSuccessfullyState());
+      emit(RegisterPaymentFormSubmittedSuccessfullyState());
     } catch (e, s) {
       await _logger.logException(
         exception: e,
@@ -107,7 +107,7 @@ class RegisterPaymentCubit extends Cubit<RegisterPaymentState> {
         featureArea: 'RegisterPaymentCubit.submit',
         metadata: _formState.toMap(),
       );
-      emit(ErrorState());
+      emit(ConfirmPaymentErrorState());
     }
   }
 }

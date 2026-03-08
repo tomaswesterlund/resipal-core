@@ -11,17 +11,17 @@ class PaymentDetailsCubit extends Cubit<PaymentDetailsState> {
   final WatchPaymentById _watchPaymentById = WatchPaymentById();
   StreamSubscription? _streamSubscription;
 
-  PaymentDetailsCubit() : super(InitialState());
+  PaymentDetailsCubit() : super(ConfirmPaymentInitialState());
 
   Future initialize(PaymentEntity payment) async {
     try {
-      emit(LoadedState(payment));
+      emit(ConfirmPaymentLoadedState(payment));
 
       _streamSubscription = _watchPaymentById
           .call(payment.id)
           .listen(
             (payment) async {
-              emit(LoadedState(payment));
+              emit(ConfirmPaymentLoadedState(payment));
             },
             onError: (e, s) {
               _logger.logException(
@@ -31,7 +31,7 @@ class PaymentDetailsCubit extends Cubit<PaymentDetailsState> {
                 metadata: {'payment': payment.toMap()},
               );
 
-              emit(ErrorState());
+              emit(ConfirmPaymentErrorState());
             },
           );
     } catch (e, s) {
@@ -42,7 +42,7 @@ class PaymentDetailsCubit extends Cubit<PaymentDetailsState> {
         metadata: {'payment': payment.toMap()},
       );
 
-      emit(ErrorState());
+      emit(ConfirmPaymentErrorState());
     }
   }
 

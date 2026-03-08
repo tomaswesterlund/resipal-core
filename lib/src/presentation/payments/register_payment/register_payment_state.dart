@@ -6,22 +6,22 @@ abstract class RegisterPaymentState extends Equatable {
   List<Object?> get props => [];
 }
 
-class InitialState extends RegisterPaymentState {}
+class RegisterPaymentInitialState extends RegisterPaymentState {}
 
-class NoResidentsFound extends RegisterPaymentState {}
+class RegisterPaymentNoResidentsFound extends RegisterPaymentState {}
 
-class FormEditingState extends RegisterPaymentState {
+class RegisterPaymentFormEditingState extends RegisterPaymentState {
 
   final RegisterPaymentFormState formState;
 
-  FormEditingState(this.formState);
+  RegisterPaymentFormEditingState(this.formState);
 
   @override
   List<Object?> get props => [formState];
 }
 
-class FormSubmittingState extends RegisterPaymentState {}
+class RegisterPaymentFormSubmittingState extends RegisterPaymentState {}
 
-class FormSubmittedSuccessfullyState extends RegisterPaymentState {}
+class RegisterPaymentFormSubmittedSuccessfullyState extends RegisterPaymentState {}
 
-class ErrorState extends RegisterPaymentState {}
+class RegisterPaymentErrorState extends RegisterPaymentState {}

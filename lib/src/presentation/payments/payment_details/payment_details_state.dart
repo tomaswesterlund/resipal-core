@@ -6,17 +6,17 @@ abstract class PaymentDetailsState extends Equatable {
   List<Object?> get props => [];
 }
 
-class InitialState extends PaymentDetailsState {}
+class PaymentDetailsInitialState extends PaymentDetailsState {}
 
-class LoadingState extends PaymentDetailsState {}
+class PaymentDetailsLoadingState extends PaymentDetailsState {}
 
-class LoadedState extends PaymentDetailsState {
+class PaymentDetailsLoadedState extends PaymentDetailsState {
   final PaymentEntity payment;
 
-  LoadedState(this.payment);
+  PaymentDetailsLoadedState(this.payment);
 
   @override
   List<Object?> get props => [payment];
 }
 
-class ErrorState extends PaymentDetailsState {}
+class PaymentDetailsErrorState extends PaymentDetailsState {}

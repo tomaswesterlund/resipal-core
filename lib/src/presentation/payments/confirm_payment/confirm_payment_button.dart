@@ -16,11 +16,11 @@ class ConfirmPaymentButton extends StatelessWidget {
       create: (context) => ConfirmPaymentCubit()..initialize(payment.id),
       child: BlocBuilder<ConfirmPaymentCubit, ConfirmPaymentState>(
         builder: (ctx, state) {
-          if (state is InitialState || state is LoadingState) {
+          if (state is ConfirmPaymentInitialState || state is ConfirmPaymentLoadingState) {
             return const LoadingBar();
           }
 
-          if (state is SubmittingState) {
+          if (state is ConfirmPaymentSubmittingState) {
             return PrimaryButton(
               label: 'Confirmar pago recibido',
               canSubmit: false,
@@ -29,11 +29,11 @@ class ConfirmPaymentButton extends StatelessWidget {
             );
           }
 
-          if (state is SubmittedSuccessfullyState) {
+          if (state is ConfirmPaymentSubmittedSuccessfullyState) {
             return PrimaryButton(label: '¡Confirmado!', canSubmit: false, onPressed: () {});
           }
 
-          if (state is LoadedState) {
+          if (state is ConfirmPaymentLoadedState) {
             if (state.payment.status == PaymentStatus.pendingReview) {
               return PrimaryButton(
                 label: 'Confirmar pago recibido',
@@ -46,7 +46,7 @@ class ConfirmPaymentButton extends StatelessWidget {
             }
           }
 
-          if (state is ErrorState) return ErrorView();
+          if (state is ConfirmPaymentErrorState) return ErrorView();
 
           return const UnknownStateView();
         },

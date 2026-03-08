@@ -7,17 +7,17 @@ class ConfirmPaymentCubit extends Cubit<ConfirmPaymentState> {
   final LoggerService _logger = GetIt.I<LoggerService>();
   final SessionService _sessionService = GetIt.I<SessionService>();
 
-  ConfirmPaymentCubit() : super(InitialState());
+  ConfirmPaymentCubit() : super(ConfirmPaymentInitialState());
 
   void initialize(String paymentId) {
     try {
-      emit(LoadingState());
+      emit(ConfirmPaymentLoadingState());
 
       WatchPaymentById()
           .call(paymentId)
           .listen(
             (payment) {
-              emit(LoadedState(payment));
+              emit(ConfirmPaymentLoadedState(payment));
             },
             onError: (e, s) {
               _logger.logException(
@@ -26,7 +26,7 @@ class ConfirmPaymentCubit extends Cubit<ConfirmPaymentState> {
                 stackTrace: s,
                 metadata: {'paymentId': paymentId},
               );
-              emit(ErrorState());
+              emit(ConfirmPaymentErrorState());
             },
           );
     } catch (e, s) {
@@ -36,7 +36,7 @@ class ConfirmPaymentCubit extends Cubit<ConfirmPaymentState> {
         stackTrace: s,
         metadata: {'paymentId': paymentId},
       );
-      emit(ErrorState());
+      emit(ConfirmPaymentErrorState());
     }
   }
 
@@ -48,7 +48,7 @@ class ConfirmPaymentCubit extends Cubit<ConfirmPaymentState> {
         userId: payment.user.id,
       );
       final updatedPayment = await FetchPaymentById().call(payment.id);
-      emit(LoadedState(updatedPayment));
+      emit(ConfirmPaymentLoadedState(updatedPayment));
     } catch (e, s) {
       _logger.logException(
         exception: e,

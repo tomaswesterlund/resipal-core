@@ -22,15 +22,15 @@ class RegisterPaymentPage extends StatelessWidget {
         child: BlocConsumer<RegisterPaymentCubit, RegisterPaymentState>(
           listener: (context, state) {},
           builder: (context, state) {
-            if (state is NoResidentsFound) return const _NoResidentsFound();
+            if (state is RegisterPaymentNoResidentsFound) return const _NoResidentsFound();
 
-            if (state is FormSubmittingState) {
+            if (state is RegisterPaymentFormSubmittingState) {
               return const LoadingView(title: 'Procesando pago...');
             }
 
-            if (state is ErrorState) return const ErrorView();
+            if (state is ConfirmPaymentErrorState) return const ErrorView();
 
-            if (state is FormSubmittedSuccessfullyState) {
+            if (state is RegisterPaymentFormSubmittedSuccessfullyState) {
               return SuccessView(
                 title: '¡Pago Registrado!',
                 subtitle: 'El saldo del residente ha sido actualizado correctamente.',
@@ -39,7 +39,7 @@ class RegisterPaymentPage extends StatelessWidget {
               );
             }
 
-            if (state is FormEditingState) {
+            if (state is RegisterPaymentFormEditingState) {
               return _Form(state.formState);
             }
 

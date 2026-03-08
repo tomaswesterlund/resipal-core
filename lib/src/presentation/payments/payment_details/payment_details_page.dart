@@ -32,15 +32,15 @@ class PaymentDetailsPage extends StatelessWidget {
   }
 
   Widget _buildStateWidget(PaymentDetailsState state) {
-    if (state is InitialState || state is LoadingState) {
+    if (state is ConfirmPaymentInitialState || state is ConfirmPaymentLoadingState) {
       return const _PaymentDetailsShimmer();
     }
 
-    if (state is LoadedState) {
+    if (state is ConfirmPaymentLoadedState) {
       return _Loaded(state.payment, key: const ValueKey('loaded'));
     }
 
-    if (state is ErrorState) {
+    if (state is ConfirmPaymentErrorState) {
       return const ErrorView(key: ValueKey('error'));
     }
 
