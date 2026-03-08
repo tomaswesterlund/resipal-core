@@ -16,7 +16,7 @@ class CreateInvitation {
     final user = await GetSignedInUser().call();
 
     await _source.createInvitation(
-      communityId: _sessionService.selectedCommunityId,
+      communityId: _sessionService.communityId,
       userId: user.id,
       propertyId: propertyId,
       visitorId: visitorId,

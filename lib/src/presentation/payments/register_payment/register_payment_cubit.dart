@@ -1,0 +1,113 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:resipal_core/lib.dart';
+import 'package:resipal_core/src/presentation/payments/register_payment/register_payment_form_state.dart';
+import 'package:resipal_core/src/presentation/payments/register_payment/register_payment_state.dart';
+
+class RegisterPaymentCubit extends Cubit<RegisterPaymentState> {
+  final SessionService _sessionService = GetIt.I<SessionService>();
+  final LoggerService _logger = GetIt.I<LoggerService>();
+  final ImageService _imageService = GetIt.I<ImageService>();
+
+  final ImagePicker _picker = ImagePicker();
+
+  RegisterPaymentCubit() : super(InitialState());
+
+  late RegisterPaymentFormState _formState;
+
+  Future initialize() async {
+    final residents = GetResidentsByCommunity().call(_sessionService.selectedCommunityId);
+
+    if (residents.isEmpty) {
+      emit(NoResidentsFound());
+      return;
+    }
+
+    _formState = RegisterPaymentFormState(residents: residents, payDate: DateTime.now());
+    emit(FormEditingState(_formState));
+  }
+
+  void updateResident(ResidentEntity? newResident) {
+    _formState = _formState.copyWith(resident: newResident);
+    emit(FormEditingState(_formState));
+  }
+
+  void updateAmount(double newAmount) {
+    _formState = _formState.copyWith(amount: newAmount);
+    emit(FormEditingState(_formState));
+  }
+
+  void updatePayDate(DateTime? newPayDate) {
+    _formState = _formState.copyWith(payDate: newPayDate);
+    emit(FormEditingState(_formState));
+  }
+
+  void updateReference(String newReference) {
+    _formState = _formState.copyWith(reference: newReference);
+    emit(FormEditingState(_formState));
+  }
+
+  void updateNote(String newNote) {
+    _formState = _formState.copyWith(note: newNote);
+    emit(FormEditingState(_formState));
+  }
+
+  void pickImage(ImageSource source) async {
+    try {
+      final XFile? image = await _picker.pickImage(source: source, imageQuality: 70);
+
+      if (image != null) {
+        _formState = _formState.copyWith(receiptImage: image);
+        emit(FormEditingState(_formState));
+      }
+    } catch (e, stack) {
+      await _logger.logException(
+        exception: e,
+        stackTrace: stack,
+        featureArea: 'RegisterPaymentCubit.pickImage',
+        metadata: {'source': source.toString(), 'device_time': DateTime.now().toIso8601String()},
+      );
+
+      emit(ErrorState());
+    }
+  }
+
+  void removeImage() {
+    _formState = _formState.copyWith(receiptImage: null);
+    emit(FormEditingState(_formState));
+  }
+
+  Future<void> submit() async {
+    if (state is! FormEditingState) return;
+    if (_formState.canSubmit == false) return;
+
+    emit(FormSubmittingState());
+    try {
+      final imagePath = await _imageService.uploadPaymentReceipt(
+        xFile: _formState.receiptImage!,
+        communityId: _sessionService.communityId,
+        residentId: _formState.resident!.id,
+      );
+
+      await RegisterPayment().call(
+        communityId: _sessionService.communityId,
+        amountInCents: _formState.amountInCents,
+        date: _formState.payDate!,
+        reference: _formState.reference,
+        note: _formState.note,
+        receiptPath: imagePath,
+      );
+
+      emit(FormSubmittedSuccessfullyState());
+    } catch (e, s) {
+      await _logger.logException(
+        exception: e,
+        stackTrace: s,
+        featureArea: 'RegisterPaymentCubit.submit',
+        metadata: _formState.toMap(),
+      );
+      emit(ErrorState());
+    }
+  }
+}

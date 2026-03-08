@@ -14,7 +14,7 @@ class CreateVisitor {
     final user = await GetSignedInUser().call();
 
     await _source.createVisitor(
-      communityId: _sessionService.selectedCommunityId,
+      communityId: _sessionService.communityId,
       userId: user.id,
       name: name,
       identificationPath: identificationPath,

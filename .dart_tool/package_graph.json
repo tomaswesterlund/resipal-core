@@ -147,7 +147,7 @@
       "version": "0.0.1",
       "dependencies": [
         "flutter",
-        "google_fonts",
+        "image_picker",
         "intl",
         "shimmer"
       ]
