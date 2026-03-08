@@ -184,6 +184,7 @@ export 'src/presentation/properties/register_property/register_property_state.da
 export 'src/presentation/shared/bucket_image/bucket_image.dart';
 export 'src/presentation/shared/bucket_image/bucket_image_cubit.dart';
 export 'src/presentation/shared/bucket_image/bucket_image_state.dart';
+export 'src/presentation/shared/resipal_logo.dart';
 export 'src/services/auth_service.dart';
 export 'src/services/image_service.dart';
 export 'src/services/logger_service.dart';
