@@ -58,7 +58,12 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 onChanged: (index) => setState(() => _currentPageIndex = index),
                 items: [
                   FloatingNavBarItem(icon: Icons.dashboard_outlined, label: 'Inicio'),
-                  FloatingNavBarItem(icon: Icons.home_work_outlined, label: 'Propiedades'),
+                  FloatingNavBarItem(
+                    icon: Icons.home_work_outlined,
+                    label: 'Propiedades',
+                    showDanger: community.propertyRegistry.hasOverdueFees,
+                    warningBadgeCount: community.propertyRegistry.withPendingFees.length
+                  ),
                   FloatingNavBarItem(
                     icon: Icons.attach_money,
                     label: 'Pagos',
