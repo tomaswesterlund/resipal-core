@@ -62,7 +62,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                     icon: Icons.home_work_outlined,
                     label: 'Propiedades',
                     showDanger: community.propertyRegistry.hasOverdueFees,
-                    warningBadgeCount: community.propertyRegistry.withPendingFees.length
+                    warningBadgeCount: community.propertyRegistry.withPendingFees.length,
                   ),
                   FloatingNavBarItem(
                     icon: Icons.attach_money,
@@ -180,22 +180,26 @@ class _AdminHomePageState extends State<AdminHomePage> {
         return [IconButton(icon: const Icon(Icons.notifications_none), onPressed: () {})];
       case 1:
         return [
-          // IconButton(icon: const Icon(Icons.filter_list), onPressed: () {}),
+          IconButton(icon: const Icon(Icons.help), onPressed: () {}),
+          IconButton(icon: const Icon(Icons.filter_list), onPressed: () {}),
           IconButton(icon: const Icon(Icons.add), onPressed: () => Go.to(RegisterPropertyPage())),
         ];
       case 2:
         return [
+          IconButton(icon: const Icon(Icons.help), onPressed: () {}),
           IconButton(icon: const Icon(Icons.filter_list), onPressed: () {}),
-          IconButton(icon: const Icon(Icons.add), onPressed: () {}),
+          IconButton(icon: const Icon(Icons.add), onPressed: () => Go.to(RegisterPaymentPage())),
         ];
       case 3:
         return [
+          IconButton(icon: const Icon(Icons.help), onPressed: () {}),
           IconButton(icon: const Icon(Icons.filter_list), onPressed: () {}),
           IconButton(icon: const Icon(Icons.add), onPressed: () => Go.to(RegisterApplicationPage())),
         ];
 
       case 4:
         return [
+          IconButton(icon: const Icon(Icons.help), onPressed: () {}),
           IconButton(icon: const Icon(Icons.filter_list), onPressed: () {}),
           // IconButton(icon: const Icon(Icons.add), onPressed: () => Go.to(RegisterUserPage())),
         ];

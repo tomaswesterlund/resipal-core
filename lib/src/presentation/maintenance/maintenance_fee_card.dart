@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:resipal_core/lib.dart';
-import 'package:resipal_core/src/presentation/maintenance/maintenance_status_pill.dart';
 import 'package:wester_kit/lib.dart';
 
 class MaintenanceFeeCard extends StatelessWidget {
@@ -61,22 +60,14 @@ class MaintenanceFeeCard extends StatelessWidget {
                                 color: colorScheme.onSurface,
                               ),
                               const SizedBox(height: 2),
+                              
                               Text(
                                 'Vence el ${fee.dueDate.toShortDate()}',
                                 style: theme.textTheme.bodySmall?.copyWith(color: colorScheme.onSurfaceVariant),
                               ),
                               if (fee.note != null && fee.note!.isNotEmpty) ...[
                                 const SizedBox(height: 4),
-                                Text(
-                                  fee.note!,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: theme.textTheme.bodySmall?.copyWith(
-                                    fontSize: 11,
-                                    fontStyle: FontStyle.italic,
-                                    color: colorScheme.outline,
-                                  ),
-                                ),
+                                BodyText.small(fee.note!)
                               ],
                             ],
                           ),
