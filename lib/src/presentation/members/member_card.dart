@@ -93,20 +93,20 @@ class MemberCard extends StatelessWidget {
                                   cents: member.totalMemberBalanceInCents,
                                   color: colorScheme.tertiary,
                                 ),
-                                const SizedBox(width: 12),
-                                _buildAmountColumn(
-                                  context,
-                                  label: 'PAGOS PENDIENTES',
-                                  cents: member.paymentLedger.pendingPaymentAmountInCents,
-                                  color: colorScheme.secondary,
-                                ),
-                                const SizedBox(width: 12),
-                                _buildAmountColumn(
-                                  context,
-                                  label: 'DEUDA',
-                                  cents: member.propertyRegistry.totalDebtAmountInCents,
-                                  color: hasDebt ? colorScheme.error : colorScheme.onSurface,
-                                ),
+                                // const SizedBox(width: 12),
+                                // _buildAmountColumn(
+                                //   context,
+                                //   label: 'PAGOS PENDIENTES',
+                                //   cents: member.paymentLedger.pendingPaymentAmountInCents,
+                                //   color: colorScheme.secondary,
+                                // ),
+                                // const SizedBox(width: 12),
+                                // _buildAmountColumn(
+                                //   context,
+                                //   label: 'DEUDA',
+                                //   cents: member.propertyRegistry.totalDebtAmountInCents,
+                                //   color: hasDebt ? colorScheme.error : colorScheme.onSurface,
+                                // ),
                               ],
                             ),
                           ),
@@ -137,7 +137,7 @@ class MemberCard extends StatelessWidget {
         Text(
           label,
           style: theme.textTheme.labelSmall?.copyWith(
-            fontSize: 8,
+            fontSize: 12,
             letterSpacing: 0.5,
             fontWeight: FontWeight.w800,
             color: theme.colorScheme.outline,
