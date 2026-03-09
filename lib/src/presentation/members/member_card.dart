@@ -137,13 +137,13 @@ class MemberCard extends StatelessWidget {
         Text(
           label,
           style: theme.textTheme.labelSmall?.copyWith(
-            fontSize: 12,
+            fontSize: 8,
             letterSpacing: 0.5,
             fontWeight: FontWeight.w800,
             color: theme.colorScheme.outline,
           ),
         ),
-        AmountText.fromCents(cents, fontSize: 13, color: color),
+        AmountText.fromCents(cents, color: color),
       ],
     );
   }
