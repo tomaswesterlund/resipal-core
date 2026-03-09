@@ -14,8 +14,8 @@ class MemberBreakdownReportCubit extends Cubit<MemberBreakdownReportState> {
       final community = GetCommunityById().call(communityId);
       final directory = community.memberDirectory;
 
-      final totalDebt = directory.members.fold<int>(0, (sum, m) => sum + m.propertyRegistry.totalDebtInCents);
-      final totalBalance = directory.members.fold<int>(0, (sum, m) => sum + m.paymentLedger.totalBalanceInCents);
+      final totalDebt = directory.members.fold<int>(0, (sum, m) => sum + m.propertyRegistry.totalDebtAmountInCents);
+      final totalBalance = directory.members.fold<int>(0, (sum, m) => sum + m.paymentLedger.totalPaymentBalanceInCents);
 
       // Calculate Pending Payments
       final totalPending = directory.members.fold<int>(

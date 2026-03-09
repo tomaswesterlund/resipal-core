@@ -13,7 +13,7 @@ class PaymentLedgerEntity {
     return pendingAmountInCents;
   }
 
-  int get totalBalanceInCents {
+  int get totalPaymentBalanceInCents {
     final approvedAndPaidPayments = payments.where((p) => p.status == PaymentStatus.approved);
     final approvedPaymentAmountInCents = approvedAndPaidPayments.fold(
       0,

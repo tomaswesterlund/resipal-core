@@ -131,7 +131,7 @@ class _Overview extends StatelessWidget {
                 DetailTile(
                   icon: Icons.account_balance_wallet_outlined,
                   label: 'Balance Total',
-                  value: CurrencyFormatter.fromCents(member.paymentLedger.totalBalanceInCents),
+                  value: CurrencyFormatter.fromCents(member.paymentLedger.totalPaymentBalanceInCents),
                 ),
                 Divider(height: 1, color: colorScheme.outlineVariant),
                 DetailTile(
@@ -143,7 +143,7 @@ class _Overview extends StatelessWidget {
                 DetailTile(
                   icon: Icons.warning_amber_rounded,
                   label: 'Deuda Vencida',
-                  value: CurrencyFormatter.fromCents(member.propertyRegistry.totalDebtInCents),
+                  value: CurrencyFormatter.fromCents(member.propertyRegistry.totalDebtAmountInCents),
                 ),
               ],
             ),

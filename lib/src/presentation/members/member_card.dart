@@ -90,21 +90,21 @@ class MemberCard extends StatelessWidget {
                                 _buildAmountColumn(
                                   context,
                                   label: 'BALANCE',
-                                  cents: member.paymentLedger.totalBalanceInCents,
-                                  color: colorScheme.tertiary, // Success Green
+                                  cents: member.totalMemberBalanceInCents,
+                                  color: colorScheme.tertiary,
                                 ),
                                 const SizedBox(width: 12),
                                 _buildAmountColumn(
                                   context,
-                                  label: 'PENDIENTE',
+                                  label: 'PAGOS PENDIENTES',
                                   cents: member.paymentLedger.pendingPaymentAmountInCents,
-                                  color: colorScheme.secondary, // Amber/Terracotta
+                                  color: colorScheme.secondary,
                                 ),
                                 const SizedBox(width: 12),
                                 _buildAmountColumn(
                                   context,
                                   label: 'DEUDA',
-                                  cents: member.propertyRegistry.totalDebtInCents.toInt(),
+                                  cents: member.propertyRegistry.totalDebtAmountInCents,
                                   color: hasDebt ? colorScheme.error : colorScheme.onSurface,
                                 ),
                               ],

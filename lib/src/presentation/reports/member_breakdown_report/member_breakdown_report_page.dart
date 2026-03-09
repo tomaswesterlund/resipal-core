@@ -102,9 +102,9 @@ class MemberBreakdownReportPage extends StatelessWidget {
               final mainRow = [
                 m.name,
                 properties.length == 1 ? properties.first.name : '', // If only 1, show here. If many, leave empty.
-                formatCurrency.format(m.paymentLedger.totalBalanceInCents / 100),
+                formatCurrency.format(m.paymentLedger.totalPaymentBalanceInCents / 100),
                 formatCurrency.format(m.paymentLedger.pendingPaymentAmountInCents / 100),
-                properties.length == formatCurrency.format(m.propertyRegistry.totalDebtInCents / 100),
+                properties.length == formatCurrency.format(m.propertyRegistry.totalDebtAmountInCents / 100),
               ];
 
               // 2. If multiple properties, create sub-rows
@@ -116,7 +116,7 @@ class MemberBreakdownReportPage extends StatelessWidget {
                         p.name, // Property Name
                         '', // Empty Balance
                         '', // Empty Pendiente
-                        CurrencyFormatter.fromCents(p.totalDebtInCents),
+                        CurrencyFormatter.fromCents(p.totalDebtAmountInCents),
                       ],
                     )
                     .toList();
@@ -301,7 +301,7 @@ class _MemberReportTile extends StatelessWidget {
               children: [
                 _AmountColumn(
                   label: 'BALANCE TOTAL',
-                  cents: member.paymentLedger.totalBalanceInCents,
+                  cents: member.paymentLedger.totalPaymentBalanceInCents,
                   color: colorScheme.tertiary,
                 ),
                 _AmountColumn(
@@ -311,7 +311,7 @@ class _MemberReportTile extends StatelessWidget {
                 ),
                 _AmountColumn(
                   label: 'DEUDA VENCIDA',
-                  cents: member.propertyRegistry.totalDebtInCents,
+                  cents: member.propertyRegistry.totalDebtAmountInCents,
                   color: member.propertyRegistry.hasDebt ? colorScheme.error : colorScheme.onSurfaceVariant,
                 ),
               ],

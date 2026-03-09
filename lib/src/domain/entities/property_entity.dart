@@ -43,11 +43,14 @@ class PropertyEntity extends IdEntity {
     };
   }
 
-  int get totalDebtInCents {
-    final overdue = fees.where(
-      (f) => f.status == MaintenanceFeeStatus.overdue || f.status == MaintenanceFeeStatus.pending,
-    );
-    return overdue.fold(0, (sum, fee) => sum = sum + fee.amountInCents);
+  int get totalPaidAmountInCents {
+    final paid = fees.where((f) => f.status == MaintenanceFeeStatus.paid);
+    return paid.fold(0, (sum, fee) => sum = sum + fee.amountInCents);
+  }
+
+  int get totalDebtAmountInCents {
+    final due = fees.where((f) => f.status == MaintenanceFeeStatus.overdue || f.status == MaintenanceFeeStatus.pending);
+    return due.fold(0, (sum, fee) => sum = sum + fee.amountInCents);
   }
 
   PropertyPaymentStatus get propertyPaymentStatus {
@@ -62,7 +65,7 @@ class PropertyEntity extends IdEntity {
     return PropertyPaymentStatus.settled;
   }
 
-  bool get hasDebt => totalDebtInCents > 0;
+  bool get hasDebt => totalDebtAmountInCents > 0;
   bool get hasOverdueFees => fees.any((x) => x.status == MaintenanceFeeStatus.overdue);
   bool get hasPendingFees => fees.any((x) => x.status == MaintenanceFeeStatus.pending);
   List<MaintenanceFeeEntity> get pendingFees => fees.where((x) => x.status == MaintenanceFeeStatus.pending).toList();

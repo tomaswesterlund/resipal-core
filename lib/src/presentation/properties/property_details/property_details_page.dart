@@ -112,7 +112,7 @@ class _PropertyOverview extends StatelessWidget {
                 DetailTile(
                   icon: Icons.warning_amber_rounded,
                   label: 'Deuda Acumulada',
-                  value: CurrencyFormatter.fromCents(property.totalDebtInCents),
+                  value: CurrencyFormatter.fromCents(property.totalDebtAmountInCents),
                 ),
               ],
             ),
