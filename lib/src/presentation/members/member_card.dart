@@ -63,13 +63,7 @@ class MemberCard extends StatelessWidget {
                               children: [
                                 HeaderText.five(member.name, color: colorScheme.onSurface),
                                 const SizedBox(height: 2),
-                                Text(
-                                  propertiesLabel,
-                                  style: theme.textTheme.bodySmall?.copyWith(
-                                    color: colorScheme.outline,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
+                                BodyText.tiny(propertiesLabel),
                               ],
                             ),
                           ),
@@ -111,7 +105,6 @@ class MemberCard extends StatelessWidget {
                             ),
                           ),
 
-                          
                           ActionLink(
                             label: 'Detalles',
                             onTap: () => Go.to(MemberDetailsPage(member: member)),
