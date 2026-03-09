@@ -67,7 +67,7 @@ class MaintenanceFeeCard extends StatelessWidget {
                               ),
                               if (fee.note != null && fee.note!.isNotEmpty) ...[
                                 const SizedBox(height: 4),
-                                BodyText.small(fee.note!)
+                                BodyText.tiny(fee.note!)
                               ],
                             ],
                           ),
