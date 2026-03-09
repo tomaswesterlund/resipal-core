@@ -143,7 +143,7 @@ class MemberCard extends StatelessWidget {
             color: theme.colorScheme.outline,
           ),
         ),
-        AmountText.fromCents(cents, color: color),
+        AmountText.fromCents(cents, fontSize: 16, color: color),
       ],
     );
   }
