@@ -57,6 +57,7 @@ export 'src/domain/enums/direction_type.dart';
 export 'src/domain/enums/maintenance_fee_status.dart';
 export 'src/domain/enums/movement_type.dart';
 export 'src/domain/enums/payment_status.dart';
+export 'src/domain/enums/property_payment_status.dart';
 export 'src/domain/refs/community_ref.dart';
 export 'src/domain/refs/contract_ref.dart';
 export 'src/domain/refs/invitation_ref.dart';

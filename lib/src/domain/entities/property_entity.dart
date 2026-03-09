@@ -3,6 +3,7 @@ import 'package:resipal_core/src/domain/entities/id_entity.dart';
 import 'package:resipal_core/src/domain/entities/contract_entity.dart';
 import 'package:resipal_core/src/domain/entities/maintenance_fee_entity.dart';
 import 'package:resipal_core/src/domain/enums/maintenance_fee_status.dart';
+import 'package:resipal_core/src/domain/enums/property_payment_status.dart';
 import 'package:resipal_core/src/domain/refs/community_ref.dart';
 import 'package:resipal_core/src/domain/refs/user_ref.dart';
 
@@ -47,6 +48,18 @@ class PropertyEntity extends IdEntity {
       (f) => f.status == MaintenanceFeeStatus.overdue || f.status == MaintenanceFeeStatus.pending,
     );
     return overdue.fold(0, (sum, fee) => sum = sum + fee.amountInCents);
+  }
+
+  PropertyPaymentStatus get propertyPaymentStatus {
+    if (hasOverdueFees) {
+      return PropertyPaymentStatus.overdue;
+    }
+
+    if (hasPendingFees) {
+      return PropertyPaymentStatus.due;
+    }
+
+    return PropertyPaymentStatus.settled;
   }
 
   bool get hasDebt => totalDebtInCents > 0;
