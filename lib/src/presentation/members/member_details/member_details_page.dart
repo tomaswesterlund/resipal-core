@@ -143,7 +143,7 @@ class _Overview extends StatelessWidget {
                 DetailTile(
                   icon: Icons.warning_amber_rounded,
                   label: 'Deuda Vencida',
-                  value: CurrencyFormatter.fromCents(member.propertyRegistry.totalOverdueFeeInCents),
+                  value: CurrencyFormatter.fromCents(member.propertyRegistry.totalDebtInCents),
                 ),
               ],
             ),

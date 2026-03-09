@@ -104,7 +104,7 @@ class MemberCard extends StatelessWidget {
                                 _buildAmountColumn(
                                   context,
                                   label: 'DEUDA',
-                                  cents: member.propertyRegistry.totalOverdueFeeInCents.toInt(),
+                                  cents: member.propertyRegistry.totalDebtInCents.toInt(),
                                   color: hasDebt ? colorScheme.error : colorScheme.onSurface,
                                 ),
                               ],

@@ -104,9 +104,7 @@ class MemberBreakdownReportPage extends StatelessWidget {
                 properties.length == 1 ? properties.first.name : '', // If only 1, show here. If many, leave empty.
                 formatCurrency.format(m.paymentLedger.totalBalanceInCents / 100),
                 formatCurrency.format(m.paymentLedger.pendingPaymentAmountInCents / 100),
-                properties.length == 1
-                    ? formatCurrency.format(-1)
-                    : formatCurrency.format(m.propertyRegistry.totalOverdueFeeInCents / 100),
+                properties.length == formatCurrency.format(m.propertyRegistry.totalDebtInCents / 100),
               ];
 
               // 2. If multiple properties, create sub-rows
@@ -208,6 +206,7 @@ class MemberBreakdownReportPage extends StatelessWidget {
                     count: state.members.length,
                   ),
                   Expanded(child: state.members.isEmpty ? const _EmptyReport() : _ReportList(members: state.members)),
+                  SizedBox(height: 96.0,)
                 ],
               );
             }
@@ -312,7 +311,7 @@ class _MemberReportTile extends StatelessWidget {
                 ),
                 _AmountColumn(
                   label: 'DEUDA VENCIDA',
-                  cents: member.propertyRegistry.totalOverdueFeeInCents,
+                  cents: member.propertyRegistry.totalDebtInCents,
                   color: member.propertyRegistry.hasDebt ? colorScheme.error : colorScheme.onSurfaceVariant,
                 ),
               ],

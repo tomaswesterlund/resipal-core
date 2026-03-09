@@ -8,7 +8,7 @@ class PropertyRegistry extends Equatable {
 
   bool get hasDebt => properties.any((p) => p.hasDebt);
 
-  int get totalOverdueFeeInCents => properties.fold(0, (sum, property) => sum + property.totalDebtInCents);
+  int get totalDebtInCents => properties.fold(0, (sum, property) => sum + property.totalDebtInCents);
 
   int get count => properties.length;
 
