@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resipal_core/lib.dart';
+import 'package:resipal_core/src/presentation/properties/property_details/property_details_page.dart';
 import 'package:wester_kit/lib.dart';
 import 'package:short_navigation/short_navigation.dart';
 
@@ -11,10 +12,11 @@ class PropertyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-
-    final bool hasDebt = property.hasDebt;
-    // error for Debt (Terracotta), primary or green for healthy status
-    final Color statusColor = hasDebt ? colorScheme.error : Colors.green.shade600;
+    
+    // Get the status from the entity
+    final status = property.propertyPaymentStatus;
+    // Get the color and icon from the enum implementation
+    final Color statusColor = status.color(colorScheme);
 
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
@@ -56,7 +58,7 @@ class PropertyCard extends StatelessWidget {
                             ),
                           ),
                           Icon(
-                            hasDebt ? Icons.warning_amber_rounded : Icons.check_circle_outline,
+                            status.icon, // From Enum
                             color: statusColor,
                             size: 22,
                           ),
@@ -71,7 +73,7 @@ class PropertyCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                (hasDebt ? 'Deuda acumulada' : 'Al día').toUpperCase(),
+                                status.display.toUpperCase(), // From Enum
                                 style: theme.textTheme.labelSmall?.copyWith(
                                   fontSize: 9,
                                   letterSpacing: 0.5,
@@ -87,7 +89,6 @@ class PropertyCard extends StatelessWidget {
                               ),
                             ],
                           ),
-
                           ActionLink(
                             label: 'Detalles',
                             onTap: () => Go.to(PropertyDetailsPage(property: property)),
