@@ -80,7 +80,8 @@ class OnboardingUserRegistrationPage extends StatelessWidget {
                         hint: 'XX XXXX XXXX',
                         isRequired: true,
                         initialValue: form.phoneNumber,
-                        helpText: 'Tu número principal para recibir notificaciones y contacto directo de la administración.',
+                        helpText:
+                            'Tu número principal para recibir notificaciones y contacto directo de la administración.',
                         onChanged: cubit.onPhoneChanged,
                       ),
                       const SizedBox(height: 20),

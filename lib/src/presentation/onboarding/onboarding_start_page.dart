@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:resipal_admin/presentation/onboarding/user_registration/onboarding_user_registration_page.dart';
+import 'package:resipal_core/lib.dart';
 import 'package:wester_kit/lib.dart';
 import 'package:short_navigation/short_navigation.dart';
 
@@ -53,7 +53,7 @@ class OnboardingStartPage extends StatelessWidget {
               width: double.infinity,
               child: PrimaryButton(
                 label: 'Comenzar ahora', 
-                onPressed: () => Go.to(const OnboardingUserRegistrationPage()),
+                onPressed: () => Go.to( OnboardingUserRegistrationPage()),
               ),
             ),
             const SizedBox(height: 16),
