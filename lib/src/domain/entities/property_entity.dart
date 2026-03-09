@@ -42,12 +42,14 @@ class PropertyEntity extends IdEntity {
     };
   }
 
-  int get totalOverdueFeeInCents {
-    final overdue = fees.where((f) => f.status == MaintenanceFeeStatus.overdue);
+  int get totalDebtInCents {
+    final overdue = fees.where(
+      (f) => f.status == MaintenanceFeeStatus.overdue || f.status == MaintenanceFeeStatus.pending,
+    );
     return overdue.fold(0, (sum, fee) => sum = sum + fee.amountInCents);
   }
 
-  bool get hasDebt => totalOverdueFeeInCents > 0;
+  bool get hasDebt => totalDebtInCents > 0;
   bool get hasOverdueFees => fees.any((x) => x.status == MaintenanceFeeStatus.overdue);
   bool get hasPendingFees => fees.any((x) => x.status == MaintenanceFeeStatus.pending);
   List<MaintenanceFeeEntity> get pendingFees => fees.where((x) => x.status == MaintenanceFeeStatus.pending).toList();

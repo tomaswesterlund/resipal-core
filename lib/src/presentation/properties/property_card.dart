@@ -82,7 +82,7 @@ class PropertyCard extends StatelessWidget {
                               ),
                               const SizedBox(height: 2),
                               AmountText.fromCents(
-                                property.totalOverdueFeeInCents,
+                                property.totalDebtInCents,
                                 fontSize: 18,
                                 color: colorScheme.onSurface,
                               ),
