@@ -35,7 +35,7 @@ class MaintenanceFeeEntity {
       'fromDate': fromDate.toIso8601String(),
       'toDate': toDate.toIso8601String(),
       'note': note,
-      'status': status.name, // Helpful for logs/debugging
+      'status': status.name,
       'isPaid': isPaid,
     };
   }
@@ -44,11 +44,12 @@ class MaintenanceFeeEntity {
 
   MaintenanceFeeStatus get status {
     final today = DateTime.now();
+
     if (isPaid) return MaintenanceFeeStatus.paid;
-    if (dueDate.isAfter(today)) return MaintenanceFeeStatus.upcoming;
-    if (today.isAfter(fromDate) && today.isBefore(dueDate)) {
+    if (today.isAfter(dueDate)) return MaintenanceFeeStatus.overdue;
+    if (today.isAfter(fromDate) || today.isAtSameMomentAs(fromDate)) {
       return MaintenanceFeeStatus.pending;
     }
-    return MaintenanceFeeStatus.overdue;
+    return MaintenanceFeeStatus.upcoming;
   }
 }

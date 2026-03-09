@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:resipal_core/lib.dart';
-import 'package:wester_kit/lib.dart';
 
 class MaintenanceStatusPill extends StatelessWidget {
   final MaintenanceFeeEntity maintenanceFee;
