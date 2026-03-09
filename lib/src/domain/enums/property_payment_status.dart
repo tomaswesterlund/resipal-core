@@ -45,8 +45,8 @@ enum PropertyPaymentStatus {
   IconData get icon {
     return switch (this) {
       PropertyPaymentStatus.settled => Icons.check_circle_outline_rounded,
-      PropertyPaymentStatus.due => Icons.pending_actions_rounded,
-      PropertyPaymentStatus.overdue => Icons.warning_amber_rounded,
+      PropertyPaymentStatus.due => Icons.warning,
+      PropertyPaymentStatus.overdue => Icons.dangerous,
     };
   }
 }

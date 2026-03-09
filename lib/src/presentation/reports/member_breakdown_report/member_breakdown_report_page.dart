@@ -19,7 +19,7 @@ class MemberBreakdownReportPage extends StatelessWidget {
     // 1. Load Assets (Fonts & Logo) to prevent Cupertino errors
 
     // Load logo from assets
-    final logoData = await rootBundle.load('assets/resipal_logo_green.png');
+    final logoData = await rootBundle.load('packages/resipal_core/assets/resipal_logo_green.png');
     final logoImage = pw.MemoryImage(logoData.buffer.asUint8List());
 
     pdf.addPage(
