@@ -60,14 +60,12 @@ class MaintenanceFeeCard extends StatelessWidget {
                                 color: colorScheme.onSurface,
                               ),
                               const SizedBox(height: 2),
-                              
-                              Text(
-                                'Vence el ${fee.dueDate.toShortDate()}',
-                                style: theme.textTheme.bodySmall?.copyWith(color: colorScheme.onSurfaceVariant),
-                              ),
+
+                              BodyText.small('Vence el ${fee.dueDate.toShortDate()}'),
+
                               if (fee.note != null && fee.note!.isNotEmpty) ...[
                                 const SizedBox(height: 4),
-                                BodyText.tiny(fee.note!)
+                                BodyText.tiny(fee.note!),
                               ],
                             ],
                           ),
