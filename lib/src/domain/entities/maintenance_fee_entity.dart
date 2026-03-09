@@ -44,7 +44,6 @@ class MaintenanceFeeEntity {
 
   MaintenanceFeeStatus get status {
     final today = DateTime.now();
-
     if (isPaid) return MaintenanceFeeStatus.paid;
     if (today.isAfter(dueDate)) return MaintenanceFeeStatus.overdue;
     if (today.isAfter(fromDate) || today.isAtSameMomentAs(fromDate)) {

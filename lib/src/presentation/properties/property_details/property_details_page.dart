@@ -41,7 +41,8 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                   FloatingNavBarItem(
                     icon: Icons.history_rounded,
                     label: 'Mantenemiento',
-                    showDanger: currentProperty.fees.where((f) => f.status == MaintenanceFeeStatus.overdue).isNotEmpty,
+                    showDanger: currentProperty.hasOverdueFees,
+                    warningBadgeCount: currentProperty.pendingFees.length 
                   ),
                 ],
               ),
