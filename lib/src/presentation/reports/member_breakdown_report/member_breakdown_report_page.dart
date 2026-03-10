@@ -307,7 +307,7 @@ class _MemberReportTile extends StatelessWidget {
                 _AmountColumn(
                   label: 'PENDIENTE',
                   cents: pendingAmount,
-                  color: pendingAmount > 0 ? Colors.orange : colorScheme.onSurfaceVariant,
+                  color: pendingAmount > 0 ? Colors.orange.shade700 : colorScheme.onSurfaceVariant,
                 ),
                 _AmountColumn(
                   label: 'DEUDA VENCIDA',
@@ -375,7 +375,7 @@ class _AmountColumn extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label, style: const TextStyle(fontSize: 8, fontWeight: FontWeight.w900, letterSpacing: 0.5)),
-        AmountText(amountInCents: cents, fontSize: 14),
+        AmountText(amountInCents: cents, fontSize: 14, color: color),
       ],
     );
   }
