@@ -45,7 +45,7 @@ class ApplicationCard extends StatelessWidget {
                               children: [
                                 HeaderText.five(application.name, color: colorScheme.onSurface),
                                 const SizedBox(height: 2),
-                                _buildStatusBadge(context, statusColor),
+                                StatusBadge(color: statusColor, label: application.status.display)
                               ],
                             ),
                           ),
@@ -92,18 +92,6 @@ class ApplicationCard extends StatelessWidget {
     );
   }
 
-  Widget _buildStatusBadge(BuildContext context, Color color) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-      decoration: BoxDecoration(color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(6)),
-      child: Text(
-        application.status.display.toUpperCase(),
-        style: Theme.of(
-          context,
-        ).textTheme.labelSmall?.copyWith(color: color, fontWeight: FontWeight.bold, letterSpacing: 0.5, fontSize: 9),
-      ),
-    );
-  }
 
   Widget _buildInfoRow(IconData icon, String text, BuildContext context) {
     return Row(

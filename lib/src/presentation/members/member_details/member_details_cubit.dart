@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:resipal_core/lib.dart';
-import 'package:resipal_core/src/presentation/members/member_details/member_details_state.dart';
 
 class MemberDetailsCubit extends Cubit<MemberDetailsState> {
   final LoggerService _logger = GetIt.I<LoggerService>();

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resipal_core/lib.dart';
+import 'package:resipal_core/src/presentation/maintenance/maintenance_fee_details/maintenance_fee_details_page.dart';
+import 'package:short_navigation/short_navigation.dart';
 import 'package:wester_kit/lib.dart';
 
 class MaintenanceFeeCard extends StatelessWidget {
@@ -36,7 +38,7 @@ class MaintenanceFeeCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         child: IntrinsicHeight(
           child: InkWell(
-            onTap: () {},
+            onTap: () => Go.to(MaintenanceFeeDetailsPage(fee: fee)),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
