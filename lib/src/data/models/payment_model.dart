@@ -20,10 +20,38 @@ class PaymentModel {
     required this.amountInCents,
     required this.status,
     required this.date,
-    required this.reference,
-    required this.note,
-    required this.receiptPath
+    this.reference,
+    this.note,
+    this.receiptPath,
   });
+
+  PaymentModel copyWith({
+    String? id,
+    String? communityId,
+    String? userId,
+    DateTime? createdAt,
+    String? createdBy,
+    int? amountInCents,
+    String? status,
+    DateTime? date,
+    String? reference,
+    String? note,
+    String? receiptPath,
+  }) {
+    return PaymentModel(
+      id: id ?? this.id,
+      communityId: communityId ?? this.communityId,
+      userId: userId ?? this.userId,
+      createdAt: createdAt ?? this.createdAt,
+      createdBy: createdBy ?? this.createdBy,
+      amountInCents: amountInCents ?? this.amountInCents,
+      status: status ?? this.status,
+      date: date ?? this.date,
+      reference: reference ?? this.reference,
+      note: note ?? this.note,
+      receiptPath: receiptPath ?? this.receiptPath,
+    );
+  }
 
   factory PaymentModel.fromMap(Map<String, dynamic> json) {
     return PaymentModel(

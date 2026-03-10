@@ -89,7 +89,6 @@ class RegisterPaymentCubit extends Cubit<RegisterPaymentState> {
       );
 
       await RegisterPayment().call(
-        communityId: _sessionService.communityId,
         residentId: _formState.resident!.user.id,
         amountInCents: _formState.amountInCents,
         date: _formState.payDate!,

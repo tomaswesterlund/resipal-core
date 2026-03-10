@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:resipal_core/lib.dart';
 import '../models/payment_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -92,14 +93,16 @@ class PaymentDataSource {
     );
   }
 
-  Future confirmPaymentReceived({
-    required String communityId,
-    required String userId,
-    required String paymentId,
-  }) async {
-    await _client.rpc(
-      'fn_confirm_payment_received',
-      params: {'p_community_id': communityId, 'p_user_id': userId, 'p_payment_id': paymentId},
-    );
+  Future<void> updateStatus({required String id, required String status}) async {
+    // 1. Update the remote database
+    await _client
+        .from('payments')
+        .update({'status': status}) // Assumes your DB uses the string names (e.g., 'confirmed')
+        .eq('id', id);
+
+    // 2. Update the local cache if the record exists
+    if (_cache.containsKey(id)) {
+      _cache[id] = _cache[id]!.copyWith(status: status);
+    }
   }
 }

@@ -12,6 +12,16 @@ enum PaymentStatus {
       _ => PaymentStatus.unknown,
     };
   }
+
+  @override
+  String toString() {
+    return switch (this) {
+      PaymentStatus.approved => 'approved',
+      PaymentStatus.pendingReview => 'pending_review',
+      PaymentStatus.cancelled => 'cancelled',
+      PaymentStatus.unknown => 'unknown',
+    };
+  }
 }
 
 extension PaymentStatusExtension on PaymentStatus {

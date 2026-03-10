@@ -42,11 +42,7 @@ class ConfirmPaymentCubit extends Cubit<ConfirmPaymentState> {
 
   Future submit(PaymentEntity payment) async {
     try {
-      await ConfirmPaymentReceived().call(
-        communityId: _sessionService.communityId,
-        paymentId: payment.id,
-        userId: payment.user.id,
-      );
+      await ConfirmPaymentReceived().call(paymentId: payment.id);
       final updatedPayment = await FetchPaymentById().call(payment.id);
       emit(ConfirmPaymentLoadedState(updatedPayment));
     } catch (e, s) {
