@@ -81,7 +81,7 @@ class PropertyCard extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 2),
-                              AmountText(amountInCents: property.totalDebtAmountInCents, fontSize: 18),
+                              AmountText(amountInCents: property.totalDebtAmountInCents, fontSize: 18, color: statusColor),
                             ],
                           ),
                           ActionLink(
