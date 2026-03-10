@@ -4,18 +4,15 @@ import 'package:resipal_core/lib.dart';
 
 class PropertyHeader extends StatelessWidget {
   final PropertyEntity property;
-  final int outstandingDebtInCents;
 
   const PropertyHeader({
     required this.property, 
-    required this.outstandingDebtInCents, 
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final bool hasDebt = outstandingDebtInCents > 0;
 
     return Container(
       decoration: BoxDecoration(
@@ -46,7 +43,7 @@ class PropertyHeader extends StatelessWidget {
               children: [
                 Icon(Icons.home_work_outlined, size: 16, color: colorScheme.onPrimary),
                 const SizedBox(width: 8),
-                HeaderText.three(
+                HeaderText.one(
                   property.name, 
                   color: colorScheme.onPrimary,
                 ),
@@ -77,15 +74,15 @@ class PropertyHeader extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             AmountText(
-              amountInCents: outstandingDebtInCents,
+              amountInCents: property.totalDebtAmountInCents,
               fontSize: 36,
               // We use a white-ish color for debt on gradient to keep it legible
-              color: hasDebt ? Colors.white : Colors.greenAccent,
+              color: property.hasDebt ? Colors.white : Colors.greenAccent,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 4),
             BodyText.small(
-              hasDebt ? 'Saldo por liquidar' : 'Sin adeudos pendientes', 
+              property.hasDebt ? 'Saldo por liquidar' : 'Sin adeudos pendientes', 
               color: colorScheme.onPrimary.withOpacity(0.7),
             ),
           ],
