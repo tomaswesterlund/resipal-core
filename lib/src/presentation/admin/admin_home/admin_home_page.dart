@@ -67,7 +67,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   FloatingNavBarItem(
                     icon: Icons.attach_money,
                     label: 'Pagos',
-                    badgeCount: community.paymentLedger.pendingPayments.length,
+                    warningBadgeCount: community.paymentLedger.pendingPayments.length,
                   ),
                   FloatingNavBarItem(
                     icon: Icons.document_scanner,
