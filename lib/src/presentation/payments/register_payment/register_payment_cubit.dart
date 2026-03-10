@@ -2,8 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:resipal_core/lib.dart';
-import 'package:resipal_core/src/presentation/payments/register_payment/register_payment_form_state.dart';
-import 'package:resipal_core/src/presentation/payments/register_payment/register_payment_state.dart';
 
 class RegisterPaymentCubit extends Cubit<RegisterPaymentState> {
   final SessionService _sessionService = GetIt.I<SessionService>();
@@ -92,6 +90,7 @@ class RegisterPaymentCubit extends Cubit<RegisterPaymentState> {
 
       await RegisterPayment().call(
         communityId: _sessionService.communityId,
+        userId: _formState.resident!.user.id,
         amountInCents: _formState.amountInCents,
         date: _formState.payDate!,
         reference: _formState.reference,
