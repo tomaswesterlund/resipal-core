@@ -41,7 +41,7 @@ class PropertyDataSource {
             }).toList(),
           );
     } catch (e, s) {
-      _logger.logException(exception: e, featureArea: 'PropertyDataSource.watchByCommunityId', stackTrace: s);
+      _logger.error(exception: e, featureArea: 'PropertyDataSource.watchByCommunityId', stackTrace: s);
       rethrow;
     }
   }
@@ -60,7 +60,7 @@ class PropertyDataSource {
             }).toList(),
           );
     } catch (e, s) {
-      _logger.logException(exception: e, featureArea: 'PropertyDataSource.watchByResidentId', stackTrace: s);
+      _logger.error(exception: e, featureArea: 'PropertyDataSource.watchByResidentId', stackTrace: s);
       rethrow;
     }
   }

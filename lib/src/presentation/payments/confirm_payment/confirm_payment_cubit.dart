@@ -20,7 +20,7 @@ class ConfirmPaymentCubit extends Cubit<ConfirmPaymentState> {
               emit(ConfirmPaymentLoadedState(payment));
             },
             onError: (e, s) {
-              _logger.logException(
+              _logger.error(
                 exception: e,
                 featureArea: 'ConfirmPaymentCubit.',
                 stackTrace: s,
@@ -30,7 +30,7 @@ class ConfirmPaymentCubit extends Cubit<ConfirmPaymentState> {
             },
           );
     } catch (e, s) {
-      _logger.logException(
+      _logger.error(
         exception: e,
         featureArea: 'ConfirmPaymentCubit.',
         stackTrace: s,
@@ -46,7 +46,7 @@ class ConfirmPaymentCubit extends Cubit<ConfirmPaymentState> {
       final updatedPayment = await FetchPaymentById().call(payment.id);
       emit(ConfirmPaymentLoadedState(updatedPayment));
     } catch (e, s) {
-      _logger.logException(
+      _logger.error(
         exception: e,
         featureArea: 'PaymentDetailsCubit.confirmPaymentReceived',
         stackTrace: s,

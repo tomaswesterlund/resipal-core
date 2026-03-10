@@ -14,7 +14,7 @@ class GetSignedInUser {
       final user = GetUserById().call(userId);
       return user;
     } catch (e, s) {
-      _logger.logException(exception: e, featureArea: 'GetSignedInUser', stackTrace: s);
+      _logger.error(exception: e, featureArea: 'GetSignedInUser', stackTrace: s);
       rethrow;
     }
   }

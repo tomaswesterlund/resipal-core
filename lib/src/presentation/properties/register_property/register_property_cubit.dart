@@ -61,7 +61,7 @@ class RegisterPropertyCubit extends Cubit<RegisterPropertyState> {
         emit(RegisterPropertyFormEditingState(_formState));
       }
     } catch (e, stack) {
-      await _logger.logException(
+      await _logger.error(
         exception: e,
         stackTrace: stack,
         featureArea: 'RegisterPropertyCubit.pickImage',
@@ -99,7 +99,7 @@ class RegisterPropertyCubit extends Cubit<RegisterPropertyState> {
 
       emit(RegisterPropertyFormSubmittedSuccessfullyState());
     } catch (e, s) {
-      await _logger.logException(
+      await _logger.error(
         exception: e,
         stackTrace: s,
         featureArea: 'RegisterPropertyCubit.submit',

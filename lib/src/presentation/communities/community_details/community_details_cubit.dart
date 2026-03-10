@@ -21,12 +21,12 @@ class CommunityDetailsCubit extends Cubit<CommunityDetailsState> {
           .listen(
             (community) => emit(CommunityDetailsLoadedState(community)),
             onError: (e, s) {
-              _logger.logException(featureArea: 'WatchCommunityById.onError', exception: e, stackTrace: s);
+              _logger.error(featureArea: 'WatchCommunityById.onError', exception: e, stackTrace: s);
               emit(CommunityDetailsErrorState());
             },
           );
     } catch (e, s) {
-      _logger.logException(featureArea: 'WatchCommunityById.initialize', exception: e, stackTrace: s);
+      _logger.error(featureArea: 'WatchCommunityById.initialize', exception: e, stackTrace: s);
       emit(CommunityDetailsErrorState());
     }
   }

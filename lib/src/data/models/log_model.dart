@@ -1,19 +1,21 @@
-class ErrorLogModel {
+class LogModel { // Renamed from ErrorLogModel for general use
   final String id;
   final DateTime createdAt;
   final String? createdBy;
-  final String errorMessage;
+  final String level; // Added: 'INFO', 'ERROR', 'DEBUG', etc.
+  final String message; // Renamed from errorMessage for generality
   final String? stackTrace;
   final String platform;
   final String appVersion;
   final String featureArea;
   final Map<String, dynamic>? metadata;
 
-  ErrorLogModel({
+  LogModel({
     required this.id,
     required this.createdAt,
-    required this.createdBy,
-    required this.errorMessage,
+    this.createdBy,
+    required this.level,
+    required this.message,
     this.stackTrace,
     required this.platform,
     required this.appVersion,
@@ -21,30 +23,31 @@ class ErrorLogModel {
     this.metadata,
   });
 
-  factory ErrorLogModel.fromMap(Map<String, dynamic> json) {
-    return ErrorLogModel(
+  factory LogModel.fromMap(Map<String, dynamic> json) {
+    return LogModel(
       id: json['id'],
       createdAt: DateTime.parse(json['created_at'].toString()),
       createdBy: json['created_by'],
-      errorMessage: json['error_message'],
+      level: json['level'] ?? 'ERROR', // Default to ERROR if null
+      message: json['message'] ?? json['error_message'] ?? '', // Fallback for old schema
       stackTrace: json['stack_trace'],
-      platform: json['platform'],
-      appVersion: json['app_version'],
-      featureArea: json['feature_area'],
+      platform: json['platform'] ?? 'unknown',
+      appVersion: json['app_version'] ?? 'unknown',
+      featureArea: json['feature_area'] ?? 'unknown',
       metadata: json['metadata'] as Map<String, dynamic>?,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'created_at': createdAt.toIso8601String(),
-      'error_message': errorMessage,
+      'level': level,
+      'message': message,
       'stack_trace': stackTrace,
       'platform': platform,
       'app_version': appVersion,
       'feature_area': featureArea,
       'metadata': metadata,
+      // 'id' and 'created_at' usually handled by Supabase defaults
     };
   }
 }

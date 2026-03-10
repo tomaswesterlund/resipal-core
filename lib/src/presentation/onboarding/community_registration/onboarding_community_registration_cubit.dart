@@ -61,7 +61,7 @@ class OnboardingCommunityRegistrationCubit extends Cubit<OnboardingCommunityRegi
 
       emit(OnboardingCommunityRegistrationFormSubmittedSuccessfully(community: community, user: user));
     } catch (e, s) {
-      _logger.logException(
+      _logger.error(
         exception: e,
         featureArea: 'OnboardingCommunityRegistrationCubit.submit',
         stackTrace: s,

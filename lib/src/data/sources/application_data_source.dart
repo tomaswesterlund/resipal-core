@@ -46,7 +46,7 @@ class ApplicationDataSource {
         _cache[model.id] = model;
       }
     } catch (e, s) {
-      _logger.logException(exception: e, featureArea: 'ApplicationDataSource.fetchAndCacheAll', stackTrace: s);
+      _logger.error(exception: e, featureArea: 'ApplicationDataSource.fetchAndCacheAll', stackTrace: s);
       rethrow;
     }
   }
@@ -57,7 +57,7 @@ class ApplicationDataSource {
       final model = ApplicationModel.fromMap(item);
       _cache[model.id] = model;
     } catch (e, s) {
-      _logger.logException(exception: e, featureArea: 'ApplicationDataSource.fetchAndCacheById', stackTrace: s);
+      _logger.error(exception: e, featureArea: 'ApplicationDataSource.fetchAndCacheById', stackTrace: s);
       rethrow;
     }
   }
@@ -67,7 +67,7 @@ class ApplicationDataSource {
       await _client.from('applications').upsert(model.toMap());
       _cache[model.id] = model;
     } catch (e, s) {
-      _logger.logException(exception: e, featureArea: 'ApplicationDataSource.upsert', stackTrace: s);
+      _logger.error(exception: e, featureArea: 'ApplicationDataSource.upsert', stackTrace: s);
       rethrow;
     }
   }

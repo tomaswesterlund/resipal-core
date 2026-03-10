@@ -19,7 +19,7 @@ class PropertyDetailsCubit extends Cubit<PropertyDetailsState> {
     _subscription = _watchProperty(property.id).listen(
       (property) => emit(PropertyDetailsLoadedState(property)),
       onError: (e, s) {
-        _logger.logException(
+        _logger.error(
           exception: e,
           stackTrace: s,
           featureArea: 'PropertyDetailsCubit.initialize',

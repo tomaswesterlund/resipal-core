@@ -28,7 +28,7 @@ class MaintenanceFeeDetailsCubit extends Cubit<MaintenanceFeeDetailsState> {
               emit(MaintenanceFeeDetailsLoadedState(fee: updatedFee, insufficientBalance: insufficientBalance));
             },
             onError: (e, s) {
-              _logger.logException(
+              _logger.error(
                 featureArea: 'MaintenanceFeeDetailsCubit.initialize',
                 exception: e,
                 stackTrace: s,
@@ -38,7 +38,7 @@ class MaintenanceFeeDetailsCubit extends Cubit<MaintenanceFeeDetailsState> {
             },
           );
     } catch (e, s) {
-      _logger.logException(
+      _logger.error(
         exception: e,
         featureArea: 'MaintenanceFeeDetailsCubit.initialize',
         stackTrace: s,
@@ -52,7 +52,7 @@ class MaintenanceFeeDetailsCubit extends Cubit<MaintenanceFeeDetailsState> {
     try {
       await PayMaintenanceFee().call(fee.id);
     } catch (e, s) {
-      _logger.logException(featureArea: 'MaintenanceFeeDetailsCubit.payMaintenanceFee', exception: e, stackTrace: s);
+      _logger.error(featureArea: 'MaintenanceFeeDetailsCubit.payMaintenanceFee', exception: e, stackTrace: s);
       emit(MaintenanceFeeDetailsErrorState());
     }
   }

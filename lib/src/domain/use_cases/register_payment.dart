@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
 import 'package:resipal_core/lib.dart';
-import 'package:resipal_core/src/domain/use_cases/members/get_signed_in_member.dart';
 
 class RegisterPayment {
   final LoggerService _logger = GetIt.I<LoggerService>();
@@ -18,7 +17,9 @@ class RegisterPayment {
     const String featureArea = 'RegisterPayment';
 
     try {
-      _logger.info('[$featureArea] Starting payment registration for user: $residentId in community: $_session.communityId');
+      _logger.info(
+        featureArea: 'SessionService',
+        message: '[$featureArea] Starting payment registration for user: $residentId in community: $_session.communityId');
 
       final signedInMember = GetSignedInMember().call();
 
@@ -34,7 +35,7 @@ class RegisterPayment {
         _logger.debug('[$featureArea] $error');
 
         // Send to Supabase via logException for security monitoring
-        await _logger.logException(
+        await _logger.error(
           featureArea: featureArea,
           exception: 'Unauthorized Payment Attempt',
           metadata: {
@@ -59,9 +60,10 @@ class RegisterPayment {
         receiptPath: receiptPath,
       );
 
-      _logger.info('[$featureArea] Payment successfully registered. Amount: $amountInCents cents');
+      _logger.info(featureArea: 'SessionService',
+        message: '[$featureArea] Payment successfully registered. Amount: $amountInCents cents');
     } catch (e, stackTrace) {
-      await _logger.logException(
+      await _logger.error(
         featureArea: featureArea,
         exception: e,
         stackTrace: stackTrace,

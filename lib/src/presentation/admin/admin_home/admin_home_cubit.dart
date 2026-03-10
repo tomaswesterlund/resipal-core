@@ -23,12 +23,12 @@ class AdminHomeCubit extends Cubit<AdminHomeState> {
               emit(AdminLoadedState(community, user));
             },
             onError: (e, s) {
-              _logger.logException(exception: e, stackTrace: s, featureArea: 'AdminHomeCubit.initialize / listener');
+              _logger.error(exception: e, stackTrace: s, featureArea: 'AdminHomeCubit.initialize / listener');
               emit(AdminErrorState());
             },
           );
     } catch (e, s) {
-      _logger.logException(exception: e, stackTrace: s, featureArea: 'AdminHomeCubit.initialize');
+      _logger.error(exception: e, stackTrace: s, featureArea: 'AdminHomeCubit.initialize');
       emit(AdminErrorState());
     }
   }

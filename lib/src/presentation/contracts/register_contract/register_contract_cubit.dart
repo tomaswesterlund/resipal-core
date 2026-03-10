@@ -54,7 +54,7 @@ class RegisterContractCubit extends Cubit<RegisterContractState> {
       emit(RegisterContractFormSubmittedSuccessfullyState());
     } catch (e, s) {
       emit(RegisterContractErrorState());
-      _logger.logException(
+      _logger.error(
         exception: e,
         stackTrace: s,
         featureArea: 'RegisterContractCubit.submit',

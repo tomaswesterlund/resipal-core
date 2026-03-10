@@ -17,7 +17,7 @@ class WatchUserVisitors {
           return entities;
         })
         .handleError((e, s) {
-          _logger.logException(
+          _logger.error(
             exception: e,
             featureArea: 'WatchUserVisitors',
             stackTrace: s,

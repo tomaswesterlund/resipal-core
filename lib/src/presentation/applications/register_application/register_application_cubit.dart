@@ -53,7 +53,7 @@ class RegisterApplicationCubit extends Cubit<RegisterApplicationState> {
 
       emit(RegisterApplicationFormSubmittedSuccessfullyState());
     } catch (e, s) {
-      await _logger.logException(exception: e, stackTrace: s, featureArea: 'RegisterApplicationCubit.submit');
+      await _logger.error(exception: e, stackTrace: s, featureArea: 'RegisterApplicationCubit.submit');
       emit(RegisterApplicationErrorState());
     }
   }

@@ -17,7 +17,7 @@ class GetUserRefById {
 
       return UserRef(id: model.id, name: model.name, email: model.email, phoneNumber: model.phoneNumber);
     } catch (e, s) {
-      _logger.logException(exception: e, featureArea: 'GetUserRef', stackTrace: s);
+      _logger.error(exception: e, featureArea: 'GetUserRef', stackTrace: s);
       rethrow;
     }
   }

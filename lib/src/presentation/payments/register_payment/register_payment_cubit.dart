@@ -60,7 +60,7 @@ class RegisterPaymentCubit extends Cubit<RegisterPaymentState> {
         emit(RegisterPaymentFormEditingState(_formState));
       }
     } catch (e, stack) {
-      await _logger.logException(
+      await _logger.error(
         exception: e,
         stackTrace: stack,
         featureArea: 'RegisterPaymentCubit.pickImage',
@@ -99,7 +99,7 @@ class RegisterPaymentCubit extends Cubit<RegisterPaymentState> {
 
       emit(RegisterPaymentFormSubmittedSuccessfullyState());
     } catch (e, s) {
-      await _logger.logException(
+      await _logger.error(
         exception: e,
         stackTrace: s,
         featureArea: 'RegisterPaymentCubit.submit',

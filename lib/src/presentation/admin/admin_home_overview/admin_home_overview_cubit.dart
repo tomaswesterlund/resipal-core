@@ -24,12 +24,12 @@ class HomeOverviewCubit extends Cubit<AdminHomeOverviewState> {
               emit(AdminHomeOverviewLoadedState(community: community, user: user));
             },
             onError: (e, s) {
-              _logger.logException(exception: e, stackTrace: s, featureArea: 'HomeOverviewCubit.initialize / listener');
+              _logger.error(exception: e, stackTrace: s, featureArea: 'HomeOverviewCubit.initialize / listener');
               emit(AdminHomeOverviewErrorState());
             },
           );
     } catch (e, s) {
-      _logger.logException(exception: e, stackTrace: s, featureArea: 'HomeOverviewCubit.initialize');
+      _logger.error(exception: e, stackTrace: s, featureArea: 'HomeOverviewCubit.initialize');
       emit(AdminHomeOverviewErrorState());
     }
   }

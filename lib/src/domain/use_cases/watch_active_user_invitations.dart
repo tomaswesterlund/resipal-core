@@ -17,7 +17,7 @@ class WatchActiveInvitations {
           return entities.where((e) => e.isActive).toList();
         })
         .handleError((e, s) {
-          _logger.logException(
+          _logger.error(
             exception: e,
             featureArea: 'WatchActiveInvitations',
             stackTrace: s,

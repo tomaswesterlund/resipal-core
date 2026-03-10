@@ -67,7 +67,7 @@ class MaintenanceFeeDataSource {
       _cache[model.id] = model;
       return model;
     } catch (e, s) {
-      _logger.logException(exception: e, featureArea: 'MaintenanceFeeDataSource.fetchById', stackTrace: s);
+      _logger.error(exception: e, featureArea: 'MaintenanceFeeDataSource.fetchById', stackTrace: s);
       rethrow;
     }
   }

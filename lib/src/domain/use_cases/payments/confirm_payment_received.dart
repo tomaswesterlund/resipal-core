@@ -19,7 +19,7 @@ class ConfirmPaymentReceived {
     final bool isAdmin = signedInMember.isAdmin == true;
 
     if (!isSelf && !isAdmin) {
-      await _logger.logException(
+      await _logger.error(
         featureArea: featureArea,
         exception: 'Unauthorized Payment Attempt',
         metadata: {
@@ -36,7 +36,7 @@ class ConfirmPaymentReceived {
     if (payment.status != PaymentStatus.pendingReview) {
       final error = 'Action denied: Payment is not in Pending Review status (Current: ${payment.status.name}).';
 
-      await _logger.logException(
+      await _logger.error(
         featureArea: featureArea,
         exception: 'Unauthorized Payment Attempt',
         metadata: {

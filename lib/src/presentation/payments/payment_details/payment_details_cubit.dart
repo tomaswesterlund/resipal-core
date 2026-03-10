@@ -22,7 +22,7 @@ class PaymentDetailsCubit extends Cubit<PaymentDetailsState> {
               emit(PaymentDetailsLoadedState(payment));
             },
             onError: (e, s) {
-              _logger.logException(
+              _logger.error(
                 featureArea: 'PaymentDetailsCubit.initialize',
                 exception: e,
                 stackTrace: s,
@@ -33,7 +33,7 @@ class PaymentDetailsCubit extends Cubit<PaymentDetailsState> {
             },
           );
     } catch (e, s) {
-      _logger.logException(
+      _logger.error(
         exception: e,
         featureArea: 'PaymentDetailsCubit.initialize',
         stackTrace: s,

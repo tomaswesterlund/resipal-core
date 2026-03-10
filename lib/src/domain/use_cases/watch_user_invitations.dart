@@ -17,7 +17,7 @@ class WatchUserInvitations {
           return entities;
         })
         .handleError((e, s) {
-          _logger.logException(
+          _logger.error(
             exception: e,
             featureArea: 'WatchUserInvitations.call',
             stackTrace: s,

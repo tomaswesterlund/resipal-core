@@ -41,7 +41,7 @@ class ImageService {
     return signedUrl;
     
     } catch (e, s) {
-      _logger.logException(exception: e, featureArea: 'ImageService.getSignedUrl', stackTrace: s, metadata: { 'path' : path});
+      _logger.error(exception: e, featureArea: 'ImageService.getSignedUrl', stackTrace: s, metadata: { 'path' : path});
       rethrow;
     }
   }

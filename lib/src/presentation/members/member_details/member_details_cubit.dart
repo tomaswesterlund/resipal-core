@@ -26,7 +26,7 @@ class MemberDetailsCubit extends Cubit<MemberDetailsState> {
               emit(MemberDetailsLoadedState(updatedMember));
             },
             onError: (e, s) {
-              _logger.logException(
+              _logger.error(
                 featureArea: 'MemberDetailsCubit.initialize',
                 exception: e,
                 stackTrace: s,
@@ -36,7 +36,7 @@ class MemberDetailsCubit extends Cubit<MemberDetailsState> {
             },
           );
     } catch (e, s) {
-      _logger.logException(
+      _logger.error(
         exception: e,
         featureArea: 'MemberDetailsCubit.initialize',
         stackTrace: s,

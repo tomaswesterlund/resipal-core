@@ -13,7 +13,7 @@ class PayMaintenanceFee {
     final canPay = CanPayMaintenanceFee().call(maintenanceFeeId: id);
 
     if (!canPay) {
-      _logger.logException(
+      _logger.error(
         featureArea: 'PayMaintenanceFee',
         exception: 'Can pay is not fulfilled',
         metadata: {'fee': fee.toMap(), 'member': member.toMap()},

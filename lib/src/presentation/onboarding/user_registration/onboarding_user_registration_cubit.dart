@@ -16,7 +16,7 @@ class OnboardingUserRegistrationCubit extends Cubit<OnboardingUserRegistrationSt
       _formState = _formState.copyWith(email: user.email);
       emit(OnboardingUserRegistrationFormEditingState(_formState));
     } catch (e, s) {
-      _logger.logException(
+      _logger.error(
         exception: e,
         featureArea: 'OnboardingRegistrationCubit.initialize',
         stackTrace: s,
@@ -59,7 +59,7 @@ class OnboardingUserRegistrationCubit extends Cubit<OnboardingUserRegistrationSt
 
       emit(OnboardingUserRegistrationFormSubmittedSuccessfully());
     } catch (e, s) {
-      _logger.logException(
+      _logger.error(
         exception: e,
         featureArea: 'OnboardingRegistrationCubit.submit',
         stackTrace: s,

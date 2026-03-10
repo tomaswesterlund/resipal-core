@@ -17,7 +17,7 @@ class GetCommunityRefById {
 
       return CommunityRef(id: model.id, name: model.name);
     } catch (e, s) {
-      _logger.logException(exception: e, featureArea: 'GetCommunityRef', stackTrace: s);
+      _logger.error(exception: e, featureArea: 'GetCommunityRef', stackTrace: s);
       rethrow;
     }
   }

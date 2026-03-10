@@ -9,7 +9,7 @@ class SessionService {
   String get communityId {
     if (_communityId == null) {
       final error = StateError('_communityId is null');
-      _logger.logException(featureArea: 'SessionService.communityId', exception: error);
+      _logger.error(featureArea: 'SessionService.communityId', exception: error);
       throw error;
     }
 
@@ -20,7 +20,7 @@ class SessionService {
   String get userId {
     if (_userId == null) {
       final error = StateError('_userId is null');
-      _logger.logException(featureArea: 'SessionService.communityId', exception: error);
+      _logger.error(featureArea: 'SessionService.communityId', exception: error);
       throw error;
     }
 
@@ -58,9 +58,9 @@ class SessionService {
         _setupSubscription(GetIt.I<VisitorDataSource>().watchByCommunityId(communityId)),
       ]);
 
-      _logger.info('Watchers started successfully for community: $communityId');
+      _logger.info(featureArea: 'SessionService', message: 'Watchers started successfully for community: $communityId');
     } catch (e, s) {
-      _logger.logException(
+      _logger.error(
         exception: e,
         featureArea: 'SessionService.startWatchers',
         stackTrace: s,
@@ -76,9 +76,9 @@ class SessionService {
       _communityId = null;
       _userId = null;
 
-      _logger.info('SessionService: All watchers stopped and session cleared.');
+      _logger.info(featureArea: 'SessionService', message: 'SessionService: All watchers stopped and session cleared.');
     } catch (e, s) {
-      _logger.logException(exception: e, featureArea: 'SessionService.stopWatchers', stackTrace: s);
+      _logger.error(exception: e, featureArea: 'SessionService.stopWatchers', stackTrace: s);
     }
   }
 
@@ -90,7 +90,7 @@ class SessionService {
     // The CompositeSubscription will handle the cancellation automatically.
     final sub = stream.listen((data) {
       /* Repository is updated internally by the DataSources */
-    }, onError: (e) => _logger.logException(exception: e, featureArea: 'SessionService.Stream'));
+    }, onError: (e) => _logger.error(exception: e, featureArea: 'SessionService.Stream'));
 
     _subscriptions.add(sub);
   }

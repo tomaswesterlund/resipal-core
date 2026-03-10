@@ -42,7 +42,7 @@ class AuthService {
       // This call will trigger the onAuthStateChange stream automatically
       await signInWithIdToken(idToken: idToken);
     } catch (e, s) {
-      _loggerService.logException(exception: e, featureArea: 'AuthService.signInWithGoogle', stackTrace: s);
+      _loggerService.error(exception: e, featureArea: 'AuthService.signInWithGoogle', stackTrace: s);
       rethrow;
     }
   }

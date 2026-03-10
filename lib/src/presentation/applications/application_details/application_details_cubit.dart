@@ -23,7 +23,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
               emit(ApplicationDetailsLoadedState(application));
             },
             onError: (e, s) {
-              _logger.logException(
+              _logger.error(
                 featureArea: 'ApplicationDetailsCubit.initialize',
                 exception: e,
                 stackTrace: s,
@@ -34,7 +34,7 @@ class ApplicationDetailsCubit extends Cubit<ApplicationDetailsState> {
             },
           );
     } catch (e, s) {
-      _logger.logException(
+      _logger.error(
         exception: e,
         featureArea: 'ApplicationDetailsCubit.initialize',
         stackTrace: s,
