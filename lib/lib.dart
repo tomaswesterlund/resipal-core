@@ -217,6 +217,7 @@ export 'src/presentation/properties/property_card.dart';
 export 'src/presentation/properties/property_details/property_details_cubit.dart';
 export 'src/presentation/properties/property_details/property_details_page.dart';
 export 'src/presentation/properties/property_details/property_details_state.dart';
+export 'src/presentation/properties/property_header.dart';
 export 'src/presentation/properties/property_list_view.dart';
 export 'src/presentation/properties/register_property/register_property_cubit.dart';
 export 'src/presentation/properties/register_property/register_property_form_state.dart';
