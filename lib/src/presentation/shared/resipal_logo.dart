@@ -23,7 +23,7 @@ class ResipalLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     final String colorStr = color.name;
     final String extension = type.name;
-    final String assetPath = 'packages/respial_core/assets/resipal_logo_$colorStr.$extension';
+    final String assetPath = 'packages/resipal_core/assets/resipal_logo_$colorStr.$extension';
 
     if (type == LogoType.svg) {
       return SvgPicture.asset(assetPath, width: width, height: height, semanticsLabel: 'Resipal Logo');
