@@ -100,29 +100,7 @@ class _Overview extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          DefaultCard(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    backgroundColor: colorScheme.primaryContainer,
-                    child: Text(member.name[0].toUpperCase()),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        HeaderText.five(member.name),
-                        BodyText.small('ID: ${member.user.id.split("-").first.toUpperCase()}'),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          MemberHeader(member: member),
           const SizedBox(height: 24),
           const SectionHeaderText(text: 'RESUMEN FINANCIERO'),
           DefaultCard(
