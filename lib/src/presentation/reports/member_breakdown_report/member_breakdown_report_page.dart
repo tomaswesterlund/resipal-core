@@ -240,17 +240,17 @@ class _SummaryHeader extends StatelessWidget {
             const SizedBox(width: 24),
             _HeaderItem(
               label: 'BALANCE',
-              customValue: AmountText(amountInCents: balance, fontSize: 16),
+              customValue: AmountText(amountInCents: balance, fontSize: 16, color: balance > 0 ? colorScheme.tertiary : Colors.black),
             ),
             const SizedBox(width: 24),
             _HeaderItem(
               label: 'POR REVISAR',
-              customValue: AmountText(amountInCents: pending, fontSize: 16),
+              customValue: AmountText(amountInCents: pending, fontSize: 16, color: pending > 0 ? Colors.orange.shade700 : Colors.black),
             ),
             const SizedBox(width: 24),
             _HeaderItem(
               label: 'DEUDA',
-              customValue: AmountText(amountInCents: debt, fontSize: 16),
+              customValue: AmountText(amountInCents: debt, fontSize: 16, color: debt > 0 ? colorScheme.error : Colors.black),
             ),
           ],
         ),
