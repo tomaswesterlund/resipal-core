@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:resipal_core/lib.dart';
-import 'package:resipal_core/src/presentation/properties/property_details/property_details_page.dart';
 import 'package:wester_kit/lib.dart';
 import 'package:short_navigation/short_navigation.dart';
 
@@ -82,8 +81,8 @@ class PropertyCard extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 2),
-                              AmountText.fromCents(
-                                property.totalDebtAmountInCents,
+                              AmountText(
+                                amountInCents: property.totalDebtAmountInCents,
                                 fontSize: 18,
                                 color: colorScheme.onSurface,
                               ),

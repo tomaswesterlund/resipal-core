@@ -70,7 +70,7 @@ class ContractCard extends StatelessWidget {
                                   color: colorScheme.outline,
                                 ),
                               ),
-                              AmountText.fromCents(contract.amountInCents, fontSize: 18, color: colorScheme.onSurface),
+                              AmountText(amountInCents:  contract.amountInCents, fontSize: 18, color: colorScheme.onSurface),
                             ],
                           ),
                           ActionLink(label: 'Detalles', onTap: () {}),

@@ -240,17 +240,17 @@ class _SummaryHeader extends StatelessWidget {
             const SizedBox(width: 24),
             _HeaderItem(
               label: 'BALANCE',
-              customValue: AmountText.fromCents(balance, fontSize: 16, color: colorScheme.tertiary),
+              customValue: AmountText(amountInCents: balance, fontSize: 16, color: colorScheme.tertiary),
             ),
             const SizedBox(width: 24),
             _HeaderItem(
               label: 'POR REVISAR',
-              customValue: AmountText.fromCents(pending, fontSize: 16, color: Colors.orange),
+              customValue: AmountText(amountInCents: pending, fontSize: 16, color: Colors.orange),
             ),
             const SizedBox(width: 24),
             _HeaderItem(
               label: 'DEUDA',
-              customValue: AmountText.fromCents(debt, fontSize: 16, color: colorScheme.error),
+              customValue: AmountText(amountInCents: debt, fontSize: 16, color: colorScheme.error),
             ),
           ],
         ),
@@ -375,7 +375,7 @@ class _AmountColumn extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label, style: const TextStyle(fontSize: 8, fontWeight: FontWeight.w900, letterSpacing: 0.5)),
-        AmountText.fromCents(cents, fontSize: 14, color: color),
+        AmountText(amountInCents: cents, fontSize: 14, color: color),
       ],
     );
   }

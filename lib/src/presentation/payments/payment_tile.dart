@@ -55,8 +55,8 @@ class PaymentTile extends StatelessWidget {
             ),
           ),
           // Currency Display using Mono Font via AmountText
-          AmountText.fromCents(
-            payment.amountInCents,
+          AmountText(
+            amountInCents: payment.amountInCents,
             fontSize: 16,
             color: colorScheme.secondary,
           ),

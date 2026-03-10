@@ -60,8 +60,8 @@ class PaymentCard extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.baseline,
                                   textBaseline: TextBaseline.alphabetic,
                                   children: [
-                                    AmountText.fromCents(
-                                      payment.amountInCents,
+                                    AmountText(
+                                      amountInCents: payment.amountInCents,
                                       fontSize: 18,
                                       color: colorScheme.onSurface,
                                     ),

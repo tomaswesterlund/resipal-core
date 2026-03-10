@@ -78,7 +78,7 @@ class MaintenanceFeeCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            AmountText.fromCents(fee.amountInCents, fontSize: 17, color: colorScheme.onSurface),
+                            AmountText(amountInCents: fee.amountInCents, fontSize: 17, color: colorScheme.onSurface),
                             const SizedBox(height: 6),
                             MaintenanceStatusPill(fee),
                           ],

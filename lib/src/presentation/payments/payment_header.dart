@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resipal_core/lib.dart';
-import 'package:resipal_core/src/presentation/payments/payment_icon.dart';
-import 'package:resipal_core/src/presentation/payments/payment_status_pill.dart';
 import 'package:wester_kit/lib.dart';
 
 class PaymentHeader extends StatelessWidget {
@@ -21,7 +19,7 @@ class PaymentHeader extends StatelessWidget {
               children: [
                 PaymentIcon(payment),
                 const SizedBox(height: 16),
-                AmountText(CurrencyFormatter.fromCents(payment.amountInCents)),
+                AmountText(amountInCents: payment.amountInCents),
                 const SizedBox(height: 8),
                 PaymentStatusPill(payment),
               ],
