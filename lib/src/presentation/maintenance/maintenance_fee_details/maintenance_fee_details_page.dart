@@ -33,7 +33,7 @@ class MaintenanceFeeDetailsPage extends StatelessWidget {
       return const _FeeDetailsShimmer();
     }
     if (state is MaintenanceFeeDetailsLoadedState) {
-      return _buildBody(context, state.fee);
+      return _buildBody(context, state.fee, state.insufficientBalance);
     }
     if (state is MaintenanceFeeDetailsErrorState) {
       return const ErrorView();
@@ -41,17 +41,34 @@ class MaintenanceFeeDetailsPage extends StatelessWidget {
     return const UnknownStateView();
   }
 
-  Widget _buildBody(BuildContext context, MaintenanceFeeEntity fee) {
+  Widget _buildBody(BuildContext context, MaintenanceFeeEntity fee, bool insufficientBalance) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _FeeHeaderCard(fee: fee),
-          PrimaryButton(
-            label: 'Pagar Pagar',
-            onPressed: () => context.read<MaintenanceFeeDetailsCubit>().payMaintenanceFee(fee),
-          ),
+
+          // Payment Action Section
+          if (!fee.isPaid) ...[
+            const SizedBox(height: 16),
+            PrimaryButton(
+              label: 'Pagar cuota',
+              // Button is read-only (null callback) if balance is insufficient
+              onPressed: insufficientBalance
+                  ? null
+                  : () => context.read<MaintenanceFeeDetailsCubit>().payMaintenanceFee(fee),
+            ),
+            if (insufficientBalance) ...[
+              const SizedBox(height: 8),
+              BodyText.small(
+                'Saldo insuficiente para realizar el pago.',
+                color: Colors.red,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ],
+
           const SizedBox(height: 24),
           const SectionHeaderText(text: 'PERÍODO Y VENCIMIENTO'),
           DefaultCard(
@@ -88,6 +105,8 @@ class MaintenanceFeeDetailsPage extends StatelessWidget {
               ],
             ),
           ),
+
+          // Paid Status Section
           if (fee.isPaid) ...[
             const SizedBox(height: 24),
             SuccessCard(
@@ -117,7 +136,7 @@ class _FeeHeaderCard extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            StatusBadge(color: Colors.red, label: fee.status.name),
+            StatusBadge(color: fee.isPaid ? Colors.green : Colors.red, label: fee.status.name),
             const SizedBox(height: 16),
             HeaderText.three(CurrencyFormatter.fromCents(fee.amountInCents), textAlign: TextAlign.center),
             BodyText.small('Monto de la cuota', color: colorScheme.onSurfaceVariant),

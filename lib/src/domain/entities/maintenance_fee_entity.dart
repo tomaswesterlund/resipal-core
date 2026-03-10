@@ -1,6 +1,4 @@
 import 'package:resipal_core/lib.dart';
-import 'package:resipal_core/src/domain/enums/maintenance_fee_status.dart';
-import 'package:resipal_core/src/domain/refs/contract_ref.dart';
 
 class MaintenanceFeeEntity {
   final String id;
@@ -17,7 +15,7 @@ class MaintenanceFeeEntity {
   MaintenanceFeeEntity({
     required this.id,
     required this.contract,
-    required this.proeprty,
+    required this.property,
     required this.createdAt,
     required this.amountInCents,
     required this.dueDate,
@@ -31,6 +29,7 @@ class MaintenanceFeeEntity {
     return <String, dynamic>{
       'id': id,
       'contract': contract.toMap(),
+      'property': property.toMap(),
       'createdAt': createdAt.toIso8601String(),
       'amountInCents': amountInCents,
       'dueDate': dueDate.toIso8601String(),

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:resipal_core/lib.dart';
-import 'package:resipal_core/src/domain/use_cases/maintenance/can_pay_maintenance_fee.dart';
 import 'package:resipal_core/src/domain/use_cases/maintenance/pay_maintenance_fee.dart';
+import 'package:resipal_core/src/domain/use_cases/properties/get_property_member.dart';
 
 class MaintenanceFeeDetailsCubit extends Cubit<MaintenanceFeeDetailsState> {
   final LoggerService _logger = GetIt.I<LoggerService>();
@@ -16,15 +16,16 @@ class MaintenanceFeeDetailsCubit extends Cubit<MaintenanceFeeDetailsState> {
 
   Future<void> initialize(MaintenanceFeeEntity fee) async {
     try {
-      final canPayFee = CanPayMaintenanceFee().call(maintenanceFeeId: fee.id);
-      emit(MaintenanceFeeDetailsLoadedState(fee: fee, canPay: canPayFee));
+      final member = GetPropertyMember().call(propertyId: fee.property.id);
+      bool insufficientBalance = member.totalMemberBalanceInCents >= fee.amountInCents;
+      emit(MaintenanceFeeDetailsLoadedState(fee: fee, insufficientBalance: insufficientBalance));
 
       _streamSubscription = _watchFee
           .call(fee.id)
           .listen(
             (updatedFee) {
-              final canPayFee = CanPayMaintenanceFee().call(maintenanceFeeId: updatedFee.id);
-              emit(MaintenanceFeeDetailsLoadedState(fee: updatedFee, canPay: canPayFee));
+              bool insufficientBalance = member.totalMemberBalanceInCents >= fee.amountInCents;
+              emit(MaintenanceFeeDetailsLoadedState(fee: updatedFee, insufficientBalance: insufficientBalance));
             },
             onError: (e, s) {
               _logger.logException(
