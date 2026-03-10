@@ -77,6 +77,7 @@ class _PropertyOverview extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          PropertyHeader(property: property, outstandingDebtInCents: property.totalDebtAmountInCents),
           const SectionHeaderText(text: 'DETALLES DE LA PROPIEDAD'),
           DefaultCard(
             child: Column(
