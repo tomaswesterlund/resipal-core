@@ -25,7 +25,7 @@ class PropertyHeader extends StatelessWidget {
           end: Alignment.bottomCenter,
           colors: [
             colorScheme.primary,
-            colorScheme.secondary,
+            colorScheme.primary.withOpacity(0.8),
           ],
         ),
         boxShadow: [
