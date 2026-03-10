@@ -6,14 +6,36 @@ class PropertyHeader extends StatelessWidget {
   final PropertyEntity property;
   final int outstandingDebtInCents;
 
-  const PropertyHeader({required this.property, required this.outstandingDebtInCents, super.key});
+  const PropertyHeader({
+    required this.property, 
+    required this.outstandingDebtInCents, 
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final bool hasDebt = outstandingDebtInCents > 0;
 
-    return DefaultCard(
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20), // Matches DefaultCard radius
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            colorScheme.primary,
+            colorScheme.secondary,
+          ],
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: colorScheme.primary.withOpacity(0.2),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
       child: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
@@ -22,34 +44,50 @@ class PropertyHeader extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.home_work_outlined, size: 16, color: colorScheme.primary),
+                Icon(Icons.home_work_outlined, size: 16, color: colorScheme.onPrimary),
                 const SizedBox(width: 8),
-                HeaderText.three(property.name),
+                HeaderText.three(
+                  property.name, 
+                  color: colorScheme.onPrimary,
+                ),
               ],
             ),
             const SizedBox(height: 4),
 
             // Resident Info
             if (property.resident != null)
-              BodyText.medium(property.resident!.name, color: colorScheme.onSurfaceVariant)
+              BodyText.medium(
+                property.resident!.name, 
+                color: colorScheme.onPrimary.withOpacity(0.8),
+              )
             else
-              const StatusBadge(color: Colors.orange, label: 'SIN RESIDENTE'),
+              const StatusBadge(
+                color: Colors.orange, 
+                label: 'SIN RESIDENTE',
+              ),
 
             const SizedBox(height: 24),
-            const Divider(height: 1),
+            Divider(height: 1, color: colorScheme.onPrimary.withOpacity(0.2)),
             const SizedBox(height: 24),
 
             // Financial Status Section
-            OverlineText('Deuda Pendiente'),
+            OverlineText(
+              'Deuda Pendiente', 
+              color: colorScheme.onPrimary.withOpacity(0.7),
+            ),
             const SizedBox(height: 8),
             AmountText(
               amountInCents: outstandingDebtInCents,
               fontSize: 36,
-              color: hasDebt ? Colors.red : Colors.green,
+              // We use a white-ish color for debt on gradient to keep it legible
+              color: hasDebt ? Colors.white : Colors.greenAccent,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 4),
-            BodyText.small(hasDebt ? 'Saldo por liquidar' : 'Sin adeudos pendientes', color: colorScheme.outline),
+            BodyText.small(
+              hasDebt ? 'Saldo por liquidar' : 'Sin adeudos pendientes', 
+              color: colorScheme.onPrimary.withOpacity(0.7),
+            ),
           ],
         ),
       ),
