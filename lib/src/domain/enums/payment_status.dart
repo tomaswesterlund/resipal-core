@@ -1,3 +1,7 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+
 enum PaymentStatus {
   approved,
   pendingReview,
@@ -20,6 +24,16 @@ enum PaymentStatus {
       PaymentStatus.pendingReview => 'pending_review',
       PaymentStatus.cancelled => 'cancelled',
       PaymentStatus.unknown => 'unknown',
+    };
+  }
+
+  /// Returns the semantic color for the UI indicators
+  Color color(ColorScheme colors) {
+    return switch (this) {
+      PaymentStatus.approved => colors.tertiary,
+      PaymentStatus.pendingReview => Colors.orange.shade700,
+      PaymentStatus.cancelled => colors.error,
+      PaymentStatus.unknown => Colors.black,
     };
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:resipal_core/lib.dart';
-import 'package:resipal_core/src/presentation/payments/payment_details/payment_details_page.dart';
 import 'package:wester_kit/lib.dart';
 import 'package:short_navigation/short_navigation.dart';
 
@@ -14,7 +13,7 @@ class PaymentCard extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    final Color statusColor = _getStatusColor(context);
+    final Color statusColor = payment.status.color(colorScheme);
     final bool isApproved = payment.status == PaymentStatus.approved;
 
     return Container(
@@ -155,19 +154,5 @@ class PaymentCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Color _getStatusColor(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    switch (payment.status) {
-      case PaymentStatus.approved:
-        return Colors.green.shade600;
-      case PaymentStatus.pendingReview:
-        return colorScheme.secondary;
-      case PaymentStatus.cancelled:
-        return colorScheme.error;
-      default:
-        return colorScheme.outline;
-    }
   }
 }
