@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:resipal_core/lib.dart';
 import 'package:wester_kit/lib.dart';
 
@@ -12,24 +11,37 @@ class PaymentHeader extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        DefaultCard(
-          child: Padding(
-            padding: const EdgeInsets.all(32.0),
-            child: Column(
-              children: [
-                PaymentIcon(payment),
-                const SizedBox(height: 16),
-                AmountText(amountInCents: payment.amountInCents, color: payment.status.color(colorScheme),),
-                const SizedBox(height: 8),
-                PaymentStatusPill(payment),
-              ],
-            ),
+    return GradientCard(
+      child: Column(
+        children: [
+          // Using a white-themed version of your icon/status for the gradient
+          PaymentIcon(payment),
+          const SizedBox(height: 24),
+
+          OverlineText('Monto de la transacción', color: colorScheme.onPrimary.withOpacity(0.7)),
+          const SizedBox(height: 8),
+          AmountText(
+            amountInCents: payment.amountInCents,
+            fontSize: 36,
+            // Keeping it white for maximum contrast on the primary gradient
+            color: colorScheme.onPrimary,
+            textAlign: TextAlign.center,
           ),
-        ),
-      ],
+          const SizedBox(height: 16),
+
+          // Reusing your existing pill but ensuring it pops against the background
+          PaymentStatusPill(payment),
+
+          const SizedBox(height: 16),
+          Divider(height: 1, color: colorScheme.onPrimary.withOpacity(0.2)),
+          const SizedBox(height: 16),
+
+          BodyText.small(
+            'Referencia: ${payment.id.substring(0, 8).toUpperCase()}',
+            color: colorScheme.onPrimary.withOpacity(0.6),
+          ),
+        ],
+      ),
     );
   }
 }
