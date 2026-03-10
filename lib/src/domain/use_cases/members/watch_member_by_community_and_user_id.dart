@@ -8,7 +8,7 @@ class WatchMemberByCommunityAndUserId {
   final PaymentDataSource _paymentDataSource = GetIt.I<PaymentDataSource>();
   final PropertyDataSource _propertyDataSource = GetIt.I<PropertyDataSource>();
   final UserDataSource _userDataSource = GetIt.I<UserDataSource>();
-  final GetMemberByUserAndCommunityId _getMemberByUserAndCommunityId = GetIt.I<GetMemberByUserAndCommunityId>();
+  final GetMemberByUserAndCommunityId _getMemberByUserAndCommunityId = GetMemberByUserAndCommunityId();
 
   Stream<MemberEntity> call({required String communityId, required String userId}) {
     return CombineLatestStream.combine5(
