@@ -73,7 +73,7 @@ class _PropertyOverview extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -119,6 +119,7 @@ class _PropertyOverview extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(height: 48)
         ],
       ),
     );

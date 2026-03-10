@@ -5,34 +5,13 @@ import 'package:resipal_core/lib.dart';
 class PropertyHeader extends StatelessWidget {
   final PropertyEntity property;
 
-  const PropertyHeader({
-    required this.property, 
-    super.key,
-  });
+  const PropertyHeader({required this.property, super.key});
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20), // Matches DefaultCard radius
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            colorScheme.primary,
-            colorScheme.primary.withOpacity(0.8),
-          ],
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: colorScheme.primary.withOpacity(0.2),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+    return GradientCard(
       child: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
@@ -43,35 +22,23 @@ class PropertyHeader extends StatelessWidget {
               children: [
                 Icon(Icons.home_work_outlined, size: 16, color: colorScheme.onPrimary),
                 const SizedBox(width: 8),
-                HeaderText.one(
-                  property.name, 
-                  color: colorScheme.onPrimary,
-                ),
+                HeaderText.one(property.name, color: colorScheme.onPrimary),
               ],
             ),
             const SizedBox(height: 4),
 
             // Resident Info
             if (property.resident != null)
-              BodyText.medium(
-                property.resident!.name, 
-                color: colorScheme.onPrimary.withOpacity(0.8),
-              )
+              BodyText.medium(property.resident!.name, color: colorScheme.onPrimary.withOpacity(0.8))
             else
-              const StatusBadge(
-                color: Colors.orange, 
-                label: 'SIN RESIDENTE',
-              ),
+              const StatusBadge(color: Colors.orange, label: 'SIN RESIDENTE'),
 
             const SizedBox(height: 24),
             Divider(height: 1, color: colorScheme.onPrimary.withOpacity(0.2)),
             const SizedBox(height: 24),
 
             // Financial Status Section
-            OverlineText(
-              'Deuda Pendiente', 
-              color: colorScheme.onPrimary.withOpacity(0.7),
-            ),
+            OverlineText('Deuda Pendiente', color: colorScheme.onPrimary.withOpacity(0.7)),
             const SizedBox(height: 8),
             AmountText(
               amountInCents: property.totalDebtAmountInCents,
@@ -82,7 +49,7 @@ class PropertyHeader extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             BodyText.small(
-              property.hasDebt ? 'Saldo por liquidar' : 'Sin adeudos pendientes', 
+              property.hasDebt ? 'Saldo por liquidar' : 'Sin adeudos pendientes',
               color: colorScheme.onPrimary.withOpacity(0.7),
             ),
           ],
