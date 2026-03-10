@@ -9,6 +9,9 @@ class PaymentHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -19,7 +22,7 @@ class PaymentHeader extends StatelessWidget {
               children: [
                 PaymentIcon(payment),
                 const SizedBox(height: 16),
-                AmountText(amountInCents: payment.amountInCents),
+                AmountText(amountInCents: payment.amountInCents, color: payment.status.color(colorScheme),),
                 const SizedBox(height: 8),
                 PaymentStatusPill(payment),
               ],

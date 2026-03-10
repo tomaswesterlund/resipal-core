@@ -38,6 +38,7 @@ class SettingsPage extends StatelessWidget {
                 label: 'Días de Gracia',
                 initialValue: '10',
                 hint: 'Ej. 10',
+                readOnly: true,
                 helpText: 'Días adicionales después del día 1 para pagar sin generar recargos.',
               ),
             ],

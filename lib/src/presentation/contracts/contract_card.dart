@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resipal_core/lib.dart';
+import 'package:resipal_core/src/presentation/contracts/contract_details/contract_details_page.dart';
+import 'package:short_navigation/short_navigation.dart';
 import 'package:wester_kit/lib.dart';
 
 class ContractCard extends StatelessWidget {
@@ -73,7 +75,7 @@ class ContractCard extends StatelessWidget {
                               AmountText(amountInCents:  contract.amountInCents, fontSize: 18, color: Colors.black),
                             ],
                           ),
-                          ActionLink(label: 'Detalles', onTap: () {}),
+                          ActionLink(label: 'Detalles', onTap: () => Go.to(ContractDetailsPage(contract))),
                         ],
                       ),
                     ],

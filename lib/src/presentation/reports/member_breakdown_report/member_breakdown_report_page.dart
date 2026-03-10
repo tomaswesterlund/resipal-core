@@ -65,7 +65,7 @@ class MemberBreakdownReportPage extends StatelessWidget {
               _buildStatBox('Miembros', '${state.members.length}'),
               _buildStatBox('Propiedades', '${state.members.fold(0, (sum, m) => sum + m.propertyRegistry.count)}'),
               _buildStatBox(
-                'Por Revisar',
+                'Pagos por Revisar',
                 formatCurrency.format(state.totalPendingCents / 100),
                 valueColor: PdfColors.orange,
               ),

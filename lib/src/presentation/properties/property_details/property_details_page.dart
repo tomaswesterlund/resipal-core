@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:resipal_core/lib.dart';
-import 'package:resipal_core/src/presentation/maintenance/maintenance_fee_card.dart';
+import 'package:resipal_core/src/presentation/contracts/contract_details/contract_details_page.dart';
+import 'package:short_navigation/short_navigation.dart';
 import 'package:wester_kit/lib.dart';
-import 'property_details_cubit.dart';
-import 'property_details_state.dart';
 
 class PropertyDetailsPage extends StatefulWidget {
   final PropertyEntity property;
@@ -29,7 +28,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
 
           return Scaffold(
             backgroundColor: colorScheme.background,
-            appBar: MyAppBar(title: currentProperty.name),
+            appBar: MyAppBar(title: 'Detalle de Propiedad'),
             body: _buildStateWidget(state),
             bottomNavigationBar: Padding(
               padding: EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom + 0.0, left: 0.0, right: 0.0),
@@ -42,7 +41,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                     icon: Icons.history_rounded,
                     label: 'Mantenemiento',
                     showDanger: currentProperty.hasOverdueFees,
-                    warningBadgeCount: currentProperty.pendingFees.length 
+                    warningBadgeCount: currentProperty.pendingFees.length,
                   ),
                 ],
               ),
@@ -107,6 +106,7 @@ class _PropertyOverview extends StatelessWidget {
                   icon: Icons.assignment_rounded,
                   label: 'Tipo de Contrato',
                   value: property.contract?.name ?? 'N/A',
+                  onPressed: property.contract == null ? null : () => Go.to(ContractDetailsPage(property.contract!)),
                 ),
                 Divider(height: 1, color: colorScheme.outlineVariant),
                 DetailTile(
@@ -130,8 +130,7 @@ class _PropertyFeesHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sortedFees = List<MaintenanceFeeEntity>.from(property.fees)
-    ..sort((a, b) => b.fromDate.compareTo(a.fromDate));
+    final sortedFees = List<MaintenanceFeeEntity>.from(property.fees)..sort((a, b) => b.fromDate.compareTo(a.fromDate));
 
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),

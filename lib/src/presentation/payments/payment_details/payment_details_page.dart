@@ -19,7 +19,7 @@ class PaymentDetailsPage extends StatelessWidget {
         appBar: const MyAppBar(title: 'Detalle de Pago'),
         body: BlocBuilder<PaymentDetailsCubit, PaymentDetailsState>(
           builder: (ctx, state) {
-            return StateSwitcher(child: _buildStateWidget(state));
+            return _buildStateWidget(state);
           },
         ),
       ),
@@ -118,7 +118,7 @@ class _Loaded extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 96),
           ],
         ],
       ),

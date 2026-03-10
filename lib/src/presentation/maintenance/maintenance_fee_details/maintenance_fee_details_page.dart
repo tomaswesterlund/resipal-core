@@ -74,11 +74,13 @@ class MaintenanceFeeDetailsPage extends StatelessWidget {
           DefaultCard(
             child: Column(
               children: [
-                DetailTile(icon: Icons.calendar_today_outlined, label: 'Desde', value: fee.fromDate.toShortDate()),
+                DetailTile(
+                  icon: Icons.date_range_outlined,
+                  label: 'Periodo',
+                  value: '${fee.fromDate.toShortDate()} - ${fee.toDate.toShortDate()}',
+                ),
                 Divider(height: 1, color: Colors.grey.withOpacity(0.1)),
-                DetailTile(icon: Icons.calendar_month_outlined, label: 'Hasta', value: fee.toDate.toShortDate()),
-                Divider(height: 1, color: Colors.grey.withOpacity(0.1)),
-                DetailTile(icon: Icons.event_available, label: 'Fecha Límite', value: fee.dueDate.toShortDate()),
+                DetailTile(icon: Icons.event_available, label: 'Fecha Límite de Pago', value: fee.dueDate.toShortDate()),
               ],
             ),
           ),
