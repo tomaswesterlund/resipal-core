@@ -12,8 +12,9 @@ class MaintenanceFeeDetailsLoadingState extends MaintenanceFeeDetailsState {}
 
 class MaintenanceFeeDetailsLoadedState extends MaintenanceFeeDetailsState {
   final MaintenanceFeeEntity fee;
+  final bool canPay;
 
-  MaintenanceFeeDetailsLoadedState(this.fee);
+  MaintenanceFeeDetailsLoadedState({required this.fee, required this.canPay});
 
   @override
   List<Object?> get props => [fee];

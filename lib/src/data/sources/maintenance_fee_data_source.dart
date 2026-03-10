@@ -42,7 +42,7 @@ class MaintenanceFeeDataSource {
     });
   }
 
-    Stream<List<MaintenanceFeeModel>> watchByPropertyId(String propertyId) {
+  Stream<List<MaintenanceFeeModel>> watchByPropertyId(String propertyId) {
     return _client.from('maintenance_fees').stream(primaryKey: ['id']).eq('property_id', propertyId).map((data) {
       return data.map((i) {
         final model = MaintenanceFeeModel.fromJson(i);
@@ -57,7 +57,7 @@ class MaintenanceFeeDataSource {
   List<MaintenanceFeeModel> getByContractId(String contractId) =>
       _cache.values.where((m) => m.contractId == contractId).toList();
 
-      List<MaintenanceFeeModel> getByPropertyId(String propertyId) =>
+  List<MaintenanceFeeModel> getByPropertyId(String propertyId) =>
       _cache.values.where((m) => m.propertyId == propertyId).toList();
 
   Future<MaintenanceFeeModel> fetchById(String id) async {
@@ -69,6 +69,14 @@ class MaintenanceFeeDataSource {
     } catch (e, s) {
       _logger.logException(exception: e, featureArea: 'MaintenanceFeeDataSource.fetchById', stackTrace: s);
       rethrow;
+    }
+  }
+
+  Future<void> updatePaymentDate({required String id, required DateTime paymentDate}) async {
+    await _client.from('maintenance_fees').update({'payment_date': paymentDate.toIso8601String()}).eq('id', id);
+
+    if (_cache.containsKey(id)) {
+      _cache[id] = _cache[id]!.copyWith(paymentDate: paymentDate);
     }
   }
 }

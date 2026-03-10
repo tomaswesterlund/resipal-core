@@ -1362,7 +1362,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "6643f1c13eb99e21e975696e0f249197ad6495c6"
+      resolved-ref: "9c33cadcb4d4de14829b55d1f32ed2561739f415"
       url: "https://github.com/tomaswesterlund/WesterKit"
     source: git
     version: "0.0.1"

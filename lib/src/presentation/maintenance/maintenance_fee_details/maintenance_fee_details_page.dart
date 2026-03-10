@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:resipal_core/lib.dart';
 import 'package:wester_kit/lib.dart';
-import 'maintenance_fee_details_cubit.dart';
-import 'maintenance_fee_details_state.dart';
 
 class MaintenanceFeeDetailsPage extends StatelessWidget {
   final MaintenanceFeeEntity fee;
@@ -23,19 +21,19 @@ class MaintenanceFeeDetailsPage extends StatelessWidget {
           return Scaffold(
             backgroundColor: colorScheme.background,
             appBar: MyAppBar(title: 'Detalle de Cuota'),
-            body: _buildStateWidget(state, currentFee),
+            body: _buildStateWidget(context, state, currentFee),
           );
         },
       ),
     );
   }
 
-  Widget _buildStateWidget(MaintenanceFeeDetailsState state, MaintenanceFeeEntity fee) {
+  Widget _buildStateWidget(BuildContext context, MaintenanceFeeDetailsState state, MaintenanceFeeEntity fee) {
     if (state is MaintenanceFeeDetailsInitialState || state is MaintenanceFeeDetailsLoadingState) {
       return const _FeeDetailsShimmer();
     }
     if (state is MaintenanceFeeDetailsLoadedState) {
-      return _buildBody(state.fee);
+      return _buildBody(context, state.fee);
     }
     if (state is MaintenanceFeeDetailsErrorState) {
       return const ErrorView();
@@ -43,35 +41,27 @@ class MaintenanceFeeDetailsPage extends StatelessWidget {
     return const UnknownStateView();
   }
 
-  Widget _buildBody(MaintenanceFeeEntity fee) {
+  Widget _buildBody(BuildContext context, MaintenanceFeeEntity fee) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _FeeHeaderCard(fee: fee),
+          PrimaryButton(
+            label: 'Pagar Pagar',
+            onPressed: () => context.read<MaintenanceFeeDetailsCubit>().payMaintenanceFee(fee),
+          ),
           const SizedBox(height: 24),
           const SectionHeaderText(text: 'PERÍODO Y VENCIMIENTO'),
           DefaultCard(
             child: Column(
               children: [
-                DetailTile(
-                  icon: Icons.calendar_today_outlined,
-                  label: 'Desde',
-                  value: fee.fromDate.toShortDate(),
-                ),
+                DetailTile(icon: Icons.calendar_today_outlined, label: 'Desde', value: fee.fromDate.toShortDate()),
                 Divider(height: 1, color: Colors.grey.withOpacity(0.1)),
-                DetailTile(
-                  icon: Icons.calendar_month_outlined,
-                  label: 'Hasta',
-                  value: fee.toDate.toShortDate(),
-                ),
+                DetailTile(icon: Icons.calendar_month_outlined, label: 'Hasta', value: fee.toDate.toShortDate()),
                 Divider(height: 1, color: Colors.grey.withOpacity(0.1)),
-                DetailTile(
-                  icon: Icons.event_available,
-                  label: 'Fecha Límite',
-                  value: fee.dueDate.toShortDate(),
-                ),
+                DetailTile(icon: Icons.event_available, label: 'Fecha Límite', value: fee.dueDate.toShortDate()),
               ],
             ),
           ),
@@ -80,11 +70,7 @@ class MaintenanceFeeDetailsPage extends StatelessWidget {
           DefaultCard(
             child: Column(
               children: [
-                DetailTile(
-                  icon: Icons.description_outlined,
-                  label: 'Contrato',
-                  value: fee.contract.name,
-                ),
+                DetailTile(icon: Icons.description_outlined, label: 'Contrato', value: fee.contract.name),
                 if (fee.note != null && fee.note!.isNotEmpty) ...[
                   Divider(height: 1, color: Colors.grey.withOpacity(0.1)),
                   Padding(
@@ -125,20 +111,15 @@ class _FeeHeaderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    
+
     return DefaultCard(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            StatusBadge(
-              color: Colors.red,
-              label: fee.status.name),
+            StatusBadge(color: Colors.red, label: fee.status.name),
             const SizedBox(height: 16),
-            HeaderText.three(
-              CurrencyFormatter.fromCents(fee.amountInCents),
-              textAlign: TextAlign.center,
-            ),
+            HeaderText.three(CurrencyFormatter.fromCents(fee.amountInCents), textAlign: TextAlign.center),
             BodyText.small('Monto de la cuota', color: colorScheme.onSurfaceVariant),
           ],
         ),
@@ -159,9 +140,15 @@ class _FeeDetailsShimmer extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            Container(height: 140, decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20))),
+            Container(
+              height: 140,
+              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
+            ),
             const SizedBox(height: 32),
-            Container(height: 180, decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12))),
+            Container(
+              height: 180,
+              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
+            ),
           ],
         ),
       ),

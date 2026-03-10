@@ -1,7 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:resipal_core/src/data/sources/maintenance_fee_data_source.dart';
-import 'package:resipal_core/src/domain/entities/maintenance_fee_entity.dart';
-import 'package:resipal_core/src/domain/use_cases/contracts/get_contract_ref.dart';
+import 'package:resipal_core/lib.dart';
 
 class GetMaintenanceFee {
   final MaintenanceFeeDataSource _source = GetIt.I<MaintenanceFeeDataSource>();
@@ -14,9 +12,12 @@ class GetMaintenanceFee {
       throw Exception('Maintenance Fee $id not found in cache. Ensure the stream is active.');
     }
 
+    final property = GetPropertyRef().call(model.propertyId);
+
     return MaintenanceFeeEntity(
       id: id,
       contract: _getContractRef.fromId(model.contractId),
+      property: property,
       createdAt: model.createdAt,
       amountInCents: model.amountInCents,
       dueDate: model.dueDate,

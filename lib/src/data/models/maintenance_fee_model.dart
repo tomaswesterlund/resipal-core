@@ -23,6 +23,32 @@ class MaintenanceFeeModel {
     required this.note,
   });
 
+  MaintenanceFeeModel copyWith({
+    String? id,
+    String? contractId,
+    String? propertyId,
+    DateTime? createdAt,
+    int? amountInCents,
+    DateTime? dueDate,
+    DateTime? paymentDate,
+    DateTime? fromDate,
+    DateTime? toDate,
+    String? note,
+  }) {
+    return MaintenanceFeeModel(
+      id: id ?? this.id,
+      contractId: contractId ?? this.contractId,
+      propertyId: propertyId ?? this.propertyId,
+      createdAt: createdAt ?? this.createdAt,
+      amountInCents: amountInCents ?? this.amountInCents,
+      dueDate: dueDate ?? this.dueDate,
+      paymentDate: paymentDate ?? this.paymentDate,
+      fromDate: fromDate ?? this.fromDate,
+      toDate: toDate ?? this.toDate,
+      note: note ?? this.note,
+    );
+  }
+
   factory MaintenanceFeeModel.fromJson(Map<String, dynamic> json) {
     return MaintenanceFeeModel(
       id: json['id'],

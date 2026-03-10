@@ -1,9 +1,11 @@
+import 'package:resipal_core/lib.dart';
 import 'package:resipal_core/src/domain/enums/maintenance_fee_status.dart';
 import 'package:resipal_core/src/domain/refs/contract_ref.dart';
 
 class MaintenanceFeeEntity {
   final String id;
   final ContractRef contract;
+  final PropertyRef property;
   final DateTime createdAt;
   final int amountInCents;
   final DateTime dueDate;
@@ -15,6 +17,7 @@ class MaintenanceFeeEntity {
   MaintenanceFeeEntity({
     required this.id,
     required this.contract,
+    required this.proeprty,
     required this.createdAt,
     required this.amountInCents,
     required this.dueDate,
