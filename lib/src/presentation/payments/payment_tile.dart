@@ -23,43 +23,24 @@ class PaymentTile extends StatelessWidget {
           // Branded Icon Container
           Container(
             padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: colorScheme.secondary.withOpacity(0.1),
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              Icons.receipt_long_rounded, 
-              color: colorScheme.secondary, 
-              size: 20,
-            ),
+            decoration: BoxDecoration(color: colorScheme.secondary.withOpacity(0.1), shape: BoxShape.circle),
+            child: Icon(Icons.receipt_long_rounded, color: colorScheme.secondary, size: 20),
           ),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Pago de Cuota',
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Text('Pago de Cuota', style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold)),
                 Text(
                   payment.createdAt.toShortDate(),
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    color: colorScheme.outline,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: theme.textTheme.labelSmall?.copyWith(color: colorScheme.outline, fontWeight: FontWeight.w500),
                 ),
               ],
             ),
           ),
           // Currency Display using Mono Font via AmountText
-          AmountText(
-            amountInCents: payment.amountInCents,
-            fontSize: 16,
-            color: colorScheme.secondary,
-          ),
+          AmountText(amountInCents: payment.amountInCents, fontSize: 16),
         ],
       ),
     );

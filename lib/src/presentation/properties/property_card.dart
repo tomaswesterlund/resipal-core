@@ -11,7 +11,7 @@ class PropertyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    
+
     // Get the status from the entity
     final status = property.propertyPaymentStatus;
     // Get the color and icon from the enum implementation
@@ -81,11 +81,7 @@ class PropertyCard extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 2),
-                              AmountText(
-                                amountInCents: property.totalDebtAmountInCents,
-                                fontSize: 18,
-                                color: colorScheme.onSurface,
-                              ),
+                              AmountText(amountInCents: property.totalDebtAmountInCents, fontSize: 18),
                             ],
                           ),
                           ActionLink(

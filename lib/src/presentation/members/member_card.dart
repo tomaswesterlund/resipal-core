@@ -121,7 +121,7 @@ class MemberCard extends StatelessWidget {
             color: theme.colorScheme.outline,
           ),
         ),
-        AmountText(amountInCents: cents, fontSize: 16, color: color),
+        AmountText(amountInCents: cents, fontSize: 16),
       ],
     );
   }

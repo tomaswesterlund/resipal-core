@@ -206,7 +206,7 @@ class MemberBreakdownReportPage extends StatelessWidget {
                     count: state.members.length,
                   ),
                   Expanded(child: state.members.isEmpty ? const _EmptyReport() : _ReportList(members: state.members)),
-                  SizedBox(height: 96.0,)
+                  SizedBox(height: 96.0),
                 ],
               );
             }
@@ -240,17 +240,17 @@ class _SummaryHeader extends StatelessWidget {
             const SizedBox(width: 24),
             _HeaderItem(
               label: 'BALANCE',
-              customValue: AmountText(amountInCents: balance, fontSize: 16, color: colorScheme.tertiary),
+              customValue: AmountText(amountInCents: balance, fontSize: 16),
             ),
             const SizedBox(width: 24),
             _HeaderItem(
               label: 'POR REVISAR',
-              customValue: AmountText(amountInCents: pending, fontSize: 16, color: Colors.orange),
+              customValue: AmountText(amountInCents: pending, fontSize: 16),
             ),
             const SizedBox(width: 24),
             _HeaderItem(
               label: 'DEUDA',
-              customValue: AmountText(amountInCents: debt, fontSize: 16, color: colorScheme.error),
+              customValue: AmountText(amountInCents: debt, fontSize: 16),
             ),
           ],
         ),
@@ -375,7 +375,7 @@ class _AmountColumn extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label, style: const TextStyle(fontSize: 8, fontWeight: FontWeight.w900, letterSpacing: 0.5)),
-        AmountText(amountInCents: cents, fontSize: 14, color: color),
+        AmountText(amountInCents: cents, fontSize: 14),
       ],
     );
   }
