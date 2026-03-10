@@ -185,6 +185,7 @@ export 'src/presentation/members/member_card.dart';
 export 'src/presentation/members/member_details/member_details_cubit.dart';
 export 'src/presentation/members/member_details/member_details_page.dart';
 export 'src/presentation/members/member_details/member_details_state.dart';
+export 'src/presentation/members/member_header.dart';
 export 'src/presentation/members/member_list_page.dart';
 export 'src/presentation/members/member_list_view.dart';
 export 'src/presentation/onboarding/community_registration/onboarding_community_registration_cubit.dart';
