@@ -18,7 +18,7 @@ class PayMaintenanceFee {
         exception: 'Can pay is not fulfilled',
         metadata: {'fee': fee.toMap(), 'member': member.toMap()},
       );
-      throw Exception('Cant pay maintenance fee.');
+      throw Exception('Can pay is not fulfilled.');
     }
 
     await _source.updatePaymentDate(id: id, paymentDate: DateTime.now());
