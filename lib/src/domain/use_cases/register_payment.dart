@@ -7,7 +7,7 @@ class RegisterPayment {
 
   Future<void> call({
     required String communityId,
-    required String userId,
+    required String residentId,
     required int amountInCents,
     required DateTime date,
     required String? reference,
@@ -17,18 +17,19 @@ class RegisterPayment {
     const String featureArea = 'RegisterPayment';
 
     try {
-      _logger.info('[$featureArea] Starting payment registration for user: $userId in community: $communityId');
+      _logger.info('[$featureArea] Starting payment registration for user: $residentId in community: $communityId');
 
-      final member = GetMemberByUserAndCommunityId().call(communityId: communityId, userId: userId);
       final signedInUser = GetSignedInUser().call();
+      final signedInMember = GetMemberByUserAndCommunityId().call(communityId: communityId, userId: signedInUser.id);
+      
 
-      final bool isSelf = signedInUser.id == userId;
-      final bool isAdmin = member.isAdmin == true;
+      final bool isSelf = signedInUser.id == residentId;
+      final bool isAdmin = signedInMember.isAdmin == true;
 
       if (!isSelf && !isAdmin) {
         final String roleStatus = isAdmin ? 'Admin' : 'Resident';
         final String error =
-            'Authorization Denied: User ${signedInUser.id} ($roleStatus) attempted to register a payment for $userId but is not the owner or an Admin.';
+            'Authorization Denied: User ${signedInUser.id} ($roleStatus) attempted to register a payment for $residentId but is not the owner or an Admin.';
 
         // Log the specific failure with the user's role context
         _logger.debug('[$featureArea] $error');
@@ -39,7 +40,7 @@ class RegisterPayment {
           exception: 'Unauthorized Payment Attempt',
           metadata: {
             'actor_id': signedInUser.id,
-            'target_id': userId,
+            'target_id': residentId,
             'is_admin': isAdmin,
             'is_self': isSelf,
             'community_id': communityId,
@@ -51,7 +52,7 @@ class RegisterPayment {
 
       await _source.registerPayment(
         communityId: communityId,
-        userId: userId,
+        userId: residentId,
         amountInCents: amountInCents,
         date: date,
         reference: reference,
@@ -67,7 +68,7 @@ class RegisterPayment {
         stackTrace: stackTrace,
         metadata: {
           'community_id': communityId,
-          'target_user_id': userId,
+          'target_user_id': residentId,
           'amount': amountInCents,
           'has_receipt': receiptPath.isNotEmpty,
         },
