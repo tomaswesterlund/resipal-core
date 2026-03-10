@@ -56,8 +56,6 @@ class LoggerService {
     try {
       final info = await PackageInfo.fromPlatform();
 
-      // If your DataSource doesn't have logInfo, you might want to add a 'level' column 
-      // to your Supabase table to distinguish between info and errors.
       await _errorDataSource.logError(
         errorMessage: message,
         stackTrace: stackTrace?.toString(),

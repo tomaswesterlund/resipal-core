@@ -9,24 +9,11 @@ class MaintenanceFeeCard extends StatelessWidget {
 
   const MaintenanceFeeCard(this.fee, {super.key});
 
-  Color _getStatusColor(ColorScheme colorScheme) {
-    switch (fee.status) {
-      case MaintenanceFeeStatus.paid:
-        return Colors.green; // Standard success color
-      case MaintenanceFeeStatus.overdue:
-        return colorScheme.error;
-      case MaintenanceFeeStatus.pending:
-        return Colors.orange;
-      case MaintenanceFeeStatus.upcoming:
-        return colorScheme.outline;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final statusColor = _getStatusColor(colorScheme);
+    final statusColor = fee.status.color(colorScheme);
 
     return Container(
       decoration: BoxDecoration(

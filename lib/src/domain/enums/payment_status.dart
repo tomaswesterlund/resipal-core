@@ -27,7 +27,6 @@ enum PaymentStatus {
     };
   }
 
-  /// Returns the semantic color for the UI indicators
   Color color(ColorScheme colors) {
     return switch (this) {
       PaymentStatus.approved => colors.tertiary,

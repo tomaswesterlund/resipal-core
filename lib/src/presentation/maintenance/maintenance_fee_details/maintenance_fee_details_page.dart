@@ -11,6 +11,7 @@ class MaintenanceFeeDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final statusColor = fee.status.color(colorScheme);
 
     return BlocProvider(
       create: (ctx) => MaintenanceFeeDetailsCubit()..initialize(fee),
@@ -138,9 +139,9 @@ class _FeeHeaderCard extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            StatusBadge(color: fee.isPaid ? Colors.green : Colors.red, label: fee.status.name),
+            StatusBadge(color: fee.status.color(colorScheme), label: fee.status.display),
             const SizedBox(height: 16),
-            HeaderText.three(CurrencyFormatter.fromCents(fee.amountInCents), textAlign: TextAlign.center),
+            AmountText(amountInCents: fee.amountInCents, color: fee.status.color(colorScheme)),
             BodyText.small('Monto de la cuota', color: colorScheme.onSurfaceVariant),
           ],
         ),
