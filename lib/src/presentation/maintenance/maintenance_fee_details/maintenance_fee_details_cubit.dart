@@ -17,14 +17,14 @@ class MaintenanceFeeDetailsCubit extends Cubit<MaintenanceFeeDetailsState> {
   Future<void> initialize(MaintenanceFeeEntity fee) async {
     try {
       final member = GetPropertyMember().call(propertyId: fee.property.id);
-      bool insufficientBalance = member.totalMemberBalanceInCents >= fee.amountInCents;
+      bool insufficientBalance = member.totalMemberBalanceInCents < fee.amountInCents;
       emit(MaintenanceFeeDetailsLoadedState(fee: fee, insufficientBalance: insufficientBalance));
 
       _streamSubscription = _watchFee
           .call(fee.id)
           .listen(
             (updatedFee) {
-              bool insufficientBalance = member.totalMemberBalanceInCents >= fee.amountInCents;
+              bool insufficientBalance = member.totalMemberBalanceInCents < fee.amountInCents;
               emit(MaintenanceFeeDetailsLoadedState(fee: updatedFee, insufficientBalance: insufficientBalance));
             },
             onError: (e, s) {
