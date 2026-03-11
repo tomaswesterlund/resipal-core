@@ -168,9 +168,6 @@ class MemberBreakdownReportPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
     return BlocProvider(
       create: (ctx) => MemberBreakdownReportCubit()..initialize(),
       child: Scaffold(
@@ -200,77 +197,12 @@ class MemberBreakdownReportPage extends StatelessWidget {
             if (state is MemberBreakdownReportLoadedState) {
               return Column(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      // --- Balance Principal (Fondo con Gradiente) ---
-                      GradientCard(
-                        child: Column(
-                          children: [
-                            OverlineText(
-                              'BALANCE TOTAL DE LA COMUNIDAD',
-                              color: colorScheme.onPrimary.withOpacity(0.7),
-                            ),
-                            const SizedBox(height: 8),
-                            AmountText(
-                              amountInCents: state.totalBalanceCents,
-                              fontSize: 32,
-                              color: colorScheme.onPrimary,
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 4),
-                            BodyText.small('Fondos disponibles en caja', color: colorScheme.onPrimary.withOpacity(0.7)),
-                          ],
-                        ),
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      // --- Métricas Operativas (Grid de StatCards) ---
-                      Row(
-                        children: [
-                          Expanded(
-                            child: StatCard(
-                              label: 'MIEMBROS',
-                              value: state.members.length.toString(),
-                              icon: Icons.people_outline,
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: StatCard(
-                              label: 'PROPIEDADES',
-                              value: state.members.fold(0, (sum, m) => sum + m.propertyRegistry.count).toString(),
-                              icon: Icons.home_work_outlined,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(height: 12),
-
-                      Row(
-                        children: [
-                          Expanded(
-                            child: StatCard(
-                              label: 'PAGOS PENDIENTES',
-                              value: CurrencyFormatter.fromCents(state.totalPendingCents),
-                              icon: Icons.hourglass_empty_rounded,
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: StatCard(
-                              label: 'DEUDA VENCIDA',
-                              value: CurrencyFormatter.fromCents(state.totalDebtCents),
-                              icon: Icons.warning_amber_rounded,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                  _SummaryHeader(
+                    balance: state.totalBalanceCents,
+                    debt: state.totalDebtCents,
+                    pending: state.totalPendingCents,
+                    count: state.members.length,
                   ),
-
                   Expanded(child: state.members.isEmpty ? const _EmptyReport() : _ReportList(members: state.members)),
                   SizedBox(height: 96.0),
                 ],
@@ -278,6 +210,59 @@ class MemberBreakdownReportPage extends StatelessWidget {
             }
             return const UnknownStateView();
           },
+        ),
+      ),
+    );
+  }
+}
+
+class _SummaryHeader extends StatelessWidget {
+  final int balance;
+  final int debt;
+  final int pending; // Added
+  final int count;
+
+  const _SummaryHeader({required this.balance, required this.debt, required this.pending, required this.count});
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Container(
+      color: colorScheme.surface,
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal, // Prevent overflow if screen is narrow
+        child: Row(
+          children: [
+            _HeaderItem(label: 'REGISTROS', value: count.toString()),
+            const SizedBox(width: 24),
+            _HeaderItem(
+              label: 'BALANCE',
+              customValue: AmountText(
+                amountInCents: balance,
+                fontSize: 16,
+                color: balance > 0 ? colorScheme.tertiary : Colors.black,
+              ),
+            ),
+            const SizedBox(width: 24),
+            _HeaderItem(
+              label: 'POR REVISAR',
+              customValue: AmountText(
+                amountInCents: pending,
+                fontSize: 16,
+                color: pending > 0 ? Colors.orange.shade700 : Colors.black,
+              ),
+            ),
+            const SizedBox(width: 24),
+            _HeaderItem(
+              label: 'DEUDA',
+              customValue: AmountText(
+                amountInCents: debt,
+                fontSize: 16,
+                color: debt > 0 ? colorScheme.error : Colors.black,
+              ),
+            ),
+          ],
         ),
       ),
     );

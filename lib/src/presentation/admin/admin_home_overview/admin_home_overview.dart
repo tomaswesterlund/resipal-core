@@ -58,13 +58,23 @@ class HomeOverview extends StatelessWidget {
                     mainAxisSpacing: 16,
                     childAspectRatio: 1.5,
                     children: [
+                      StatCard(label: 'Balance total', value: '-1', icon: Icons.home_work_outlined),
+                      StatCard(
+                        label: 'Pagos por revisar',
+                        value: community.paymentLedger.pendingPayments.length.toString(),
+                        icon: Icons.home_work_outlined,
+                      ),
+                      StatCard(
+                        label: 'Deuda vencida',
+                        value: CurrencyFormatter.fromCents(community.propertyRegistry.totalDebtAmountInCents),
+                        icon: Icons.home_work_outlined,
+                      ),
                       StatCard(
                         label: 'Propiedades',
                         value: community.propertyRegistry.count.toString(),
                         icon: Icons.home_work_outlined,
                       ),
                       StatCard(
-                        
                         label: 'Usuarios',
                         value: community.memberDirectory.length.toString(),
                         icon: Icons.people_outline,
@@ -107,7 +117,6 @@ class HomeOverview extends StatelessWidget {
       ),
     );
   }
-
 
   Widget _buildActionTile(
     BuildContext context, {
