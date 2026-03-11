@@ -231,7 +231,12 @@ class _SummaryHeader extends StatelessWidget {
       color: colorScheme.surface,
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
       child: Column(
-        children: [StatCard(label: 'SALDO TOTAL', value: balance.toString(), icon: Icons.attach_money)],
+        children: [
+          StatCard(label: 'SALDO TOTAL', value: balance.toString(), icon: Icons.attach_money),
+          StatCard(label: 'SALDO TOTAL', value: balance.toString(), icon: Icons.attach_money),
+          StatCard(label: 'SALDO TOTAL', value: balance.toString(), icon: Icons.attach_money),
+          StatCard(label: 'SALDO TOTAL', value: balance.toString(), icon: Icons.attach_money),
+          ],
       ),
     );
   }
