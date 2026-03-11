@@ -25,7 +25,7 @@ class HomeOverview extends StatelessWidget {
     return BlocProvider(
       create: (context) => HomeOverviewCubit()..initialize(community, user),
       child: Scaffold(
-        backgroundColor: colorScheme.surface,
+        backgroundColor: colorScheme.background,
         body: BlocBuilder<HomeOverviewCubit, AdminHomeOverviewState>(
           builder: (context, state) {
             if (state is AdminHomeOverviewLoadingState) return const LoadingView();
@@ -68,6 +68,7 @@ class HomeOverview extends StatelessWidget {
                         ),
                       ],
                     ),
+                    SizedBox(height: 12.0),
                     Row(
                       children: [
                         Expanded(
@@ -83,7 +84,7 @@ class HomeOverview extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 36),
 
                     HeaderText.five('Acciones Pendientes'),
                     const SizedBox(height: 12),
