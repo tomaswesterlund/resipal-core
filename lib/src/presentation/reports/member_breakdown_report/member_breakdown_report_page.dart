@@ -89,12 +89,12 @@ class MemberBreakdownReportPage extends StatelessWidget {
             cellHeight: 25,
             cellAlignments: {
               0: pw.Alignment.centerLeft, // Nombre
-              1: pw.Alignment.centerLeft, // Propiedades
+              1: pw.Alignment.centerLeft, // Propiedad
               2: pw.Alignment.centerRight, // Balance
               3: pw.Alignment.centerRight, // Pendiente
               4: pw.Alignment.centerRight, // Deuda
             },
-            headers: ['Nombre', 'Propiedades', 'Balance', 'Pendiente', 'Deuda'],
+            headers: ['Nombre', 'Propiedad', 'Balance', 'Pendiente', 'Deuda'],
             data: state.members.expand((m) {
               final properties = m.propertyRegistry.properties;
 
@@ -104,7 +104,7 @@ class MemberBreakdownReportPage extends StatelessWidget {
                 properties.length == 1 ? properties.first.name : '', // If only 1, show here. If many, leave empty.
                 formatCurrency.format(m.paymentLedger.totalPaymentBalanceInCents / 100),
                 formatCurrency.format(m.paymentLedger.pendingPaymentAmountInCents / 100),
-                properties.length == formatCurrency.format(m.propertyRegistry.totalDebtAmountInCents / 100),
+                properties.length == 1 ? formatCurrency.format(m.propertyRegistry.totalDebtAmountInCents / 100) : '',
               ];
 
               // 2. If multiple properties, create sub-rows
@@ -128,7 +128,7 @@ class MemberBreakdownReportPage extends StatelessWidget {
             }).toList(),
             // Optional: Add a subtle line under each member group
             rowDecoration: const pw.BoxDecoration(
-              border: pw.Border(bottom: pw.BorderSide(color: PdfColors.grey100, width: .5)),
+              border: pw.Border(bottom: pw.BorderSide(color: PdfColors.grey300, width: .5)),
             ),
           ),
         ],
