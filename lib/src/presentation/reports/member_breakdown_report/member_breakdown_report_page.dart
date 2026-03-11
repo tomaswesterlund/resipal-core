@@ -197,12 +197,23 @@ class MemberBreakdownReportPage extends StatelessWidget {
             if (state is MemberBreakdownReportLoadedState) {
               return Column(
                 children: [
-                  _SummaryHeader(
-                    balance: state.totalBalanceCents,
-                    debt: state.totalDebtCents,
-                    pending: state.totalPendingCents,
-                    count: state.members.length,
+                  Row(
+                    children: [
+                      StatCard(label: 'MIEMBROS', value: state.members.length.toString(), icon: Icons.attach_money),
+                      StatCard(label: 'PROPIEDADES', value: '-1', icon: Icons.house_outlined),
+                    ],
                   ),
+
+                  Expanded(
+                    child: StatCard(label: 'BALANCE', value: '-1', icon: Icons.attach_money),
+                  ),
+                  Row(
+                    children: [
+                      StatCard(label: 'PAGOS PENDIENTES', value: '-,', icon: Icons.attach_money),
+                      StatCard(label: 'DEUDA VENCIDA', value: '-1', icon: Icons.attach_money),
+                    ],
+                  ),
+
                   Expanded(child: state.members.isEmpty ? const _EmptyReport() : _ReportList(members: state.members)),
                   SizedBox(height: 96.0),
                 ],
@@ -211,32 +222,6 @@ class MemberBreakdownReportPage extends StatelessWidget {
             return const UnknownStateView();
           },
         ),
-      ),
-    );
-  }
-}
-
-class _SummaryHeader extends StatelessWidget {
-  final int balance;
-  final int debt;
-  final int pending; // Added
-  final int count;
-
-  const _SummaryHeader({required this.balance, required this.debt, required this.pending, required this.count});
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    return Container(
-      color: colorScheme.surface,
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
-      child: Column(
-        children: [
-          StatCard(label: 'SALDO TOTAL', value: balance.toString(), icon: Icons.attach_money),
-          StatCard(label: 'SALDO TOTAL', value: balance.toString(), icon: Icons.attach_money),
-          StatCard(label: 'SALDO TOTAL', value: balance.toString(), icon: Icons.attach_money),
-          StatCard(label: 'SALDO TOTAL', value: balance.toString(), icon: Icons.attach_money),
-          ],
       ),
     );
   }
