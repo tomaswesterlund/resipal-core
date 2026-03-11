@@ -168,6 +168,9 @@ class MemberBreakdownReportPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return BlocProvider(
       create: (ctx) => MemberBreakdownReportCubit()..initialize(),
       child: Scaffold(
@@ -197,18 +200,74 @@ class MemberBreakdownReportPage extends StatelessWidget {
             if (state is MemberBreakdownReportLoadedState) {
               return Column(
                 children: [
-                  Row(
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      StatCard(label: 'MIEMBROS', value: state.members.length.toString(), icon: Icons.attach_money),
-                      StatCard(label: 'PROPIEDADES', value: '-1', icon: Icons.house_outlined),
-                    ],
-                  ),
+                      // --- Balance Principal (Fondo con Gradiente) ---
+                      GradientCard(
+                        child: Column(
+                          children: [
+                            OverlineText(
+                              'BALANCE TOTAL DE LA COMUNIDAD',
+                              color: colorScheme.onPrimary.withOpacity(0.7),
+                            ),
+                            const SizedBox(height: 8),
+                            AmountText(
+                              amountInCents: state.totalBalanceCents,
+                              fontSize: 32,
+                              color: colorScheme.onPrimary,
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 4),
+                            BodyText.small('Fondos disponibles en caja', color: colorScheme.onPrimary.withOpacity(0.7)),
+                          ],
+                        ),
+                      ),
 
-                  StatCard(label: 'BALANCE', value: '-1', icon: Icons.attach_money),
-                  Row(
-                    children: [
-                      StatCard(label: 'PAGOS PENDIENTES', value: '-,', icon: Icons.attach_money),
-                      StatCard(label: 'DEUDA VENCIDA', value: '-1', icon: Icons.attach_money),
+                      const SizedBox(height: 16),
+
+                      // --- Métricas Operativas (Grid de StatCards) ---
+                      Row(
+                        children: [
+                          Expanded(
+                            child: StatCard(
+                              label: 'MIEMBROS',
+                              value: state.members.length.toString(),
+                              icon: Icons.people_outline,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: StatCard(
+                              label: 'PROPIEDADES',
+                              value: state.members.fold(0, (sum, m) => sum + m.propertyRegistry.count).toString(),
+                              icon: Icons.home_work_outlined,
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 12),
+
+                      Row(
+                        children: [
+                          Expanded(
+                            child: StatCard(
+                              label: 'PAGOS PENDIENTES',
+                              value: CurrencyFormatter.fromCents(state.totalPendingCents),
+                              icon: Icons.hourglass_empty_rounded,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: StatCard(
+                              label: 'DEUDA VENCIDA',
+                              value: CurrencyFormatter.fromCents(state.totalDebtCents),
+                              icon: Icons.warning_amber_rounded,
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
 
