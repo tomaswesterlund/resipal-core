@@ -34,73 +34,81 @@ class HomeOverview extends StatelessWidget {
             if (state is AdminHomeOverviewLoadedState) {
               final community = state.community;
 
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  HeaderText.four('¡Bienvenido, ${state.user.name}!'),
-                  const SizedBox(height: 4),
-                  Text(
-                    community.name,
-                    style: theme.textTheme.titleSmall?.copyWith(
-                      color: colorScheme.outline,
-                      fontWeight: FontWeight.w600,
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    HeaderText.four('¡Bienvenido, ${state.user.name}!'),
+                    const SizedBox(height: 4),
+                    Text(
+                      community.name,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        color: colorScheme.outline,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 24),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: StatCard(
-                          label: 'Propiedades',
-                          value: community.propertyRegistry.count.toString(),
-                          icon: Icons.home_work_outlined,
+                    const SizedBox(height: 24),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: StatCard(
+                            label: 'Propiedades',
+                            value: community.propertyRegistry.count.toString(),
+                            icon: Icons.home_work_outlined,
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: StatCard(
-                          label: 'Usuarios',
-                          value: community.memberDirectory.length.toString(),
-                          icon: Icons.people_outline,
+                        SizedBox(width: 12.0),
+                        Expanded(
+                          child: StatCard(
+                            label: 'Usuarios',
+                            value: community.memberDirectory.length.toString(),
+                            icon: Icons.people_outline,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      StatCard(label: 'Balance total', value: '-1', icon: Icons.home_work_outlined),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: StatCard(label: 'Balance total', value: '-1', icon: Icons.home_work_outlined),
+                        ),
+                        SizedBox(width: 12.0),
+                        Expanded(
+                          child: StatCard(
+                            label: 'Deuda vencida',
+                            value: CurrencyFormatter.fromCents(community.propertyRegistry.totalDebtAmountInCents),
+                            icon: Icons.home_work_outlined,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
 
-                      StatCard(
-                        label: 'Deuda vencida',
-                        value: CurrencyFormatter.fromCents(community.propertyRegistry.totalDebtAmountInCents),
-                        icon: Icons.home_work_outlined,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
+                    HeaderText.five('Acciones Pendientes'),
+                    const SizedBox(height: 12),
 
-                  HeaderText.five('Acciones Pendientes'),
-                  const SizedBox(height: 12),
+                    ActionTile(
+                      title: 'Pagos por revisar',
+                      count: community.paymentLedger.pendingPayments.length,
+                      icon: Icons.receipt_long_outlined,
+                      // Replaces AppColors.warning with Terracotta/Secondary
+                      color: colorScheme.surfaceTint,
+                      onPressed: onPendingPaymentsPressed,
+                    ),
+                    const SizedBox(height: 12),
+                    ActionTile(
+                      title: 'Solicitudes de ingreso',
+                      count: community.applications.length,
+                      icon: Icons.person_add_outlined,
+                      // Replaces AppColors.info with System/Info Tertiary
+                      color: colorScheme.surfaceTint,
+                      onPressed: onPendingApplicationsPressed,
+                    ),
 
-                  ActionTile(
-                    title: 'Pagos por revisar',
-                    count: community.paymentLedger.pendingPayments.length,
-                    icon: Icons.receipt_long_outlined,
-                    // Replaces AppColors.warning with Terracotta/Secondary
-                    color: colorScheme.surfaceTint,
-                    onPressed: onPendingPaymentsPressed,
-                  ),
-                  const SizedBox(height: 12),
-                  ActionTile(
-                    title: 'Solicitudes de ingreso',
-                    count: community.applications.length,
-                    icon: Icons.person_add_outlined,
-                    // Replaces AppColors.info with System/Info Tertiary
-                    color: colorScheme.surfaceTint,
-                    onPressed: onPendingApplicationsPressed,
-                  ),
-
-                  const SizedBox(height: 48),
-                ],
+                    const SizedBox(height: 48),
+                  ],
+                ),
               );
             }
 
