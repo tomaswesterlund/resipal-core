@@ -71,30 +71,10 @@ class HomeOverview extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
 
-                  // --- Metric Grid ---
-                  GridView.count(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                    childAspectRatio: 1.5,
+                  HeaderText.five('Resumen'),
+                  const SizedBox(height: 12),
+                  Row(
                     children: [
-                      // --- Action Required Section ---
-                      HeaderText.five('Resumen'),
-                      const SizedBox(height: 12),
-                      StatCard(label: 'Balance total', value: '-1', icon: Icons.home_work_outlined),
-                      StatCard(
-                        label: 'Pagos por revisar',
-                        value: community.paymentLedger.pendingPayments.length.toString(),
-                        icon: Icons.home_work_outlined,
-                      ),
-                      StatCard(
-                        label: 'Deuda vencida',
-                        value: CurrencyFormatter.fromCents(community.propertyRegistry.totalDebtAmountInCents),
-                        icon: Icons.home_work_outlined,
-                      ),
                       StatCard(
                         label: 'Propiedades',
                         value: community.propertyRegistry.count.toString(),
@@ -104,6 +84,17 @@ class HomeOverview extends StatelessWidget {
                         label: 'Usuarios',
                         value: community.memberDirectory.length.toString(),
                         icon: Icons.people_outline,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      StatCard(label: 'Balance total', value: '-1', icon: Icons.home_work_outlined),
+
+                      StatCard(
+                        label: 'Deuda vencida',
+                        value: CurrencyFormatter.fromCents(community.propertyRegistry.totalDebtAmountInCents),
+                        icon: Icons.home_work_outlined,
                       ),
                     ],
                   ),
