@@ -35,6 +35,7 @@ class HomeOverview extends StatelessWidget {
               final community = state.community;
 
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   HeaderText.four('¡Bienvenido, ${state.user.name}!'),
                   const SizedBox(height: 4),
@@ -46,30 +47,6 @@ class HomeOverview extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  HeaderText.five('Acciones Pendientes'),
-                  const SizedBox(height: 12),
-
-                  ActionTile(
-                    title: 'Pagos por revisar',
-                    count: community.paymentLedger.pendingPayments.length,
-                    icon: Icons.receipt_long_outlined,
-                    // Replaces AppColors.warning with Terracotta/Secondary
-                    color: colorScheme.surfaceTint,
-                    onPressed: onPendingPaymentsPressed,
-                  ),
-                  const SizedBox(height: 12),
-                  ActionTile(
-                    title: 'Solicitudes de ingreso',
-                    count: community.applications.length,
-                    icon: Icons.person_add_outlined,
-                    // Replaces AppColors.info with System/Info Tertiary
-                    color: colorScheme.surfaceTint,
-                    onPressed: onPendingApplicationsPressed,
-                  ),
-                  const SizedBox(height: 24),
-
-                  HeaderText.five('Resumen'),
-                  const SizedBox(height: 12),
                   Row(
                     children: [
                       StatCard(
@@ -94,6 +71,28 @@ class HomeOverview extends StatelessWidget {
                         icon: Icons.home_work_outlined,
                       ),
                     ],
+                  ),
+                  const SizedBox(height: 24),
+
+                  HeaderText.five('Acciones Pendientes'),
+                  const SizedBox(height: 12),
+
+                  ActionTile(
+                    title: 'Pagos por revisar',
+                    count: community.paymentLedger.pendingPayments.length,
+                    icon: Icons.receipt_long_outlined,
+                    // Replaces AppColors.warning with Terracotta/Secondary
+                    color: colorScheme.surfaceTint,
+                    onPressed: onPendingPaymentsPressed,
+                  ),
+                  const SizedBox(height: 12),
+                  ActionTile(
+                    title: 'Solicitudes de ingreso',
+                    count: community.applications.length,
+                    icon: Icons.person_add_outlined,
+                    // Replaces AppColors.info with System/Info Tertiary
+                    color: colorScheme.surfaceTint,
+                    onPressed: onPendingApplicationsPressed,
                   ),
 
                   const SizedBox(height: 48),
