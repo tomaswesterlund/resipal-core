@@ -49,15 +49,19 @@ class HomeOverview extends StatelessWidget {
                   const SizedBox(height: 24),
                   Row(
                     children: [
-                      StatCard(
-                        label: 'Propiedades',
-                        value: community.propertyRegistry.count.toString(),
-                        icon: Icons.home_work_outlined,
+                      Expanded(
+                        child: StatCard(
+                          label: 'Propiedades',
+                          value: community.propertyRegistry.count.toString(),
+                          icon: Icons.home_work_outlined,
+                        ),
                       ),
-                      StatCard(
-                        label: 'Usuarios',
-                        value: community.memberDirectory.length.toString(),
-                        icon: Icons.people_outline,
+                      Expanded(
+                        child: StatCard(
+                          label: 'Usuarios',
+                          value: community.memberDirectory.length.toString(),
+                          icon: Icons.people_outline,
+                        ),
                       ),
                     ],
                   ),
