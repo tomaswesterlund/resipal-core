@@ -204,9 +204,7 @@ class MemberBreakdownReportPage extends StatelessWidget {
                     ],
                   ),
 
-                  Expanded(
-                    child: StatCard(label: 'BALANCE', value: '-1', icon: Icons.attach_money),
-                  ),
+                  StatCard(label: 'BALANCE', value: '-1', icon: Icons.attach_money),
                   Row(
                     children: [
                       StatCard(label: 'PAGOS PENDIENTES', value: '-,', icon: Icons.attach_money),
