@@ -108,8 +108,6 @@ class MemberBreakdownReportPage extends StatelessWidget {
           ),
 
           pw.SizedBox(height: 20),
-          pw.Divider(thickness: 1, color: PdfColors.grey300),
-          pw.SizedBox(height: 15),
 
           // --- DATA TABLE ---
           pw.TableHelper.fromTextArray(
@@ -232,40 +230,8 @@ class _SummaryHeader extends StatelessWidget {
     return Container(
       color: colorScheme.surface,
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal, // Prevent overflow if screen is narrow
-        child: Row(
-          children: [
-            _HeaderItem(label: 'REGISTROS', value: count.toString()),
-            const SizedBox(width: 24),
-            _HeaderItem(
-              label: 'BALANCE',
-              customValue: AmountText(
-                amountInCents: balance,
-                fontSize: 16,
-                color: balance > 0 ? colorScheme.tertiary : Colors.black,
-              ),
-            ),
-            const SizedBox(width: 24),
-            _HeaderItem(
-              label: 'POR REVISAR',
-              customValue: AmountText(
-                amountInCents: pending,
-                fontSize: 16,
-                color: pending > 0 ? Colors.orange.shade700 : Colors.black,
-              ),
-            ),
-            const SizedBox(width: 24),
-            _HeaderItem(
-              label: 'DEUDA',
-              customValue: AmountText(
-                amountInCents: debt,
-                fontSize: 16,
-                color: debt > 0 ? colorScheme.error : Colors.black,
-              ),
-            ),
-          ],
-        ),
+      child: Column(
+        children: [StatCard(label: 'SALDO TOTAL', value: balance.toString(), icon: Icons.attach_money)],
       ),
     );
   }

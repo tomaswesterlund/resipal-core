@@ -58,17 +58,16 @@ class HomeOverview extends StatelessWidget {
                     mainAxisSpacing: 16,
                     childAspectRatio: 1.5,
                     children: [
-                      _buildStatCard(
-                        context,
-                        'Propiedades',
-                        community.propertyRegistry.count.toString(),
-                        Icons.home_work_outlined,
+                      StatCard(
+                        label: 'Propiedades',
+                        value: community.propertyRegistry.count.toString(),
+                        icon: Icons.home_work_outlined,
                       ),
-                      _buildStatCard(
-                        context,
-                        'Usuarios',
-                        community.memberDirectory.length.toString(),
-                        Icons.people_outline,
+                      StatCard(
+                        
+                        label: 'Usuarios',
+                        value: community.memberDirectory.length.toString(),
+                        icon: Icons.people_outline,
                       ),
                     ],
                   ),
@@ -109,43 +108,6 @@ class HomeOverview extends StatelessWidget {
     );
   }
 
-  Widget _buildStatCard(BuildContext context, String label, String value, IconData icon) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: colorScheme.outlineVariant),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Icon(icon, color: colorScheme.primary, size: 24),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                value,
-                style: theme.textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: colorScheme.onSurface,
-                  fontFamily: 'NotoSansMono', // Consistent with numeric guide
-                ),
-              ),
-              Text(
-                label,
-                style: theme.textTheme.labelSmall?.copyWith(color: colorScheme.outline, fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _buildActionTile(
     BuildContext context, {
