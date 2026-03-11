@@ -34,8 +34,7 @@ class HomeOverview extends StatelessWidget {
             if (state is AdminHomeOverviewLoadedState) {
               final community = state.community;
 
-              return ListView(
-                padding: const EdgeInsets.all(20),
+              return Column(
                 children: [
                   HeaderText.four('¡Bienvenido, ${state.user.name}!'),
                   const SizedBox(height: 4),
