@@ -16,18 +16,49 @@ class MemberBreakdownReportPage extends StatelessWidget {
     final pdf = pw.Document();
     final formatCurrency = NumberFormat.simpleCurrency();
 
-    // 1. Load Assets (Fonts & Logo) to prevent Cupertino errors
-
     // Load logo from assets
     final logoData = await rootBundle.load('packages/resipal_core/assets/resipal_logo_green.png');
     final logoImage = pw.MemoryImage(logoData.buffer.asUint8List());
 
+    // 1. Pre-procesar los datos y asignar colores por bloque de miembro
+    final List<List<dynamic>> tableData = [];
+    final List<pw.BoxDecoration> rowDecorations = [];
+
+    for (var i = 0; i < state.members.length; i++) {
+      final m = state.members[i];
+      final properties = m.propertyRegistry.properties;
+
+      // Alternar color: Blanco para pares, Gris tenue para impares
+      final rowColor = i % 2 == 0 ? PdfColors.white : PdfColors.grey100;
+      final decoration = pw.BoxDecoration(
+        color: rowColor,
+        border: const pw.Border(bottom: pw.BorderSide(color: PdfColors.grey300, width: .5)),
+      );
+
+      // Fila principal
+      tableData.add([
+        m.name,
+        properties.length == 1 ? properties.first.name : '',
+        formatCurrency.format(m.paymentLedger.totalPaymentBalanceInCents / 100),
+        formatCurrency.format(m.paymentLedger.pendingPaymentAmountInCents / 100),
+        properties.length == 1 ? formatCurrency.format(m.propertyRegistry.totalDebtAmountInCents / 100) : '',
+      ]);
+      rowDecorations.add(decoration);
+
+      // Sub-filas (si tiene múltiples propiedades)
+      if (properties.length > 1) {
+        for (var p in properties) {
+          tableData.add(['', p.name, '', '', CurrencyFormatter.fromCents(p.totalDebtAmountInCents)]);
+          rowDecorations.add(decoration);
+        }
+      }
+    }
+
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
-        //theme: pw.ThemeData.withFont(base: font, bold: boldFont),
         build: (context) => [
-          // --- HEADER WITH LOGO ---
+          // --- HEADER ---
           pw.Row(
             mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
             children: [
@@ -38,7 +69,6 @@ class MemberBreakdownReportPage extends StatelessWidget {
                   pw.Text('RESIPAL', style: pw.TextStyle(fontSize: 36, fontWeight: pw.FontWeight.bold)),
                 ],
               ),
-
               pw.Column(
                 crossAxisAlignment: pw.CrossAxisAlignment.end,
                 children: [
@@ -58,7 +88,7 @@ class MemberBreakdownReportPage extends StatelessWidget {
 
           pw.SizedBox(height: 25),
 
-          // --- DASHBOARD SUMMARY BOXES ---
+          // --- DASHBOARD SUMMARY ---
           pw.Row(
             mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
             children: [
@@ -88,48 +118,18 @@ class MemberBreakdownReportPage extends StatelessWidget {
             headerDecoration: const pw.BoxDecoration(color: PdfColors.blueGrey800),
             cellHeight: 25,
             cellAlignments: {
-              0: pw.Alignment.centerLeft, // Nombre
-              1: pw.Alignment.centerLeft, // Propiedad
-              2: pw.Alignment.centerRight, // Balance
-              3: pw.Alignment.centerRight, // Pendiente
-              4: pw.Alignment.centerRight, // Deuda
+              0: pw.Alignment.centerLeft,
+              1: pw.Alignment.centerLeft,
+              2: pw.Alignment.centerRight,
+              3: pw.Alignment.centerRight,
+              4: pw.Alignment.centerRight,
             },
             headers: ['Nombre', 'Propiedad', 'Balance', 'Pendiente', 'Deuda'],
-            data: state.members.expand((m) {
-              final properties = m.propertyRegistry.properties;
-
-              // 1. The main row for the Member
-              final mainRow = [
-                m.name,
-                properties.length == 1 ? properties.first.name : '', // If only 1, show here. If many, leave empty.
-                formatCurrency.format(m.paymentLedger.totalPaymentBalanceInCents / 100),
-                formatCurrency.format(m.paymentLedger.pendingPaymentAmountInCents / 100),
-                properties.length == 1 ? formatCurrency.format(m.propertyRegistry.totalDebtAmountInCents / 100) : '',
-              ];
-
-              // 2. If multiple properties, create sub-rows
-              if (properties.length > 1) {
-                final subRows = properties
-                    .map(
-                      (p) => [
-                        '', // Empty Name
-                        p.name, // Property Name
-                        '', // Empty Balance
-                        '', // Empty Pendiente
-                        CurrencyFormatter.fromCents(p.totalDebtAmountInCents),
-                      ],
-                    )
-                    .toList();
-
-                return [mainRow, ...subRows];
-              }
-
-              return [mainRow];
-            }).toList(),
-            // Optional: Add a subtle line under each member group
-            rowDecoration: const pw.BoxDecoration(
-              border: pw.Border(bottom: pw.BorderSide(color: PdfColors.grey300, width: .5)),
-            ),
+            data: tableData,
+            cellDecoration: (index, data, rowNum) {
+              // rowNum es 1-based y el 0 es el header, por lo que restamos 1 para nuestro array
+              return rowDecorations[rowNum - 1];
+            },
           ),
         ],
       ),
@@ -240,17 +240,29 @@ class _SummaryHeader extends StatelessWidget {
             const SizedBox(width: 24),
             _HeaderItem(
               label: 'BALANCE',
-              customValue: AmountText(amountInCents: balance, fontSize: 16, color: balance > 0 ? colorScheme.tertiary : Colors.black),
+              customValue: AmountText(
+                amountInCents: balance,
+                fontSize: 16,
+                color: balance > 0 ? colorScheme.tertiary : Colors.black,
+              ),
             ),
             const SizedBox(width: 24),
             _HeaderItem(
               label: 'POR REVISAR',
-              customValue: AmountText(amountInCents: pending, fontSize: 16, color: pending > 0 ? Colors.orange.shade700 : Colors.black),
+              customValue: AmountText(
+                amountInCents: pending,
+                fontSize: 16,
+                color: pending > 0 ? Colors.orange.shade700 : Colors.black,
+              ),
             ),
             const SizedBox(width: 24),
             _HeaderItem(
               label: 'DEUDA',
-              customValue: AmountText(amountInCents: debt, fontSize: 16, color: debt > 0 ? colorScheme.error : Colors.black),
+              customValue: AmountText(
+                amountInCents: debt,
+                fontSize: 16,
+                color: debt > 0 ? colorScheme.error : Colors.black,
+              ),
             ),
           ],
         ),
